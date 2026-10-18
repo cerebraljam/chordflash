@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { audio, startAudio } from './lib/audioState.svelte';
   import LevelMeter from './lib/components/LevelMeter.svelte';
+  import Tour, { type TourView } from './lib/components/Tour.svelte';
   import { history } from './lib/practice/history.svelte';
   import { settings } from './lib/settings.svelte';
   import ChordCheck from './lib/views/ChordCheck.svelte';
@@ -26,8 +27,23 @@
   /** Bumped on every entry so the practice area starts fresh. */
   let entryKey = $state(0);
 
+  /** First visit: walk through input, tuner, chord check and home. */
+  let touring = $state(!settings.tourDone);
+
   onMount(() => {
     void history.load();
+  });
+
+  function endTour() {
+    touring = false;
+    settings.tourDone = true;
+  }
+
+  const tourView = (v: TourView) => (tab = v);
+
+  // Starting a set mid-tour is what the tour is for: let the player get on with it.
+  $effect(() => {
+    if (tab === 'practice' && touring) endTour();
   });
 
   /** Opens practice from home; the click that does it also starts listening if needed. */
@@ -54,7 +70,7 @@
   </h1>
   <nav class="row tabs">
     {#each TABS as t (t.id)}
-      <button class:selected={lit(t.id)} aria-current={lit(t.id) ? 'page' : undefined} onclick={() => (tab = t.id)}>{t.label}</button>
+      <button class:selected={lit(t.id)} aria-current={lit(t.id) ? 'page' : undefined} data-tour="nav-{t.id}" onclick={() => (tab = t.id)}>{t.label}</button>
     {/each}
   </nav>
   <div class="row right">
@@ -67,6 +83,7 @@
     <button onclick={() => (settings.lang = settings.lang === 'en' ? 'fr' : 'en')} title="Note names">
       {settings.lang === 'en' ? 'C D E' : 'Do Ré Mi'}
     </button>
+    <button class="help" onclick={() => (touring = true)} aria-label="Show the tour" title="Show the tour">?</button>
   </div>
 </header>
 
@@ -79,7 +96,7 @@
   {:else if !audio.running}
     <section class="card start">
       <p>Chord Flash listens to your guitar through the Rocksmith cable (or a microphone).</p>
-      <button class="primary big" disabled={audio.starting} onclick={() => startAudio()}>
+      <button class="primary big" data-tour="start-listening" disabled={audio.starting} onclick={() => startAudio()}>
         {audio.starting ? 'Starting…' : 'Start listening'}
       </button>
       {#if audio.error}<p class="error">Could not open the input: {audio.error}</p>{/if}
@@ -96,6 +113,10 @@
     <ChordCheck />
   {/if}
 </main>
+
+{#if touring}
+  <Tour go={tourView} onclose={endTour} />
+{/if}
 
 <style>
   header {
@@ -128,6 +149,13 @@
   }
   .right {
     margin-left: auto;
+  }
+  .help {
+    width: 40px;
+    padding: 0;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.1rem;
   }
   main {
     max-width: 1100px;

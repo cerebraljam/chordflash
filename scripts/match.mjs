@@ -211,7 +211,8 @@ for (const s of setlists) {
   // Several user versions may exist: keep the one with the most section labels, then the longest.
   const sections = (r) => (r.chords.match(/<[a-z]+_\d+>/g) ?? []).length;
   candidates.sort((a, b) => sections(b) - sections(a) || b.chords.length - a.chords.length);
-  const key = `${s.artist}|${want}`;
+  // The same song can be spelled differently across games ("& The Blackhearts" / "& the Blackhearts").
+  const key = `${normTitle(s.artist)}|${want}`;
   const prev = songs.get(key);
   if (prev) {
     prev.games.push(s.game);

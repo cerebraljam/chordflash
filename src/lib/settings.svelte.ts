@@ -46,6 +46,8 @@ export interface Settings {
   tabAsStandard: boolean;
   /** Best stars (1–3) earned playing each song through, by song id. */
   songStars: Record<string, number>;
+  /** The first-visit tour was finished or skipped. */
+  tourDone: boolean;
 }
 
 const KEY = 'chordflash.settings';
@@ -77,6 +79,7 @@ export const DEFAULTS: Settings = {
   monitorVolume: 0.8,
   tabAsStandard: true,
   songStars: {},
+  tourDone: false,
 };
 
 function load<T>(key: string, fallback: T): T {

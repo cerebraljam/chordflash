@@ -1,4 +1,5 @@
 import { chordById, chordDifficulty, chordId } from '../music/chords';
+import jrock from './jrock.json';
 import data from './songs.json';
 
 export interface SongSection {
@@ -13,7 +14,7 @@ export interface Song {
   title: string;
   artist: string;
   year: number | null;
-  /** Games whose on-disc setlist has this song. */
+  /** Games whose on-disc setlist has this song, or a collection ("J-Rock"). */
   games: string[];
   /** Tuning listed by Rocksmith 2014, when not standard. */
   tuning?: string;
@@ -39,11 +40,18 @@ const slug = (s: string) =>
   s
     .normalize('NFD')
     .replace(/[̀-ͯ]/g, '')
+    .normalize('NFC')
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
+    // Letters of any script: "ヒロイン" and "幸せ" must not both become "".
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
     .replace(/^-|-$/g, '');
 
 export const songId = (artist: string, title: string) => `${slug(artist)}--${slug(title)}`;
+
+const SERIES = ['Rock Band', 'Guitar Hero', 'Rocksmith'];
+/** Collections that aren't a game setlist (J-Rock) pass through unchanged. */
+/** "Guitar Hero: Warriors of Rock" → "Guitar Hero": the setlist filters by series. */
+export const seriesOf = (game: string) => SERIES.find((s) => game.startsWith(s)) ?? game;
 
 /** "<verse_1>" → "Verse 1", "<prechorus_2>" → "Pre-chorus 2". */
 function sectionName(tag: string): string {
@@ -128,8 +136,8 @@ export function fromRaw(r: RawSong): Song {
   };
 }
 
-/** Songs shipped with the app (from the game setlists matched to Chordonomicon). */
-export const BUILTIN_SONGS: Song[] = (data as RawSong[]).map(fromRaw).filter((s) => s.sections.length);
+/** Songs shipped with the app: the game setlists matched to Chordonomicon, and the J-Rock collection. */
+export const BUILTIN_SONGS: Song[] = [...(data as RawSong[]), ...(jrock as RawSong[])].map(fromRaw).filter((s) => s.sections.length);
 
 export interface SectionGroup {
   /** "Verse" for a run of identical sections, the full name ("Chorus 2") for a single one. */

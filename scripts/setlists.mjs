@@ -15,6 +15,14 @@ const SOURCES = [
   // Only the first table: the second lists unlockable tracks by the developers.
   { page: 'Rocksmith', game: 'Rocksmith', sections: ['Soundtrack'], firstOnly: true },
   { page: 'Rocksmith_2014', game: 'Rocksmith 2014', sections: ['Track list'] },
+  { page: 'List_of_songs_in_Guitar_Hero', game: 'Guitar Hero', sections: ['Main set list', 'Bonus songs'] },
+  { page: 'List_of_songs_in_Guitar_Hero_II', game: 'Guitar Hero II', sections: ['Main setlist', 'Bonus songs'] },
+  { page: 'List_of_songs_in_Guitar_Hero_III:_Legends_of_Rock', game: 'Guitar Hero III', sections: ['Main setlist', 'Bonus songs'] },
+  { page: 'List_of_songs_in_Guitar_Hero_World_Tour', game: 'Guitar Hero World Tour', sections: ['Main setlist'] },
+  { page: 'List_of_songs_in_Guitar_Hero_5', game: 'Guitar Hero 5', sections: ['Main setlist'] },
+  { page: 'List_of_songs_in_Guitar_Hero:_Warriors_of_Rock', game: 'Guitar Hero: Warriors of Rock', sections: ['Main setlist'] },
+  // GHTV's streamed catalogue is left out: only the songs on the disc.
+  { page: 'List_of_songs_in_Guitar_Hero_Live', game: 'Guitar Hero Live', sections: ['On-disc soundtrack'] },
 ];
 
 async function wikitext(page) {
@@ -38,6 +46,7 @@ export function clean(s) {
     .replace(/\{\{nowrap\|([^}]*)\}\}/gi, '$1')
     .replace(/\{\{[^}]*\}\}/g, '')
     .replace(/\[\[(?:[^|\]]*\|)?([^\]]*)\]\]/g, '$1')
+    .replace(/\[https?:\/\/\S+\s+([^\]]*)\]/g, '$1')
     .replace(/'''?/g, '')
     .replace(/<[^>]+>/g, '')
     .replace(/&nbsp;/g, ' ')

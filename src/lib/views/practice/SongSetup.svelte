@@ -10,6 +10,7 @@
     mostAdjacent,
     parseProgression,
     progressionText,
+    seriesOf,
     songChords,
     songDifficulty,
     type Song,
@@ -75,14 +76,14 @@
   });
   let games = $derived([
     'All',
-    ...[...new Set(songs.flatMap((s) => s.song.games))].sort(),
+    ...[...new Set(songs.flatMap((s) => s.song.games.map(seriesOf)))].sort(),
     ...(songStore.added.length ? ['My songs'] : []),
   ]);
   let shown = $derived.by(() => {
     const q = query.trim().toLowerCase();
     const list = songs.filter(
       ({ song }) =>
-        (game === 'All' || song.games.includes(game) || (game === 'My songs' && song.source === 'user')) &&
+        (game === 'All' || song.games.some((g) => seriesOf(g) === game) || (game === 'My songs' && song.source === 'user')) &&
         (!q || song.title.toLowerCase().includes(q) || song.artist.toLowerCase().includes(q)),
     );
     type Row = (typeof list)[0];

@@ -14,7 +14,8 @@
   "artist": "Smashing Pumpkins",
   "year": 1993,
   "games": [
-   "Rock Band"
+   "Rock Band",
+   "Guitar Hero III"
   ],
   "chordonomiconId": 597671,
   "chords": "<chorus_1> D A C G D A C G D A C D A E D A E D A C G <bridge_1> E Dno3d A Cno3d Gno3d/D E Dno3d A Cno3d Gno3d/D E Dno3d A Cno3d Gno3d/D E Dno3d A Cno3d Gno3d/D D A E D A E D A E D A C G D A C G D A C G D A C G D A C G <chorus_3> D A C G D A C G D A C"
@@ -105,7 +106,8 @@
   "artist": "Beastie Boys",
   "year": 1994,
   "games": [
-   "Rock Band"
+   "Rock Band",
+   "Guitar Hero III"
   ],
   "chordonomiconId": 600097,
   "chords": "<verse_1> Ab7 <chorus_1> Ab7/Gb Ab7/F Ab7/Gb Ab7 Ab7/Gb Ab7/F Ab7/Gb <verse_4> Ab7"
@@ -135,7 +137,8 @@
   "artist": "The Who",
   "year": 1971,
   "games": [
-   "Rock Band"
+   "Rock Band",
+   "Guitar Hero Live"
   ],
   "chordonomiconId": 597069,
   "chords": "<intro_1> A G D <verse_1> A G D A G D A D E C G A G D A G D A D E C G <chorus_1> D A D A D A D A D A D A G E G E G D Dsus4 D Dsus4 D A G D <interlude_1> A G D <verse_2> A G D A G D A D E C G A G D A G D A D E C G <chorus_2> D A D A D A D A D A D A G E G E G D Dsus4 D Dsus4 D A G D <interlude_2> A G D <bridge_1> B E A B A E B A E A G D <verse_3> A G D A G D G D A G D A D E C G A G D A G D A D E C G <chorus_3> D A D A D A D A D A D A G E G E G D Dsus4 D Dsus4 D A G D <outro_1> A G D A G D A G D A G D A"
@@ -145,7 +148,8 @@
   "artist": "Motörhead",
   "year": 2008,
   "games": [
-   "Rock Band 2"
+   "Rock Band 2",
+   "Guitar Hero"
   ],
   "chordonomiconId": 598430,
   "chords": "<verse_1> G E B Bb A D C D C <chorus_1> E B Bb A <verse_2> G D C D C <chorus_2> E B Bb A E D E D E D C <verse_3> G E B Bb A D C D C <outro_1> E B Bb A"
@@ -185,7 +189,8 @@
   "artist": "Kansas",
   "year": 1976,
   "games": [
-   "Rock Band 2"
+   "Rock Band 2",
+   "Guitar Hero II"
   ],
   "chordonomiconId": 305230,
   "chords": "<chorus_1> Emin G D C Emin G D Emin G D C <verse_1> Emin D C D Emin D C D Amin G F G Amin G D Emin D C D Emin D C D Amin G F G Amin G D <chorus_2> Emin G D C Emin G D Emin G D C <verse_2> Emin D C D Emin D C D Amin G F G Amin G D Emin D C D Emin D C D Amin G F G Amin G D <chorus_3> Emin G D C Emin G D Emin G D C <bridge_1> Emin D C Emin D C Amin G F Amin G D <chorus_4> Emin G D C Emin G D Emin G D C"
@@ -265,7 +270,8 @@
   "artist": "Silversun Pickups",
   "year": 2006,
   "games": [
-   "Rock Band 2"
+   "Rock Band 2",
+   "Guitar Hero World Tour"
   ],
   "chordonomiconId": 321758,
   "chords": "E Csmin B E Csmin B E Csmin B E Csmin B E Csmin B E Csmin B E Csmin B E Csmin B E Csmin B E Csmin B E Csmin B E"
@@ -366,7 +372,8 @@
   "artist": "The Smashing Pumpkins",
   "year": 1993,
   "games": [
-   "Rock Band 2"
+   "Rock Band 2",
+   "Guitar Hero World Tour"
   ],
   "chordonomiconId": 597680,
   "chords": "<intro_1> E B A E B Csmin A E B A <chorus_1> E B A E B A E B A E B Cs <verse_1> Fs A Cs Fs A Cs Fs A Cs Fs A Gs Dsno3d/As <chorus_2> E B A E B A E B A E B Cs <verse_2> Fs A E B Fs A E B Fs A E B Fs A Gs Dsno3d/As <chorus_3> E B E A E B E A E B Cs A E B Cs <bridge_1> Fs A Cs Fs A Cs Fs A Cs Fs A Cs <outro_1> E B A E B A E B Cs A E B Cs A E"
@@ -386,7 +393,8 @@
   "artist": "T. Rex",
   "year": 1973,
   "games": [
-   "Rock Band 3"
+   "Rock Band 3",
+   "Guitar Hero 5"
   ],
   "chordonomiconId": 602548,
   "chords": "<intro_1> E <verse_1> Ano3d E Ano3d E A B E <verse_2> A E Ano3d E A B E <chorus_1> D E G E D E G E D E G E D E G E <verse_3> Ano3d E Ano3d E A B E <chorus_2> D E G E D E G E D E G E D E G E"
@@ -446,7 +454,8 @@
   "artist": "The Vines",
   "year": 2002,
   "games": [
-   "Rock Band 3"
+   "Rock Band 3",
+   "Guitar Hero: Warriors of Rock"
   ],
   "chordonomiconId": 283961,
   "chords": "<intro_1> D Eb C D Eb C D Eb C D Eb C Cno3d G <verse_1> Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Gno3d <chorus_1> Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Gno3d Abno3d Fno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Gno3d Abno3d Fno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Gno3d Abno3d Fno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Gno3d Abno3d Fno3d <instrumental_1> Dno3d Cno3d Ano3d Dno3d Cno3d Ano3d <verse_2> Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Gno3d <chorus_2> Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Gno3d Abno3d Fno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Gno3d Abno3d Fno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Gno3d Abno3d Fno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Gno3d Abno3d Fno3d <bridge_1> Bbno3d Gno3d Bbno3d Ano3d <verse_3> Cno3d Gno3d Cno3d Gno3d <chorus_3> Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Gno3d Abno3d Fno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Gno3d Abno3d Fno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Gno3d Abno3d Fno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Gno3d Abno3d Fno3d"
@@ -476,7 +485,8 @@
   "artist": "Filter",
   "year": 1995,
   "games": [
-   "Rock Band 3"
+   "Rock Band 3",
+   "Guitar Hero World Tour"
   ],
   "chordonomiconId": 233986,
   "chords": "<intro_1> E G A Bb A G <verse_1> E G A Bb A G E G A Bb A G E G A Bb A G E G A Bb A G E G A Bb A G E G A Bb A G E G A Bb A G E G A E G E G E G E G <chorus_1> E D A G E D A G A E <interlude_1> D Eno3d E D G <verse_2> E G A Bb A G E G A Bb A G E G A Bb A G E G A Bb A G E G A Bb A G E G A Bb A G E G A Bb A G E G A E G E G E G E G <chorus_2> E D A G E D A G A E D A G E D A G A E D Eno3d E D G E D Eno3d E D G E D Eno3d E D G E D Eno3d E D G <outro_1> E D Eno3d E D G E D Eno3d E D G E D Eno3d E D G E D Eno3d E D G E"
@@ -506,7 +516,8 @@
   "artist": "Joan Jett & The Blackhearts",
   "year": 1981,
   "games": [
-   "Rock Band 3"
+   "Rock Band 3",
+   "Guitar Hero"
   ],
   "chordonomiconId": 78758,
   "chords": "<intro_1> D A E D A E D A E D A E D <verse_1> E D E C D E <chorus_1> C D E C D E C D E C D E <interlude_1> D A E D A E D <verse_2> E D E C D E <chorus_2> C D E C D E C D E C D E <solo_1> D E C D E C D E C D E C D E <interlude_2> D A E D A E D <verse_3> E D E C D E <chorus_3> C D E C D E C D E C D E C D E C D E C D E C D E"
@@ -566,7 +577,8 @@
   "artist": "Queens of the Stone Age",
   "year": 2002,
   "games": [
-   "Rock Band 3"
+   "Rock Band 3",
+   "Guitar Hero"
   ],
   "chordonomiconId": 597914,
   "chords": "<verse_1> Cmin G B Cmin7 G B Cmin7 G B Cmin7 <chorus_1> Cmin Eb G Cmin Eb G Cmin Eb G Cmin Eb G <verse_2> Cmin7 G B Cmin7 G B Cmin7 G B Cmin7 <chorus_2> Cmin Eb G Cmin Eb G Cmin Eb G Cmin Eb G <verse_3> Cmin7 G B Cmin7 G B Cmin7"
@@ -586,7 +598,8 @@
   "artist": "At the Drive-In",
   "year": 2000,
   "games": [
-   "Rock Band 3"
+   "Rock Band 3",
+   "Guitar Hero World Tour"
   ],
   "chordonomiconId": 546035,
   "chords": "Amin G Fsmin Emin Amin G Fsmin Emin Amin G Fsmin Emin Amin G Fsmin Emin C Cmaj7 Amin7 Amin G Fsmin E Amin G Fsmin E Amin G Fsmin E Amin7 G Fsmin E Amin7 Gmin7 Fsmin7 Emin7 Amin G Fsmin E Amin7 G Fsmin E Amin G Fsmin E Amin G Fsmin Emin7 Emin Gmaj9 C B7 Emin Gmaj9 C B7 Emin Gmaj9 C B7 Emin Gmaj9 C B7 Emin Gmaj9 C B7 Emin Gmaj9 C B7 Emin Gmaj9 C B7 C Cmaj7 C Cmaj7 C Cmaj7"
@@ -716,7 +729,8 @@
   "artist": "Interpol",
   "year": 2004,
   "games": [
-   "Rocksmith"
+   "Rocksmith",
+   "Guitar Hero: Warriors of Rock"
   ],
   "chordonomiconId": 601486,
   "chords": "<intro_1> G Bmin <verse_1> G Amin Emin G Amin Emin G Amin Emin G Amin Emin <chorus_1> Bmin Amin Emin D Bmin Amin Emin Bmin Amin Emin <interlude_1> Bmin Amin Emin D Emin D Emin F Bmin"
@@ -776,7 +790,8 @@
   "artist": "Red Hot Chili Peppers",
   "year": 1989,
   "games": [
-   "Rocksmith"
+   "Rocksmith",
+   "Guitar Hero"
   ],
   "chordonomiconId": 341013,
   "chords": "<intro_1> Emin G A <verse_1> Emin G A Emin G A Fsmin A B Fsmin A B Fsmin A B Fsmin A B Emin G A Emin G A <verse_2> Emin G A Emin G A Fsmin A B Fsmin A B Fsmin A B Fsmin A B Emin G A Emin G A <chorus_1> Emin Emin7 A Emin Emin7 A Emin Emin7 Fsmin B7 Emin G A <verse_3> Emin G A Emin G A Fsmin A B Fsmin A B Fsmin A B Fsmin A B Emin G A Emin G A <verse_4> Emin G A Emin G A Fsmin A B Fsmin A B Fsmin A B Fsmin A B Emin G A Emin G A <chorus_2> Emin Emin7 A Emin Emin7 A Emin Emin7 Fsmin B7 Emin <outro_1> G A Emin G A Emin G A Emin G A Emin G A Emin G A Emin G A Emin G A"
@@ -859,7 +874,8 @@
   "artist": "Muse",
   "year": 2006,
   "games": [
-   "Rocksmith 2014"
+   "Rocksmith 2014",
+   "Guitar Hero III"
   ],
   "tuning": "E standard",
   "chordonomiconId": 346114,
@@ -881,7 +897,8 @@
   "artist": "Paramore",
   "year": 2013,
   "games": [
-   "Rocksmith 2014"
+   "Rocksmith 2014",
+   "Guitar Hero Live"
   ],
   "tuning": "Drop D",
   "chordonomiconId": 336516,
@@ -919,5 +936,1488 @@
   "tuning": "E standard",
   "chordonomiconId": 163418,
   "chords": "<intro_1> Amin G Dsus2 Amin <verse_1> G Dsus2 Amin G Dsus2 Amin G Dsus2 Amin G Dsus2 Amin G Dsus2 Amin G Dsus2 Amin Emin7 A Emin7 A G Amin G Dsus2 Amin G Dsus2 Amin G Dsus2 Amin G Dsus2 Amin G Dsus2 Amin Emin7 A Emin7 A G Amin G Dsus2 Amin G Dsus2 Amin G Dsus2 Amin G Dsus2 Amin G Dsus2 Amin Emin7 A Emin7 A Amin G Dsus2 Amin"
+ },
+ {
+  "title": "Fat Lip",
+  "artist": "Sum 41",
+  "year": 2001,
+  "games": [
+   "Guitar Hero"
+  ],
+  "chordonomiconId": 345511,
+  "chords": "<intro_1> E D A <verse_1> E B A E B A <chorus_1> E Csmin A E Csmin A <chorus_2> E B Csmin Gsmin A Gsmin A E B Csmin Gsmin A Gsmin A <interlude_1> E D <verse_2> E B A E B A <chorus_3> E Csmin A E Csmin A <chorus_4> E B Csmin Gsmin A Gsmin A E B Csmin Gsmin A Gsmin A E A E <bridge_1> B/Ds Csmin A E B/Ds Csmin A E B/Ds Csmin A E B/Ds Csmin A <verse_3> D E D E A D E D E A D E D E A D E D E A D E D E A D E D E A D <chorus_5> E B Csmin Gsmin A Gsmin A E B Csmin Gsmin A Gsmin A E B Csmin Gsmin A Gsmin A E B Csmin Gsmin A Gsmin A E D A E D A E D A E D A E"
+ },
+ {
+  "title": "Frankenstein",
+  "artist": "The Edgar Winter Group",
+  "year": 1972,
+  "games": [
+   "Guitar Hero"
+  ],
+  "chordonomiconId": 368865,
+  "chords": "<intro_1> Gmin F Eb <verse_1> Bb Dmin Bb Gmin Dmin Eb Bb Cmin Eb F Bb Gmin7 Fs Bb F Ebmin F <chorus_1> Bb F Eb Bb Cmin Bb Eb F Bb Eb Bb F Cmin Eb F Gmin F Eb <verse_2> Bb Gmin Dmin Bb Gmin Dmin Eb Bb Cmin7 Eb F Bb Gmin7 Fs F Bb Eb Ebmin F <chorus_2> Bb F Bb Eb Bb Cmin Bb Eb Bb Eb F Cmin Eb F Bb <bridge_1> Ab Ebmin Fs F <chorus_3> Fs B Fs E B Dbmin E B E G B E B Dbmin Db Fs Eb7 Abmin Fmin Dbmin Dbmin7 B E Db Fs B <outro_1> Fs B"
+ },
+ {
+  "title": "Godzilla",
+  "artist": "Blue Öyster Cult",
+  "year": 1977,
+  "games": [
+   "Guitar Hero"
+  ],
+  "chordonomiconId": 352913,
+  "chords": "<verse_1> Fs B Cs A Fs A Fs B Cs A Fs A Fs B Cs A Fs A <chorus_1> E Fs E Fs <instrumental_1> B Cs Gs A <chorus_2> E Fs E Fs <chorus_3> E Fs E Fs <instrumental_2> B Cs Gs A Fs A Fs A"
+ },
+ {
+  "title": "Heart Full of Black",
+  "artist": "Burning Brides",
+  "year": 2004,
+  "games": [
+   "Guitar Hero"
+  ],
+  "chordonomiconId": 577262,
+  "chords": "A G D A G D A G D A G D A G D A E D A G D A E D A G D A G D A"
+ },
+ {
+  "title": "Iron Man",
+  "artist": "Black Sabbath",
+  "year": 1970,
+  "games": [
+   "Guitar Hero"
+  ],
+  "chordonomiconId": 600058,
+  "chords": "<intro_1> E Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d <verse_1> Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d <verse_2> Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d Bno3d Dno3d Bno3d Asno3d Ano3d Eno3d Ano3d Asno3d Bno3d Dno3d Bno3d Asno3d Ano3d Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d <verse_3> Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d <chorus_1> Dno3d Bno3d Eno3d Dno3d Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d <verse_4> Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d <chorus_2> Dno3d Bno3d Eno3d Dno3d Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d <verse_5> Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d Bno3d Dno3d Eno3d Gno3d Dno3d Eno3d Bno3d Dno3d Bno3d Asno3d Ano3d Eno3d Ano3d Asno3d Bno3d Dno3d Bno3d Asno3d Ano3d"
+ },
+ {
+  "title": "More Than a Feeling",
+  "artist": "Boston",
+  "year": 1976,
+  "games": [
+   "Guitar Hero"
+  ],
+  "chordonomiconId": 242974,
+  "chords": "<verse_1> C/G F C/G F Gadd13 <chorus_1> C F C F Gadd13 C/G <verse_2> F C/G F Gadd13 <bridge_1> Bb Cadd9 Bb Cadd9"
+ },
+ {
+  "title": "Sharp Dressed Man",
+  "artist": "ZZ Top",
+  "year": 1983,
+  "games": [
+   "Guitar Hero",
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 204794,
+  "chords": "Cno3d Fno3d Ebno3d Cno3d Fno3d Ebno3d Cno3d Fno3d Ebno3d Cno3d Fno3d Ebno3d Cno3d Bbno3d Fno3d Cno3d Bbno3d Fno3d Gno3d Cno3d Ebno3d Bbno3d Cno3d Bbno3d Fno3d Cno3d Bbno3d Fno3d Gno3d Cno3d Ebno3d Bbno3d Cno3d Bbno3d Gno3d Fno3d Cno3d Fno3d Cno3d Bbno3d Gno3d Cno3d Bbno3d Fno3d Cno3d Bbno3d Fno3d Gno3d Cno3d Ebno3d Bbno3d Cno3d Fno3d Cno3d"
+ },
+ {
+  "title": "Stellar",
+  "artist": "Incubus",
+  "year": 1999,
+  "games": [
+   "Guitar Hero"
+  ],
+  "chordonomiconId": 552654,
+  "chords": "E Csmin A B E Fsmin D G A Csmin A Csmin A Csmin D A Csmin A Csmin D A Csmin A Csmin D B A Csmin E A Csmin D A Csmin E A Csmin D A Csmin A Csmin A Csmin D A Csmin A Csmin D A Csmin A Csmin D A Csmin A Csmin D B A Csmin E A Csmin D A Csmin E A Csmin D A Csmin A E A G E G A G E G A Csmin E A Csmin D A Csmin E A Csmin D A Csmin E A Csmin D A Csmin E A Csmin D Csmin D Csmin A"
+ },
+ {
+  "title": "Symphony of Destruction",
+  "artist": "Megadeth",
+  "year": 1992,
+  "games": [
+   "Guitar Hero"
+  ],
+  "chordonomiconId": 306252,
+  "chords": "<intro_1> F G F Fno3d Eno3d Fno3d Eno3d F G F Fno3d Eno3d <verse_1> Fno3d Eno3d Fno3d Eno3d F G F Fno3d Eno3d Fno3d Eno3d Fno3d Eno3d F G F Fno3d Eno3d Fno3d Eno3d Fno3d Eno3d F G F Fno3d Eno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Dno3d Bb A Ab G Gb F E <chorus_1> Eno3d D E Cno3d Dno3d Eno3d D E Cno3d Dno3d Fno3d Eno3d <verse_2> Fno3d Eno3d F G F Fno3d Eno3d Fno3d Eno3d Fno3d Eno3d F G F Fno3d Eno3d Fno3d Eno3d Fno3d Eno3d F G F Fno3d Eno3d Fno3d Eno3d Fno3d Eno3d F G F Fno3d Eno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Dno3d Bb A Ab G Gb F E <chorus_2> Eno3d D E Cno3d Dno3d Eno3d D E Cno3d Dno3d Eno3d D E Cno3d Dno3d Eno3d D E Cno3d Dno3d Cno3d Dno3d Ano3d Abno3d Gno3d <solo_1> Ano3d Abno3d Gno3d Ano3d <verse_3> Fno3d Eno3d Fno3d Eno3d F G F Fno3d Eno3d Fno3d Eno3d Fno3d Eno3d F G F Fno3d Eno3d Fno3d Eno3d Fno3d Eno3d F G F Fno3d Eno3d Fno3d Eno3d Fno3d Eno3d F G F Fno3d Eno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Ano3d Abno3d Gno3d Dno3d Bb A Ab G Gb F E <chorus_3> Eno3d D E Cno3d Dno3d Eno3d D E Cno3d Dno3d Eno3d D E Cno3d Dno3d Eno3d D E Cno3d Dno3d Cno3d Dno3d Fno3d Eno3d"
+ },
+ {
+  "title": "Texas Flood",
+  "artist": "Stevie Ray Vaughan",
+  "year": 1983,
+  "games": [
+   "Guitar Hero"
+  ],
+  "chordonomiconId": 411858,
+  "chords": "G7 C7 G D7 G7 C7 G7 C7 G7 D7 C7 G7 C7 G7 D7 G7 C7 G7 C7 G7 G D7 C7 G7 C7 G7 D7 G7 C7 G7 C7 G7 D7 C7 G7 C7 G7 D7 G7 C7 G7 C7 G7 D7 C7 G7 C7 G7 D7 G7 C7 G7 C7 G7 D7 C7 G7 C7 G7 D7 G7 C7 G7 C7 G7 D7 C7 G7 C7 G7"
+ },
+ {
+  "title": "Unsung",
+  "artist": "Helmet",
+  "year": 1992,
+  "games": [
+   "Guitar Hero"
+  ],
+  "chordonomiconId": 403226,
+  "chords": "Ebno3d Eno3d Gbno3d Ebno3d Eno3d Gbno3d Ebno3d Eno3d Gbno3d Ebno3d Eno3d Gbno3d Db Eb B Gb Eb Db Eb B Gb Eb Ebno3d Eno3d Gbno3d Ebno3d Eno3d Gbno3d Ebno3d Eno3d Gbno3d Ebno3d Eno3d Gbno3d Db Eb B Gb Eb Db Eb B Gb Eb"
+ },
+ {
+  "title": "Get Ready 2 Rokk",
+  "artist": "Freezepop",
+  "year": 2000,
+  "games": [
+   "Guitar Hero"
+  ],
+  "chordonomiconId": 579267,
+  "chords": "Fsno3d Dno3d Eno3d Bno3d Fsno3d Dno3d Eno3d Bno3d Fsno3d Dno3d Bno3d Fsno3d Gsno3d Fno3d Fsno3d Gsno3d Fno3d Fsno3d Ano3d Cno3d Fno3d Eno3d Fno3d Cno3d Bno3d Fsno3d"
+ },
+ {
+  "title": "Billion Dollar Babies",
+  "artist": "Alice Cooper",
+  "year": 1973,
+  "games": [
+   "Guitar Hero II"
+  ],
+  "chordonomiconId": 445360,
+  "chords": "Amin7 Amin F G Amin F Amin F G Amin F Amin F G Amin F E Amin E Amin E Amin E F G Amin7 Amin F G Amin F Amin F G Amin F Amin F G Amin F Amin F G Amin F E Amin E Amin E Amin E F G Amin F G Amin F G Amin F G Amin F G Amin F G Amin F"
+ },
+ {
+  "title": "Cherry Pie",
+  "artist": "Warrant",
+  "year": 1990,
+  "games": [
+   "Guitar Hero II"
+  ],
+  "chordonomiconId": 332424,
+  "chords": "<chorus_1> E G A C D E G D A <verse_1> E A E A E A E A E A D F G <chorus_2> E G A C D E G D A E G A C D E G D A <verse_2> E A E A D F G <chorus_3> E G A C D E G D A E G A C D E G D A <solo_1> B A E B <verse_3> E A E <chorus_4> A C D F G A C G D A C D F G A C D G A"
+ },
+ {
+  "title": "Hangar 18",
+  "artist": "Megadeth",
+  "year": 1990,
+  "games": [
+   "Guitar Hero II"
+  ],
+  "chordonomiconId": 320354,
+  "chords": "<intro_1> Dmin Bb Bdim C13/C Dmin Bb Bdim C <bridge_1> Dmin Bb/D Bdim/D C/D Dmin Bb/D Bdim/D Cadd9/D <verse_1> Dmin Bb/D Bdim/D Cadd9/D Dmin Bb/D Bdim/D Cadd9/D Dmin Bb/D Bdim/D Cadd9/D <chorus_1> Dmin Bb/D Bdim/D C Dmin Bb Bdim Bb Dmin Bb Bdim C <bridge_2> Dmin Bb/D Bdim/D C/D Dmin Bb/D Bdim/D Cadd9/D <verse_2> Dmin Bb/D Bdim/D Cadd9/D Dmin Bb/D Bdim/D Cadd9/D Dmin Bb/D Bdim/D Cadd9/D <chorus_2> Dmin Bb/D Bdim/D C Dmin Bb Bdim Bb Dmin Bb Bdim C C7"
+ },
+ {
+  "title": "Hush",
+  "artist": "Deep Purple",
+  "year": 1968,
+  "games": [
+   "Guitar Hero II"
+  ],
+  "chordonomiconId": 513215,
+  "chords": "Bb Ab F G Cmin7 Eb Cmin7 Bb F Cmin7 Eb Cmin7 Bb F Cmin7 Ab Eb Bb F Cmin7 Ab Eb Bb F Cmin7 F Bb Cmin7 F Bb Cmin7 F Bb Cmin7 F Bb Cmin7 Bb Ab F Cmin7 F Bb Cmin7 F Bb Cmin7 F Bb Cmin7 F Bb Cmin7 Bb Ab Eb Bb F Cmin7 Ab Eb Bb F Cmin7 Ab Eb Bb F Cmin7"
+ },
+ {
+  "title": "Last Child",
+  "artist": "Aerosmith",
+  "year": 1976,
+  "games": [
+   "Guitar Hero II"
+  ],
+  "chordonomiconId": 429214,
+  "chords": "Csmin Fs Ds Ds7 E7 F7 Ds7 As Ds7 Cs Gs Ds7 As Ds7 Cs Gs Ds7 Cs Gs Ds7 Cs Gs Ds7"
+ },
+ {
+  "title": "Message in a Bottle",
+  "artist": "The Police",
+  "year": 1979,
+  "games": [
+   "Guitar Hero II"
+  ],
+  "chordonomiconId": 606790,
+  "chords": "<intro_1> Csmin A B Fsmin <verse_1> Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin <chorus_1> A D E A D E Fsmin D Fsmin D Fsmin D Csmin A Csmin A Csmin A Fsmin <verse_2> Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin <chorus_2> A D E A D E Fsmin D Fsmin D Fsmin D Csmin A Csmin A Csmin A Csmin A Csmin A Csmin A Csmin A Fsmin <verse_3> Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin <chorus_3> A D E A D E Fsmin D Fsmin D Fsmin D Csmin A Csmin A Csmin A Csmin A Csmin A Csmin A Csmin A Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin Csmin A B Fsmin"
+ },
+ {
+  "title": "Possum Kingdom",
+  "artist": "Toadies",
+  "year": 1994,
+  "games": [
+   "Guitar Hero II"
+  ],
+  "chordonomiconId": 429094,
+  "chords": "E7 Asus4 A Fs A E Gs7 A D/Fs E7 A Gs7 Cs7 Fsmin Gs7 Cs7 D Gs7 Cs7 B E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A Fs A E Gs7 A D/Fs E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Fs A E Gs7 A D/Fs E7 Gs A Gs7 Cs7 Fsmin Gs7 Cs7 D Gs7 Cs7 B A Gs Cs7 Fsmin Gs Cs7 D Gs Cs7 B A Gs Cs7 Fsmin Gs Cs7 D Gs Cs7 B A Gs Cs7 Fsmin Gs Cs7 D Gs Cs7 B A Dno3d E7 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A E7 Asus4 A E7 Asus4 A Asus4 A Fs A E Gs7 A D/Fs E7"
+ },
+ {
+  "title": "Rock and Roll, Hoochie Koo",
+  "artist": "Rick Derringer",
+  "year": 1973,
+  "games": [
+   "Guitar Hero II"
+  ],
+  "chordonomiconId": 420986,
+  "chords": "F G Amin F C G Amin E Ano3d C/A D/A C/A Amin Ano3d C/A D/A C/A Amin Ano3d C/A D/A C/A Amin Ano3d C/A D/A C/A Amin F G Amin F C G Amin F G Amin F C G Amin E Ano3d C/A D/A C/A Amin Ano3d C/A D/A C/A Amin Ano3d C/A D/A C/A Amin Ano3d C/A D/A C/A Amin F G Amin F C G Amin F G Amin F C G Amin E Ano3d C/A D/A A D Ano3d C/A D/A C/A Amin Ano3d C/A D/A C/A Amin Ano3d C/A D/A C/A Amin Ano3d C/A D/A C/A Amin F G Amin F C G Amin F G Amin F C G Amin F G Amin F C G Amin F G Amin F C G Amin F G Amin F G Amin F C Amin Ano3d C/A D/A Amin F G Amin C Amin"
+ },
+ {
+  "title": "Rock This Town",
+  "artist": "Stray Cats",
+  "year": 1981,
+  "games": [
+   "Guitar Hero II"
+  ],
+  "chordonomiconId": 600744,
+  "chords": "<intro_1> D <verse_1> A7 D D7 G G7 D A7 D <verse_2> A7 D D7 G G7 D A7 D <verse_3> A7 D D7 G G7 D A7 D <verse_4> A7 D D7 G G7 D A7 D <verse_5> A7 D D7 G G7 D A7 D A7 D A7 D"
+ },
+ {
+  "title": "Tattooed Love Boys",
+  "artist": "The Pretenders",
+  "year": 1980,
+  "games": [
+   "Guitar Hero II"
+  ],
+  "chordonomiconId": 233985,
+  "chords": "<intro_1> A D A D A D A D <verse_1> A D A D A D A D F <chorus_1> G F G F G F G <interlude_1> A D A D <verse_2> A D A D A D A D F <chorus_2> G F G F G F G <interlude_2> Bb A G F G Bb A G F G Bb A G F G <solo_1> A G A G A G A G A G <interlude_3> A D A D A D <verse_3> A D A D A D A D F <chorus_3> G F G F G F G A D G"
+ },
+ {
+  "title": "You Really Got Me",
+  "artist": "Van Halen",
+  "year": 1978,
+  "games": [
+   "Guitar Hero II"
+  ],
+  "chordonomiconId": 517341,
+  "chords": "Amin Bmin Emin D Amin Bmin Emin D Amin C D Amin F G Amin Bmin Emin D Emin Emajs9"
+ },
+ {
+  "title": "Thunderhorse",
+  "artist": "Dethklok",
+  "year": 2006,
+  "games": [
+   "Guitar Hero II"
+  ],
+  "chordonomiconId": 606479,
+  "chords": "<verse_1> Amin E Amin E Amin <interlude_1> Gs Amin C B C D Cs D E Ds E <chorus_1> Amin Bb E Bb Amin Bb E Bb Amin C G7/B E7/Gs Amin E F G E/Gs <bridge_1> Amin Bmin C D Amin E Amin E Gmin D D7 Gmin Emin B Emin B Emin C G D A Emin C G D A <chorus_2> Amin Bb E Bb Amin Bb E Bb Amin E/Gs Amin C G/B C D A/Cs D Amin E/Gs Amin C G/B C D A/Cs D Amin E/Gs Amin C G/B C D A/Cs D Amin E/Gs Amin C G/B C D A/Cs D <outro_1> Amin E F G E/Gs Amin"
+ },
+ {
+  "title": "Cliffs of Dover",
+  "artist": "Eric Johnson",
+  "year": 1990,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 185920,
+  "chords": "<verse_1> Amin7 Bmin7 Cmaj7 D Bmin Emin7 Amin7 D G Bmin Emin7 Amin7 D G Emin G Cmaj7 D <verse_2> Amin7 Bmin7 Cmaj7 D Bmin Emin7 Amin7 D G Bmin Emin7 Amin7 D G Emin G Cmaj7 D <verse_3> Amin7 Bmin7 Cmaj7 D Bmin Emin7 Amin7 D G Bmin Emin7 Amin7 D G Emin G Cmaj7 D <verse_4> Amin7 Bmin7 Cmaj7 D Bmin Emin7 Amin7 D G Bmin Emin7 Amin7 D G Emin G Cmaj7 D"
+ },
+ {
+  "title": "Cult of Personality",
+  "artist": "Living Colour",
+  "year": 2007,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 354219,
+  "chords": "<intro_1> Gno3d <verse_1> G9 Gno3d Bbno3d Fno3d Gno3d Bbno3d Cno3d Gno3d Bbno3d Fno3d Gno3d Bbno3d Cno3d <interlude_1> Gno3d <bridge_1> Bb F C G D A F C Bbno3d F C G D A F C <solo_1> Gno3d <verse_2> G9 Gno3d Bbno3d Fno3d Gno3d Bb Cno3d Gno3d Bbno3d Fno3d Gno3d Bbno3d Cno3d <interlude_2> Gno3d <bridge_2> Bb F C G D A F C Bbno3d F C G D A F C <solo_2> Gno3d Bb F C G D A F C Bb F C G D A F C Gno3d <verse_3> G9 Gno3d Bbno3d Fno3d Gno3d Bbno3d C Gno3d Bbno3d Fno3d Gno3d Bbno3d C Gno3d"
+ },
+ {
+  "title": "Helicopter",
+  "artist": "Bloc Party",
+  "year": 2004,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 223238,
+  "chords": "<intro_1> B A E <verse_1> B E <verse_2> B E <chorus_1> A E A B <verse_3> E B E <outro_1> B E"
+ },
+ {
+  "title": "Hit Me with Your Best Shot",
+  "artist": "Pat Benatar",
+  "year": 1980,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 601900,
+  "chords": "<intro_1> C F Amin G C F Amin G F G <verse_1> C Amin G C Amin G <chorus_1> C F Amin G C F Amin G F G C F Amin G C F Amin G F G <verse_2> C Amin G C Amin G <chorus_2> C F Amin G C F Amin G F G C F Amin G C F Amin G F G <instrumental_1> C Amin G C F Amin G C F Amin G F G <verse_3> C Amin G C Amin G <chorus_3> C F Amin G C F Amin G F G C F Amin G C F Amin G F G C F Amin G C F Amin G F G C F Amin G C F Amin G F G <outro_1> C F Amin G F G"
+ },
+ {
+  "title": "Holiday in Cambodia",
+  "artist": "Dead Kennedys",
+  "year": 1980,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 599525,
+  "chords": "<verse_1> G D G D G D G D C G C A D C G C A B C B A B C D <chorus_1> A C D C A C D C A C D C A G F <verse_2> G D G D G D G D C G C A D C G C A B C B A B C D <chorus_2> A C D C A C D C A C D C A G F <instrumental_1> A C D F A C D F A C D F <chorus_3> A C D C A C D C A C D C A G F C A"
+ },
+ {
+  "title": "Kool Thing",
+  "artist": "Sonic Youth",
+  "year": 1990,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 440577,
+  "chords": "Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 D Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9 Dsus2 Asus2 Cadd9"
+ },
+ {
+  "title": "La Grange",
+  "artist": "ZZ Top",
+  "year": 1973,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 263607,
+  "chords": "<intro_1> A C D A C D A <verse_1> C D A C D A C D A C D A C D A C D A C D A C D A C D A <bridge_1> C D A C D A C D A <verse_2> C D A C D A C D A C D A C D A C D A C D A C D A <solo_1> C Eb F <interlude_1> A C D A C D A C D A <solo_2> C D <outro_1> A C D"
+ },
+ {
+  "title": "Lay Down",
+  "artist": "Priestess",
+  "year": 2006,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 208938,
+  "chords": "<intro_1> E A E B E <verse_1> A E B E A E B E <verse_2> A E B E A E B E <verse_3> A E B E A E B E <verse_4> A E B E A E B E <verse_5> A E B E A E B E <verse_6> A E B E A E B E"
+ },
+ {
+  "title": "The Metal",
+  "artist": "Tenacious D",
+  "year": 2006,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 100162,
+  "chords": "<intro_1> E F <verse_1> E F E F E F E F E <bridge_1> F E F <chorus_1> Emin D C Emin D C Amin Bmin Emin Amin Bmin Emin <verse_2> E F E F E F E F E <outro_1> F D"
+ },
+ {
+  "title": "Monsters",
+  "artist": "Matchbook Romance",
+  "year": 2006,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 564326,
+  "chords": "Cs Bbmin Fs Cs Gs Fmin Ebmin F/A Eb/G E Bbmin F/A Cs Ebmin Bbmin Fs Cs Fmin Fs Ebmin Bbmin Fs Cs Fmin Fs Ebmin Bbmin F/A Gs Eb/G Bbmin F/A Cs Ebmin Bbmin F/A Cs Ebmin Bbmin F/A Cs Ebmin Bbmin F/A Cs Ebmin Bbmin Fs Cs Fmin Fs Ebmin Bbmin Fs Cs Fmin Fs Ebmin Bbmin Fs Cs Fmin Fs Ebmin Bbmin Fs Cs Fmin Fs Ebmin Bbmin"
+ },
+ {
+  "title": "My Name Is Jonas",
+  "artist": "Weezer",
+  "year": 1994,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 597096,
+  "chords": "<intro_1> C Gadd13/B Amin Gadd13/B <verse_1> C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F <chorus_1> C Amin G C Amin G C Amin G C Amin G <interlude_1> C G Amin G C G Amin G <verse_2> C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F <chorus_2> C Amin G C Amin G C Amin G C Amin G <chorus_3> F G F G F G F G <solo_1> C Amin G C Amin G C Amin G C Amin G <chorus_4> Emin F G Emin F G Emin F G Emin F G <solo_2> C Amin G C Amin G C Amin G C Amin G Emin F G Emin F G C G Amin G C G Amin G C"
+ },
+ {
+  "title": "One",
+  "artist": "Metallica",
+  "year": 1988,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 352151,
+  "chords": "<intro_1> Bmin Gmaj7 Bmin Gmaj7 Bmin D/A Gmaj7 Bmin Gmaj7 Bmin Gmaj7 Bmin D/A Gmaj7 Bmin Gmaj7 Bmin Gmaj7 Bmin D/A Gmaj7 Bmin Gmaj7 Bmin Gmaj7 Bmin D/A Gmaj7 Emin Fsmin Gno3d Ano3d D G F Emin <verse_1> Bmin Gmaj7 Bmin Gmaj7 Bmin D/A Gmaj7 Bmin Gmaj7 Bmin Gmaj7 Bmin D/A Gmaj7 <chorus_1> Gno3d Ano3d Bno3d Ano3d Gno3d Fsno3d Bno3d Ano3d Bno3d Csno3d Bno3d Ano3d <verse_2> Bmin Gmaj7 Bmin Gmaj7 Bmin D/A Gmaj7 Bmin Gmaj7 Bmin Gmaj7 Bmin D/A Gmaj7 <chorus_2> Gno3d Ano3d Bno3d Ano3d Gno3d Fsno3d Bno3d Ano3d Bno3d Csno3d Bno3d Ano3d <solo_1> D G F Emin D G F Emin D G F Emin D G F <chorus_3> Emin Gno3d Ano3d Bno3d Ano3d Gno3d Fsno3d Bno3d Ano3d Bno3d Csno3d Bno3d Ano3d Bno3d Csno3d Gno3d Ano3d Bno3d Ano3d Gno3d Fsno3d Bno3d Ano3d Bno3d Csno3d Bno3d Ano3d Bno3d Csno3d Gno3d <instrumental_1> Ano3d Bno3d Ano3d Gno3d Fsno3d Bno3d Amin G B C C/E D Bno3d Cno3d C/E Eno3d Fno3d <interlude_1> Eno3d Fno3d Eno3d Fno3d <instrumental_2> Eno3d Fno3d Eno3d Fno3d Eno3d <interlude_2> Fno3d Eno3d Fno3d <instrumental_3> Eno3d Fno3d <solo_2> Eno3d Fno3d Eno3d Fno3d Gno3d Eno3d Fno3d Gno3d Csno3d Fno3d Gno3d Csno3d Fno3d Gno3d Fno3d Gno3d Fno3d Eno3d Fno3d Eno3d Fno3d Eno3d Fno3d Eno3d Fno3d Eno3d Fno3d Gno3d Eno3d Fno3d Gno3d Eno3d Fno3d Eno3d"
+ },
+ {
+  "title": "Same Old Song and Dance",
+  "artist": "Aerosmith",
+  "year": 1974,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 588556,
+  "chords": "E7 Emin7 E7 Emin7 E7 Emin7 E7 Emin7 G7 Ano3d Cno3d Dno3d E7 Emin7 Gno3d Ano3d Cno3d Dno3d E7 Emin7 E7 Emin7 E7 Emin7 E7 Emin7 E7 Emin7 Cno3d Dno3d E7 Emin7 Gno3d Dno3d Fno3d Gno3d Ano3d B Bno3d Csno3d Dno3d Dsno3d Eno3d E7 Emin7 E7 Emin7 E7 Emin7 E7 Emin7 E7 Emin7 E7 Cno3d Dno3d E7 Emin7 Gno3d Dno3d Fno3d Gno3d Ano3d"
+ },
+ {
+  "title": "School's Out",
+  "artist": "Alice Cooper",
+  "year": 1972,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 602713,
+  "chords": "<intro_1> E A E G E A G E <verse_1> C D Eb <chorus_1> G Bb C F G Bb C F G Bb C F G <bridge_1> A A7 A F A Emin D C D C D E A E G E A G E A E G E A E <chorus_2> G Bb C F G Bb C F G F C Emin D C D C D C D <chorus_3> G Bb C F G Bb C F G Bb C F G F C"
+ },
+ {
+  "title": "The Seeker",
+  "artist": "The Who",
+  "year": 1970,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 500729,
+  "chords": "G D/Fs Emin C G D/Fs Emin C Amin Bmin C Amin Bmin C D G D/Fs Emin C G D/Fs Emin C G D/Fs Emin C Emin C G D/Fs Emin C G D/Fs Emin C G D/Fs Amin Bmin C Amin Bmin C Amin Bmin C D C D C D C D C D Emin C G D/Fs Emin C G D/Fs C D G D/Fs Emin C G D/Fs Emin C G D/Fs Emin C Amin Bmin C Amin Bmin C D G D/Fs Emin C G D/Fs Emin C Emin C G D/Fs Amin Bmin C D C D Emin C G D/Fs C D G D/Fs Emin C"
+ },
+ {
+  "title": "Slow Ride",
+  "artist": "Foghat",
+  "year": 1975,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 294787,
+  "chords": "<chorus_1> A D C A D C A D C A D C A D C A D C A <verse_1> Fsmin A Fsmin A Fsmin A Fsmin <chorus_2> C D A D C A D C A D C A D C A D C A D C A <verse_2> D A D A D C A D A D A D C A C D C D <verse_3> A Fsmin A Fsmin A Fsmin A Fsmin <chorus_3> C D A D C A D C A D C A D C A D C A D C A <verse_4> D A D A D C A D A D A D C A <chorus_4> D C A D C A D C A D C A <verse_5> D A D A D C A D A D A D C A <verse_6> A/G A A/G A A/G A A/C A A/B A A/G A A/G A A/G A A/G A A/G <verse_7> G A G A G A G A G A G A G A G A G A G A"
+ },
+ {
+  "title": "Story of My Life",
+  "artist": "Social Distortion",
+  "year": 1990,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 330309,
+  "chords": "G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G C D G"
+ },
+ {
+  "title": "Talk Dirty to Me",
+  "artist": "Poison",
+  "year": 1987,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 47686,
+  "chords": "<intro_1> G <verse_1> Cadd9 G D G <chorus_1> Cadd9 D G D/Fs Emin Cadd9 D G Cadd9 D G D/Fs Emin Cadd9 D Cadd9 D G <verse_2> Cadd9 G D G <chorus_2> Cadd9 D G D/Fs Emin Cadd9 D G Cadd9 D G D/Fs Emin Cadd9 D Cadd9 D G <solo_1> Cadd9 D G D/Fs Emin Cadd9 D G <bridge_1> Cadd9 D G D/Fs Emin Cadd9 D7 <intro_2> C D G <verse_3> D C G D G D C G D <chorus_3> C D G C D G C D Emin C Amin D G <verse_4> D C G D <chorus_4> C D G C D G C D Emin C Amin D G <chorus_5> Cadd9 D G D/Fs Emin Cadd9 D G Cadd9 D G D/Fs Emin Cadd9 D Cadd9 D G <outro_1> Cadd9 D G"
+ },
+ {
+  "title": "Generation Rock",
+  "artist": "Revolverheld",
+  "year": 2005,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 153707,
+  "chords": "<verse_1> Gsmin E B As Gsmin E B As Gsmin E B As Gsmin E B As Cs <chorus_1> Gsmin E Gsmin E Gsmin Fs As E Cs E <verse_2> Gsmin E B As Gsmin E B As Gsmin E B As Gsmin E B As Cs <chorus_2> Gsmin E Gsmin E Gsmin Fs As E Cs A <verse_3> Gsmin Ds B As Gsmin Ds As Cs Ds B As Gsmin Ds B As Gsmin <bridge_1> Ds B Cs Gsmin Ds B Cs Gsmin Ds B Cs Gsmin Ds B Cs Gsmin E Gsmin E Gsmin Fs As E Cs E Gsmin E Gsmin E Gsmin Fs As E Cs E"
+ },
+ {
+  "title": "I'm in the Band",
+  "artist": "Hellacopters",
+  "year": 2005,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 446752,
+  "chords": "Eb Ab Eb Ab Db Eb Ab Db Eb Cmin Bb Ab Eb Cmin Bb Ab Eb Db Ab Eb Ab Bb Cmin Ab Bb Eb Ab Bb Cmin Ab Bb Eb Ab Eb Ab Db Eb Ab Db Eb Cmin Bb Ab Eb Cmin Bb Ab Eb Db Ab Eb Ab Bb Cmin Ab Bb Eb Ab Bb Cmin Ab Bb Gb Ab Eb Gb Ab Eb Gb Ab Eb Gb Ab Eb Db Eb Db Ab Eb Db Ab Eb Db Ab Eb Db Ab Eb Bb Ab Bb Cmin Ab Bb Eb Ab Bb Cmin Ab Bb Eb"
+ },
+ {
+  "title": "Minus Celsius",
+  "artist": "Backyard Babies",
+  "year": 2003,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 309990,
+  "chords": "<verse_1> D A D A D A D A <bridge_1> G D G D G E <chorus_1> D Bb G C D A G <verse_2> D A D A D A D A <bridge_2> G D G D G E <chorus_2> D Bb G C D A G <chorus_3> D Bb G C D A G"
+ },
+ {
+  "title": "Prayer of the Refugee",
+  "artist": "Rise Against",
+  "year": 2006,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 602270,
+  "chords": "<intro_1> Dsmin Dssus2 <verse_1> Dsmin B Cs Gs Dsmin B Cs Dsmin B Cs Gs Dsmin B Cs Dsmin <chorus_1> Fs Cs B Dsmin Fs Cs B <verse_2> Dsmin B Cs Gs Dsmin B Cs Dsmin B Cs Gs Dsmin B Cs Dsmin <chorus_2> Fs Cs B Dsmin Fs Cs B <bridge_1> Gsmin Fs Gsmin Fs Gsmin Fs E Dsmin B Fs Cs <chorus_3> Dsmin Fs Cs B Dsmin Fs Cs B <outro_1> Dsmin Fs Cs B Dsmin Fs Cs B Dsmin"
+ },
+ {
+  "title": "Radio Song",
+  "artist": "Superbus",
+  "year": 2004,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 279724,
+  "chords": "<intro_1> Dmin Gmin Dmin Gmin Dmin Gmin Dmin Gmin <verse_1> Dmin Gmin Dmin Gmin Dmin Gmin Dmin Gmin <chorus_1> Dmin A F Gmin Dmin A F Gmin Dmin Gmin Dmin Gmin <verse_2> Dmin Gmin Dmin Gmin Dmin Gmin Dmin Gmin <chorus_2> Dmin A F Gmin Dmin A F Gmin Dmin A F Gmin Dmin A F Gmin Dmin Gmin F Gmin Dmin Gmin F Gmin <verse_3> Dmin Gmin Dmin Gmin Dmin Gmin Dmin <chorus_3> A F Gmin Dmin A F Gmin Dmin A F Gmin Dmin A F Gmin Dmin"
+ },
+ {
+  "title": "Ruby",
+  "artist": "Kaiser Chiefs",
+  "year": 2007,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 602536,
+  "chords": "<intro_1> Amin Emin D Amin Emin D C Bmin Bbmin Amin Emin D Amin Emin D C Bmin Amin G Fs E D <verse_1> Amin Emin Bmin D Amin Emin Bmin D <chorus_1> Amin Emin D Amin Emin D Amin Emin D C Bmin Amin Emin D <verse_2> Amin Emin Bmin D Amin Emin Bmin D <chorus_2> Amin Emin D Amin Emin D Amin Emin D C Bmin Amin Emin D <bridge_1> Eb Emin C Amin D Eb Emin C Amin D Eb <instrumental_1> Emin C Amin D Eb <chorus_3> Amin Emin D Amin Emin D Amin Emin D C Bb Amin Emin D C Bb Amin Emin D Amin Emin D Eb Emin"
+ },
+ {
+  "title": "She Bangs the Drums",
+  "artist": "The Stone Roses",
+  "year": 1989,
+  "games": [
+   "Guitar Hero III"
+  ],
+  "chordonomiconId": 597537,
+  "chords": "<intro_1> E Esus4 <verse_1> E Esus4 E Esus4 D E Esus4 E Esus4 D <verse_2> E Esus4 E Esus4 D E Esus4 E Esus4 D <chorus_1> A D A D A D E A D A D A D E <instrumental_1> Asus4 A Esus4 E D E D E <chorus_2> A D A D A D E A D A D A D E A D A D A D E A D A D A D E <outro_1> A D A D A D E"
+ },
+ {
+  "title": "Beautiful Disaster",
+  "artist": "311",
+  "year": 1997,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 600546,
+  "chords": "<verse_1> Bmin G Emin Fs <chorus_1> Emin A Fs Bmin Emin A Fs Bmin Emin A Fs Bmin Emin A Fs Bmin E A Fs Bmin E A Fs B"
+ },
+ {
+  "title": "Dammit",
+  "artist": "Blink-182",
+  "year": 1997,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 600320,
+  "chords": "<chorus_1> C G Amin F <verse_1> C G Amin F C G Amin F C G Amin F C G Amin F <verse_2> C G Amin F C G Amin F C G Amin F C G Amin F <chorus_2> C G Amin F C G Amin F C G Amin F <verse_3> C G Amin F C G Amin F C G Amin F C G Amin F <chorus_3> C G Amin F C G Amin F C G Amin F C G Amin F <outro_1> C G Amin F"
+ },
+ {
+  "title": "Do It Again",
+  "artist": "Steely Dan",
+  "year": 1972,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 605994,
+  "chords": "<intro_1> Amin7 Bmin7 C Bmin7 Emin <chorus_1> Amin7 Bmin7 C Bmin7 Emin Amin7 Bmin7 C Bmin7 Emin <chorus_2> Amin7 Bmin7 C Bmin7 Emin Amin7 Bmin7 C Bmin7 Emin <chorus_3> Amin7 Bmin7 C Bmin7 Emin Amin7 Bmin7 C Bmin7 Emin"
+ },
+ {
+  "title": "Good God",
+  "artist": "Anouk",
+  "year": 2007,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 560496,
+  "chords": "F As Gs Gmin F Gs As F As Gs F As Gs F As Gs F As Gs F As Gs F As Gs F As Gs F As Gs F Gs Gmin As F Gs Gmin As F Gs Gmin As F Gs Gmin As F"
+ },
+ {
+  "title": "Hail to the Freaks",
+  "artist": "Beatsteaks",
+  "year": 2008,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 569061,
+  "chords": "Cs Fs E B Fs Cs B Fs Cs B A E B Cs E D A E D A Cs Fs E B"
+ },
+ {
+  "title": "Hot for Teacher",
+  "artist": "Van Halen",
+  "year": 1984,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 597122,
+  "chords": "<intro_1> Fsmin Amin <chorus_1> D G As A Gs G Fs F E Amin <chorus_2> D G As A Gs G Fs F E Amin Fs E Fs E Fs E Fs E Fs E <chorus_3> Fs G Gs A Amin Fs G Gs A Fs G Gs A Fs G Gs A <outro_1> G Amin"
+ },
+ {
+  "title": "Hotel California",
+  "artist": "Eagles",
+  "year": 1976,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 163447,
+  "chords": "<intro_1> Amin E7 G D F C Dmin E7 <verse_1> Amin E7 G D F C Dmin E Amin E7 G D F C Dmin E F C E7 Amin F C Dmin E Amin E7 G D F C Dmin E Amin E7 G D F C Dmin E F C E7 Amin F C Dmin E Amin E7 G D F C Dmin E Amin E7 G D F C Dmin E7 Amin E7 G D F C Dmin E7 Amin"
+ },
+ {
+  "title": "The Joker",
+  "artist": "Steve Miller Band",
+  "year": 1973,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 32449,
+  "chords": "<verse_1> D G A G D G A G D G A G D G A G D G A G D G A G D G A G D G A G <chorus_1> D G D G D G A G D G D G D G A G D G D G D G A G D G D G D G A Asus4 <solo_1> D G A G D G A G D G A G D G A G <verse_2> D G A G D G A G D G A G D G A G <chorus_2> D G D G D G A G D G D G D G A G D G D G D G A G D G D G D G A G D G A D G A D G A D G A D G A D G A D G A D G A D G A D G A D G A D G A D G A D G A D G A D G A D G A D G A D G A D G A D <verse_3> G A G D G A G D G A G D G A G D G A G D G A G D G A G D G A G D G A D G A D G A D G A D G A D G A D G A D"
+ },
+ {
+  "title": "The Kill",
+  "artist": "Thirty Seconds to Mars",
+  "year": 2005,
+  "games": [
+   "Guitar Hero World Tour",
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 184686,
+  "chords": "<verse_1> C D E B C D E B <chorus_1> Cno3d Dno3d Eno3d Bno3d <verse_2> C D E B C D E B <chorus_2> Cno3d Dno3d C D E B <bridge_1> Amin Bno3d Emin C D E Fs G A C B D E D C D E <chorus_3> Cno3d Dno3d C D <outro_1> C D E B"
+ },
+ {
+  "title": "La Bamba",
+  "artist": "Los Lobos",
+  "year": 1987,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 76280,
+  "chords": "<intro_1> C F G C F G C F G C F G <verse_1> C F G C F G C F G C F G C F G C F G C F G C F G C F G C F G C F G C F G C F G <interlude_1> C F G C F G C F G C F G <verse_2> C F G C F G C F G C F G C F G C F G C F G C F G C F G C F G C F G C F G C F G <outro_1> C F G C F G C F G C F G"
+ },
+ {
+  "title": "Love Removal Machine",
+  "artist": "The Cult",
+  "year": 1987,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 138448,
+  "chords": "<intro_1> D C G D C G D C G D C G <verse_1> D C G D C G D C G D C G <chorus_1> D C G D C G <bridge_1> D C G D C G <verse_2> D C G D C G D C G D C G <chorus_2> D C G D C G D C G D C G <instrumental_1> D C G D C G D C D C <chorus_3> D C G D C G D C G D C G <bridge_2> D"
+ },
+ {
+  "title": "Love Spreads",
+  "artist": "The Stone Roses",
+  "year": 1994,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 597535,
+  "chords": "<intro_1> Dmin Dmin/F Dmin Dmin/F G F Dmin Dmin/F Dmin Dmin/F A G Dmin Dmin/F Dmin Dmin/F Dmin <verse_1> F G Dmin <verse_2> F G Dmin G Dmin Dmin/F Dmin Dmin/F Dmin G Dmin Dmin/F Dmin Dmin/F Dmin A G Dmin <verse_3> F G Dmin <verse_4> F G Dmin A G Dmin Dmin/F Dmin <chorus_1> F G Dmin F G Dmin C A G F Dmin <verse_5> F Dmin/F Dmin <verse_6> F G Dmin G Dmin Dmin/F Dmin Dmin/F Dmin G Dmin Dmin/F Dmin Dmin/F Dmin A G Dmin Dmin/F Dmin Dmin/F Dmin <chorus_2> F G Dmin <outro_1> C A G F Dmin"
+ },
+ {
+  "title": "Obstacle 1",
+  "artist": "Interpol",
+  "year": 2002,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 328524,
+  "chords": "<verse_1> F Amin F Amin F Amin F Amin F Amin F Amin F Amin F Amin F Amin <chorus_1> Fmaj7 C/B Amin Cmaj7 Fmaj7 C/B Amin Cmaj7 Fmaj7 C/B Amin Cmaj7 Fmaj7 C/B Amin Cmaj7 <verse_2> F Amin F Amin F Amin F Amin F Amin F Amin <chorus_2> Fmaj7 C/B Amin Cmaj7 Fmaj7 C/B Amin Cmaj7 Fmaj7 C/B Amin Cmaj7 Fmaj7 C/B Amin Cmaj7 <bridge_1> F Amin F Amin F Amin F Amin F Amin F Amin F Cmaj7 F Cmaj7 F Cmaj7 F Cmaj7 F Amin F Amin F Cmaj7 F Cmaj7 F Cmaj7 F Cmaj7"
+ },
+ {
+  "title": "Overkill",
+  "artist": "Motörhead",
+  "year": 2008,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 368119,
+  "chords": "<intro_1> Eno3d <verse_1> G Ano3d G Ano3d G Ano3d G <chorus_1> C Dno3d C Eno3d C Dno3d C Eno3d Fsmin B A B Fsmin D <instrumental_1> Eno3d <verse_2> G Ano3d G Ano3d G Ano3d G <chorus_2> C Dno3d C Eno3d C Dno3d C Eno3d Fsmin B A B Fsmin D A Eno3d <verse_3> G Ano3d G Ano3d G Ano3d G <chorus_3> C Dno3d C Eno3d C Dno3d C Eno3d Fsmin B A B Fsmin D <instrumental_2> Eno3d Dno3d Cno3d Bno3d Cno3d Bno3d Cno3d Dno3d Eno3d <instrumental_3> Dno3d Cno3d Bno3d Cno3d Bno3d Cno3d Dno3d Eno3d Fsno3d Gno3d Ano3d Gno3d Ano3d Gno3d Ano3d Gno3d Eno3d Dno3d Cno3d Bno3d Cno3d Bno3d Cno3d Dno3d Eno3d <outro_1> Dno3d Cno3d Bno3d Cno3d Bno3d Cno3d Dno3d Eno3d"
+ },
+ {
+  "title": "Parabola",
+  "artist": "Tool",
+  "year": 2002,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 342423,
+  "chords": "G Emin7 D Emin7 D Emin7 D7 Gmaj7 G Amin Emin D Emin G Amin Emin G Amin G D Emin7 D Emin7 D Emin7 D Emin7 Emin D G Bmin7 Emin7 Fmaj7 Emin7 D7 Cmaj7 D Emin G Emin D Emin D Emin7 D7 Emin7 G Emin7 Amin D7 Emin Emin7 D7 Emin7 Cmaj7 G B E"
+ },
+ {
+  "title": "Rebel Yell",
+  "artist": "Billy Idol",
+  "year": 1984,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 337450,
+  "chords": "<verse_1> Bno3d Dno3d Gno3d Eno3d Dno3d Ano3d Bno3d Dno3d Gno3d Eno3d Dno3d Ano3d <chorus_1> Bno3d Dno3d Gno3d Eno3d Dno3d Ano3d Bno3d Dno3d Gno3d Eno3d Dno3d Ano3d Bno3d Dno3d Gno3d Eno3d Dno3d Ano3d Bno3d Dno3d Gno3d Eno3d Dno3d Ano3d <chorus_2> Bno3d Dno3d Gno3d Eno3d Dno3d Ano3d Bno3d Dno3d Gno3d Eno3d Dno3d Ano3d <bridge_1> G Fs E G Fs E G Fs E G Fs E <verse_2> B D G E D A B D G E D A <verse_3> Bno3d Dno3d Gno3d Eno3d Dno3d Ano3d Bno3d Dno3d Gno3d Eno3d Dno3d Ano3d <chorus_3> Bno3d Dno3d Gno3d Eno3d Dno3d Ano3d Bno3d Dno3d Gno3d Eno3d Dno3d Ano3d <outro_1> Gno3d Eno3d Ano3d Dno3d Bno3d Ano3d Gno3d Eno3d Dno3d Ano3d Bno3d"
+ },
+ {
+  "title": "Some Might Say",
+  "artist": "Oasis",
+  "year": 1995,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 306401,
+  "chords": "<intro_1> Dno3d Bsus2 G D A D Bmin G D A <verse_1> D Bmin G D A D Bmin G D A Emin G D Emin Cadd9 G <chorus_1> D G Emin G D G Emin G D G Emin G D G Emin G D G Emin G D G Emin G D G Emin G D G Emin G <interlude_1> Fsmin F Cadd9 A D Bmin G D A <verse_2> D Bmin G D A D Bmin G D A Emin G D Emin Cadd9 G <chorus_2> D G Emin G D G Emin G D G Emin G D G Emin G D G Emin G D G Emin G D G Emin G D G Emin G <outro_1> D G Emin G D G Emin G D G Emin"
+ },
+ {
+  "title": "Soul Doubt",
+  "artist": "NOFX",
+  "year": 1992,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 108436,
+  "chords": "<intro_1> E D E D Cs D E D E D Cs D E D G A E D G A B E D G A E D G A <verse_1> E D A/Cs D A/Cs E D A/Cs D A/Cs <chorus_1> E D/Fs E D E D E G A E G A B E <intro_2> A C G E <verse_2> A C E G E A C E Fs E C E <verse_3> C D E C G D <bridge_1> E D E G A E D G A B E D E G A E D G A B <solo_1> E D A/Cs D A/Cs E D A/Cs D E D E D E G A E G A B E <outro_1> A C G E D Ds E"
+ },
+ {
+  "title": "Stranglehold",
+  "artist": "Ted Nugent",
+  "year": 1975,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 437714,
+  "chords": "A C D A G A C D A G A C D A G A C D A G A C D A G A C D A G A C D A G A C D A G A C D A G A G A C D A G A C D A G A G A C D A G A C D A G A C D A G A C D A G A C D A G A C D A G A C D A G A"
+ },
+ {
+  "title": "Toy Boy",
+  "artist": "Stuck in the Sound",
+  "year": 2006,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 306767,
+  "chords": "<verse_1> Fsmin A Cs D G Fsmin A Cs D G Fsmin A Cs D G Fsmin A Cs D G <chorus_1> Fsmin A D G Fsmin A D Cs D Cs Fsmin G D Cs Fsmin G <verse_2> Fsmin A Cs D G Fsmin A Cs D G Fsmin A Cs D G Fsmin A Cs D G <chorus_2> Fsmin A D G Fsmin A D Cs <chorus_3> D Cs Fsmin G D Cs Fsmin G D Cs Fsmin G D Cs Fsmin G D Cs Fsmin G <verse_3> Fsmin A Cs D G Fsmin A Cs D G Fsmin A Cs D G Fsmin A Cs D G <chorus_4> Fsmin A D G Fsmin A D Cs <chorus_5> D Cs Fsmin G D Cs Fsmin G D Cs Fsmin G D Cs Fsmin G D Cs Fsmin G D Cs Fsmin G D Cs Fsmin G D Cs Fsmin G D Cs Fsmin G"
+ },
+ {
+  "title": "VinterNoll2",
+  "artist": "Kent",
+  "year": 2002,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 350484,
+  "chords": "<verse_1> Csmin B A Csmin E B Csmin B A Csmin B A Csmin <chorus_1> A E B A Csmin B A E B A <verse_2> Csmin B A Csmin E B Csmin B A Csmin B A Csmin <chorus_2> A E B A Csmin B A E B A E B A Csmin B A E B A"
+ },
+ {
+  "title": "Weapon of Choice",
+  "artist": "Black Rebel Motorcycle Club",
+  "year": 2007,
+  "games": [
+   "Guitar Hero World Tour"
+  ],
+  "chordonomiconId": 576016,
+  "chords": "Emin Emin/G Emin G A Emin A G Emin C D Emin G A"
+ },
+ {
+  "title": "A-Punk",
+  "artist": "Vampire Weekend",
+  "year": 2008,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 324131,
+  "chords": "<intro_1> A G D <verse_1> A G D A G D A G D Aadd13 A Asus4 Aadd13 A Asus4 A G D A G D A G D Aadd13 A Asus4 Aadd13 A Asus4 <chorus_1> D G D G D <verse_2> A G D A G D A G D Aadd13 A Asus4 Aadd13 A Asus4 A G D A G D A G D Aadd13 A Asus4 Aadd13 A Asus4"
+ },
+ {
+  "title": "Back Round",
+  "artist": "Wolfmother",
+  "year": 2009,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 72687,
+  "chords": "Dno3d Cno3d Dno3d Fno3d Gno3d Dno3d Fno3d Dno3d Fno3d Dno3d Fno3d Dno3d Fno3d Dno3d Fno3d Eno3d Ebno3d Fno3d Dno3d Cno3d Fno3d Dno3d Fno3d Gno3d Dno3d Fno3d Dno3d Fno3d Gno3d Dno3d Fno3d Dno3d Cno3d Fno3d Eno3d Ebno3d Dno3d Cno3d Fno3d Eno3d Gno3d Bbno3d Gno3d Fno3d Cno3d Dno3d Bbno3d Fno3d Cno3d Dno3d Bbno3d Dno3d Cno3d Dno3d Bbno3d Cno3d Dno3d Gno3d Fno3d Dno3d Fno3d Dno3d Fno3d Dno3d Fno3d Dno3d Cno3d Fno3d Dno3d Fno3d Dno3d Fno3d Dno3d Fno3d Eno3d Ebno3d Dno3d Fno3d Gno3d Dno3d Cno3d Fno3d Eno3d Ebno3d Dno3d Cno3d Fno3d Eno3d Gno3d Dno3d Cno3d Fno3d Cno3d Dno3d Cno3d Fno3d Dno3d Fno3d Dno3d"
+ },
+ {
+  "title": "Bleed American",
+  "artist": "Jimmy Eat World",
+  "year": 2001,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 547322,
+  "chords": "Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Dno3d Bno3d Fsno3d Dno3d Bno3d Fsno3d Dno3d Bno3d Fsno3d Dno3d Bno3d Fsno3d Dno3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Dno3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Dno3d Bno3d Fsno3d Dno3d Bno3d Fsno3d Dno3d Bno3d Fsno3d Dno3d Bno3d Fsno3d Dno3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Dno3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Dno3d Bno3d Fsno3d Ano3d Bno3d Dno3d Bno3d Fsno3d Ano3d Bno3d Dno3d Fsno3d Ano3d Bno3d Dno3d Fsno3d Dno3d Bno3d Fsno3d Dno3d Bno3d Fsno3d Dno3d Bno3d Fsno3d Dno3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Dno3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Bno3d Fsno3d Ano3d Dno3d Bno3d Dno3d"
+ },
+ {
+  "title": "Cigarettes, Wedding Bands",
+  "artist": "Band of Horses",
+  "year": 2007,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 352863,
+  "chords": "<intro_1> Amin Emin Amin Emin Amin Emin F G Amin Emin Dmin Amin Emin Dmin <verse_1> Amin Emin Dmin Amin Emin Dmin Amin Emin Dmin Amin Emin Dmin Amin Emin Dmin Amin Emin Dmin Amin Emin Dmin <chorus_1> C Emin Dmin C Emin Dmin <verse_2> Amin Emin Dmin Amin Emin Dmin Amin Emin Dmin Amin Emin Dmin Amin Emin Dmin <chorus_2> C Emin Dmin C Emin Dmin <bridge_1> G Dmin C Emin Dmin C Emin Dmin <verse_3> Amin Emin Dmin Amin Emin Dmin Amin Emin Dmin <chorus_3> C Emin Dmin C Emin Dmin <bridge_2> G Dmin C Emin Dmin C Emin Dmin <chorus_4> C Emin Dmin C Emin Dmin C Emin Dmin C Emin Dmin <outro_1> Amin Emin Amin Emin Amin Emin F G Amin Emin Dmin Amin Emin Dmin"
+ },
+ {
+  "title": "Disconnected",
+  "artist": "Face to Face",
+  "year": 1995,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 419770,
+  "chords": "B Fs Gsmin E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E Fs Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B Gsmin Fs E B"
+ },
+ {
+  "title": "Gamma Ray",
+  "artist": "Beck",
+  "year": 2008,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 559859,
+  "chords": "E D G A D G Bmin D G Bmin D G Bmin D G Bmin E D G A E D G A E D G A D G A Bmin E G D G Bmin D G Bmin D G Bmin D G Bmin E D G A E D G A E D G A E D G D G A E D G A E D G A E D G"
+ },
+ {
+  "title": "Gratitude",
+  "artist": "Beastie Boys",
+  "year": 1992,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 600096,
+  "chords": "<verse_1> Eno3d Ano3d Eno3d Ano3d Eno3d Ano3d Eno3d Gno3d Gsno3d Ano3d <verse_2> Eno3d Ano3d Eno3d Ano3d Eno3d Ano3d Eno3d Gno3d Gsno3d Ano3d <outro_1> Eno3d"
+ },
+ {
+  "title": "Hurts So Good",
+  "artist": "John Mellencamp",
+  "year": 1982,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 346826,
+  "chords": "<chorus_1> Dmin Gmin Dmin Gmin Bb A Bb A Dmin Gmin Dmin Gmin Bb A Dmin A Dmin Gmin Dmin Gmin Bb A Dmin A <chorus_2> Dmin Gmin Dmin Gmin Bb A Bb A Gmin Dmin Gmin Dmin Gmin Dmin Bb A <chorus_3> Dmin Gmin Dmin Gmin Bb A Bb A Dmin"
+ },
+ {
+  "title": "Incinerate",
+  "artist": "Sonic Youth",
+  "year": 2006,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 438328,
+  "chords": "Eb Ab Bb Cmin Bb Ab Bb Cmin Bb Ab Bb Cmin Bb Ab Bb Cmin Bb Cmin Ab Bb Ab Bb Ab Bb Ab Bb Eb Ab Bb Cmin Bb Ab Bb Cmin Bb Ab Bb Cmin Bb Ab Bb Cmin Bb Cmin Ab Bb Ab Bb Ab Bb Ab Bb Eb Cmin Eb Bb Eb Cmin Eb Ab Bb Cmin Bb Ab Bb Cmin Bb Ab Bb Cmin Bb Ab Bb Cmin Bb Cmin"
+ },
+ {
+  "title": "In My Place",
+  "artist": "Coldplay",
+  "year": 2002,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 599924,
+  "chords": "<intro_1> A Fsmin Csmin E A Fsmin Csmin E A Fsmin Csmin E A Fsmin Csmin E <chorus_1> D A E D A E D A E D E <verse_1> A Fsmin Csmin E A Fsmin Csmin E A Fsmin Csmin E A Fsmin Csmin E <chorus_2> D A E D A E D A E D E <bridge_1> A Fsmin Csmin E A Fsmin Csmin E A Fsmin Csmin E A Fsmin Csmin E <outro_1> A Fsmin Csmin E A Fsmin Csmin E A"
+ },
+ {
+  "title": "Jailbreak",
+  "artist": "Thin Lizzy",
+  "year": 1976,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 353742,
+  "chords": "<intro_1> E A E Fs E Fs E <verse_1> A E Fs E Fs A E Fs E Fs A E Fs E Fs A E Fs E Fs <verse_2> A E Fs E Fs A E Fs E Fs A E Fs E Fs A E Fs E Fs <chorus_1> B E B E B E A Gs Fs A E Fs E Fs A E Fs E Fs A E Fs E Fs <verse_3> A E Fs E Fs A E Fs E Fs A E Fs E Fs A E Fs E Fs <verse_4> A E Fs E Fs A E Fs E Fs A E Fs E Fs A E Fs E Fs <chorus_2> B E B E B E A Gs Fs B E B E B E A Gs Fs A Gs Fs A Gs Fs <solo_1> E Gs E A E As E B A Cs A D A Ds A E Gs E A E As E B Cs D E <verse_5> A E Fs E Fs A E Fs E Fs A E Fs E Fs A E Fs E Fs <verse_6> A E Fs E Fs A E Fs E Fs A E Fs E Fs A E Fs E Fs <chorus_3> B E B E B E A Gs Fs B E B E B E A Gs Fs"
+ },
+ {
+  "title": "Lonely Is the Night",
+  "artist": "Billy Squier",
+  "year": 1981,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 605447,
+  "chords": "<verse_1> E D E D A E D E D A E D E D A E D E D A <interlude_1> E D E D A E D E D A <verse_2> E D E D A E D E D A E D E D A E D E D A <chorus_1> Bno3d Eno3d Bno3d Ano3d Eno3d Bno3d Ano3d Bno3d Ano3d Eno3d D C D C G D C D C G <bridge_1> E D E D A E D E D A <verse_3> E D E D A E D E D A E D E D A E D E D A <chorus_2> Bno3d Ano3d Bno3d Ano3d Eno3d Bno3d Ano3d Bno3d Ano3d Eno3d D C D C G D C D C G E D E D E D E D E D E D A E D E D A <chorus_3> Bno3d Ano3d Bno3d Ano3d Eno3d Bno3d Ano3d Bno3d Ano3d Eno3d Bno3d Ano3d Bno3d Ano3d Eno3d Bno3d Ano3d Bno3d Ano3d Eno3d <bridge_2> E D E D A E D E D A <instrumental_1> E D E D A E D E D A E D E D A E D E D A E D E D A E D E D A E D E D A"
+ },
+ {
+  "title": "Lust for Life",
+  "artist": "Iggy Pop",
+  "year": 1993,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 598840,
+  "chords": "<verse_1> A E A E <chorus_1> G D E A <verse_2> E A E <chorus_2> G D E A E A E G D E A <verse_3> E A E <chorus_3> G D E A E A E"
+ },
+ {
+  "title": "Medicate",
+  "artist": "AFI",
+  "year": 2009,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 19430,
+  "chords": "<intro_1> Ab Db B Gb Ab <verse_1> Db B Gb Ab Db B Gb Db E Gb Ab <chorus_1> Gb B Db Ab Gb B Db Ab B Gb Db Ab Gb Db E Gb Ab <interlude_1> Db B Gb Ab <verse_2> Db B Gb Ab Db B Gb Db E Gb Ab <chorus_2> Gb B Db Ab Gb B Db Ab B Gb Db Ab Gb Db E Ab B Gb Db E Db Ab <interlude_2> Abmin E Abmin E Abmin <bridge_1> E F E Abmin E Dbmin B Ab E Ab E Ab E Db B Ab E Db E Ab E Db B Ab <chorus_3> B Gb Db Ab Gb Db E Gb Ab B Gb Db E B Db Ab B Gb Db Ab Gb Db E Gb Ab B Gb Db Ab B Gb Db Ab B Gb Db E <outro_1> B Db E B Db Ab"
+ },
+ {
+  "title": "Nearly Lost You",
+  "artist": "Screaming Trees",
+  "year": 1992,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 347482,
+  "chords": "<intro_1> G A E E7 C7 <verse_1> E7 C7 G A E7 C7 G A E7 E D C <chorus_1> C7 G F C C7 G F C C7 G F C C7 G F C E7 C7 <verse_2> E7 C7 G A E7 C7 G A E7 E D C <chorus_2> C7 G F C C7 G F C C7 G F C C7 G F C <solo_1> E7 C7 G A E C7 <verse_3> E7 C7 G A E7 C7 G A E7 E D C <chorus_3> C7 G F C C7 G F C C7 G F C C7 G F C G F C C7 G F C"
+ },
+ {
+  "title": "No One to Depend On",
+  "artist": "Santana",
+  "year": 1993,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 147484,
+  "chords": "<intro_1> Gmin C Gmin C Gmin C Gmin C Gmin C Gmin C Gmin <intro_2> C Gmin C Gmin C Gmin C Gmin C Gmin C <chorus_1> Gmin C Gmin C Gmin C Gmin C Gmin C Gmin C Gmin C Gmin C Gmin C <interlude_1> Gmin <chorus_2> C Gmin C Gmin C Gmin C Gmin C Gmin C Gmin C <interlude_2> Gmin <interlude_3> C Gmin C Gmin C Gmin C Gmin C Gmin C <chorus_3> Gmin C Gmin C Gmin C Gmin C <outro_1> Gmin"
+ },
+ {
+  "title": "One Big Holiday",
+  "artist": "My Morning Jacket",
+  "year": 2003,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 584629,
+  "chords": "C F Emin Dmin C F Emin Dmin C G Amin C G Amin C G Amin C G Amin C F Emin Dmin C F Emin Dmin Emin Dmin G E D"
+ },
+ {
+  "title": "Play That Funky Music",
+  "artist": "Wild Cherry",
+  "year": 1976,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 335121,
+  "chords": "<verse_1> E9 <chorus_1> G9 Bb7 Emin D Bmin A7 D E9 <chorus_2> G9 Bb7 Emin D Bmin A7 D E9 <chorus_3> G9 Bb7 Emin D Bmin A7 D E9 <outro_1> G9 A9"
+ },
+ {
+  "title": "Ring of Fire",
+  "artist": "Johnny Cash",
+  "year": 1963,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 297683,
+  "chords": "<intro_1> G C G D G <verse_1> C G D G C G D G <chorus_1> D C G D C G C G C G <instrumental_1> C G D G <chorus_2> D C G D C G C G C G <verse_2> C G D G C G D G <chorus_3> D C G D C G C G C G <outro_1> C G C G"
+ },
+ {
+  "title": "The Rock Show",
+  "artist": "Blink-182",
+  "year": 2001,
+  "games": [
+   "Guitar Hero 5",
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 600329,
+  "chords": "<intro_1> A D E A <verse_1> D E A D E <instrumental_1> A D E <chorus_1> A Fs D A Fs D A Fs D E D E D E D Cs <instrumental_2> A D E <verse_3> A D E A D E <chorus_2> A Fs D A Fs D A Fs D E D E D E D Cs <bridge_1> Fs D A E D <chorus_3> A Fs D A Fs D A Fs D E D E D E D Cs A D E A"
+ },
+ {
+  "title": "Runnin' Down a Dream",
+  "artist": "Tom Petty",
+  "year": 1989,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 314913,
+  "chords": "<verse_1> E D E D E <chorus_1> D G E G A D G E G A G E <verse_2> D E D E <chorus_2> D G E G A D G E G A G E <bridge_1> C D E <verse_3> D E D E <chorus_3> D G E G A D G E G A G E D G E G A D G E G A G E C D E C D E"
+ },
+ {
+  "title": "Seven",
+  "artist": "Sunny Day Real Estate",
+  "year": 1994,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 532249,
+  "chords": "A C Dmin C Dmin"
+ },
+ {
+  "title": "Shout It Out Loud",
+  "artist": "Kiss",
+  "year": 1976,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 170627,
+  "chords": "<intro_1> F G Amin G <verse_1> F G Emin Amin F G Emin Amin G F G Emin Amin F G Emin E F G Emin Amin F G Emin E Dmin/F Emin/G E E7 D Fsmin Cmin G G7 D Fsmin G Cmin D Fsmin G Cmin Cmin7 D Fsmin Cmin G G7 D Fsmin G Cmin D Fsmin G Cmin"
+ },
+ {
+  "title": "So Lonely",
+  "artist": "The Police",
+  "year": 1978,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 324798,
+  "chords": "<verse_1> C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F <chorus_1> C G Amin F C G Amin F C G Amin F C G Amin F <verse_2> C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F C G Amin F <chorus_2> C G Amin F C G Amin F C G Amin F C G Amin F <instrumental_1> D A Bmin G D A Bmin G D A Bmin G D A Bmin G <chorus_3> D A Bmin G D A Bmin G D A Bmin G D A Bmin G <interlude_1> D A Bmin G D A Bmin G D A Bmin G D A Bmin G D A Bmin G D A Bmin G <chorus_4> D A Bmin G D A Bmin G D A Bmin G D A Bmin G D A Bmin G D A Bmin G D A Bmin G D A Bmin G"
+ },
+ {
+  "title": "Sowing Season (Yeah)",
+  "artist": "Brand New",
+  "year": 2006,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 337642,
+  "chords": "Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Eno3d Bno3d Gno3d Ano3d Emin Bmin Gno3d Ano3d Emin G/D G Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Eno3d Bno3d Gno3d Ano3d Emin Bmin Gno3d Ano3d Emin Dno3d Cno3d Gno3d C/B Emin Dno3d Cno3d Gno3d C/B C B A B G C B A B G Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Emin G/D Cno3d G/B Emin G/D A7 Emin Bmin Ano3d Gno3d Emin Bmin Ano3d Gno3d Eno3d Bno3d Gno3d Ano3d Emin Bmin Gno3d Ano3d Emin Dno3d Cno3d Gno3d C/B Emin Bmin Emin G/D G Cno3d G/B C/B"
+ },
+ {
+  "title": "Steady, As She Goes",
+  "artist": "The Raconteurs",
+  "year": 2006,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 348541,
+  "chords": "<intro_1> Bmin Fs A E Bmin Fs A E Bmin Fs A E <verse_1> Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin Fs A E <chorus_1> Bmin Fs A E Bmin Fs A E G A B G A E Bmin Fs A E Bmin Fs A E <verse_2> Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin Fs A E <chorus_2> Bmin Fs A E Bmin Fs A E G A B G A E Bmin Fs A E Bmin Fs A E <verse_3> Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin Fs A E <chorus_3> Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin Fs A E Bmin"
+ },
+ {
+  "title": "Sultans of Swing",
+  "artist": "Dire Straits",
+  "year": 1978,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 599697,
+  "chords": "<intro_1> Dmin Dmin/C Dmin Dmin/C <verse_1> Dmin C Bb A Dmin C Bb A F C Bb Dmin Bb C <verse_2> Dmin C Bb A Dmin C Bb A F C Bb Dmin Bb C Bb C Dmin <instrumental_1> C Bb C Dmin C Bb C <verse_3> Dmin C Bb A Dmin C Bb A F C Bb Dmin Bb C <verse_4> Dmin C Bb A Dmin C Bb A F C Bb Dmin Bb C Bb C Dmin <instrumental_2> C Bb C Dmin C Bb C <verse_5> Dmin C Bb A Dmin C Bb A F C Bb Dmin Bb C Bb C Dmin <instrumental_3> C Bb C Dmin C Bb C <instrumental_4> Dmin C Bb C Dmin C Bb C <verse_6> Dmin C Bb A Dmin C Bb A A7 F C Bb Dmin Bb C Bb C Dmin <instrumental_5> C Bb C Dmin C Bb C Dmin C Bb C"
+ },
+ {
+  "title": "We're an American Band",
+  "artist": "Grand Funk Railroad",
+  "year": 1973,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 351091,
+  "chords": "<intro_1> D C Bb C D <verse_1> C F G D C F G D C D G D F G <chorus_1> D C Bb C D <chorus_2> C Bb C D"
+ },
+ {
+  "title": "What I Got",
+  "artist": "Sublime",
+  "year": 1996,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 106234,
+  "chords": "<intro_1> D G <verse_1> D G D G D G D G D G D G D G D G D G D G D G D G <interlude_1> D G D G D G D G <verse_2> D G D G D G D G D G D G D G D G D G D G D G D G <chorus_1> D G D G D G D G <interlude_2> D G D G D G D G <verse_3> D G D G D G D G D G D G D G D <chorus_2> G D G D G D G D G D G D G D G D G D G D G D G D G D G D G D G <outro_1> D G D G D G D G D"
+ },
+ {
+  "title": "Woman From Tokyo ('99 Remix)",
+  "artist": "Deep Purple",
+  "year": 1999,
+  "games": [
+   "Guitar Hero 5"
+  ],
+  "chordonomiconId": 596214,
+  "chords": "E D E F Fs G G7 F/G G F/G G F/G G F/G E A7 Gmin G F G F G F G F G F G C C7 G Dadd13 G/B C G/D C Dadd13 G B7 A7 E B7 A7 E B7 A7 E B7 A7 C7"
+ },
+ {
+  "title": "Bleed It Out",
+  "artist": "Linkin Park",
+  "year": 2007,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 598588,
+  "chords": "<verse_1> Fsmin E Fsmin E D E Fsmin D E Bmin <chorus_1> Fsmin E Fsmin E Fsmin E D Bmin Fsmin <verse_2> E Fsmin E D E Fsmin D E Bmin <chorus_2> Fsmin E Fsmin E Fsmin E D Bmin Fsmin <bridge_1> Bmin Fsmin Bmin Fsmin Bmin Fsmin <instrumental_1> E <chorus_3> Fsmin E Fsmin E Fsmin E D Bmin Fsmin <outro_1> E D Bmin Fsmin"
+ },
+ {
+  "title": "Bodies",
+  "artist": "Drowning Pool",
+  "year": 2001,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 199081,
+  "chords": "<intro_1> B <instrumental_1> C B C B C B C B C B C B C B C <verse_1> Emin C G Bmin Emin B <bridge_1> C B C B C B C B C B C B C <chorus_1> B C B C B C B C B C B C B C B C <instrumental_2> B C B C B C B C <verse_2> Emin C G Bmin Emin B <bridge_2> C B C B C B C B C B C B C <chorus_2> B C B C B C B C B C B C B C B C <interlude_1> Dmin B C Dmin B C Dmin B C Dmin B C B C B C B C B C B <instrumental_3> C B C B C B C B C B C B C B C <bridge_3> B C B C B C B C B C B C B C <chorus_3> B C B C B C B C B C B C B C B C <outro_1> B C B C B C B C"
+ },
+ {
+  "title": "Burn",
+  "artist": "Deep Purple",
+  "year": 1974,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 351266,
+  "chords": "<intro_1> Gmin <verse_1> F/G Gmin C Gmin F/G Gmin Bb F C Gmin Eb C Gmin <chorus_1> Dmin Bb Amin Bb Dmin Bb/D C/D Gmin"
+ },
+ {
+  "title": "Burnin' for You",
+  "artist": "Blue Öyster Cult",
+  "year": 1981,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 600025,
+  "chords": "<intro_1> F G Amin F G Emin F Dmin G Amin <verse_1> Emin Dmin F G Amin Emin Dmin F Emin7 Amin Emin Dmin F G Amin Emin Dmin F Emin7 <chorus_1> Amin G Amin G F G Amin G Amin G F G C F G C C/B Amin G Dmin Emin F G Amin G Amin G F G Amin G Amin G F G Amin G Amin G F G F <bridge_1> G Amin F G Emin F Dmin G Amin <verse_2> Emin Dmin F G Amin Emin Dmin F Emin7 Amin Emin Dmin F G Amin Emin Dmin F Emin7 <chorus_2> Amin G Amin G F G Amin G Amin G F G C F G C C/B Amin G Dmin Emin F G Amin G Amin G F G Amin G Amin G F G Amin G Amin G F G F <solo_1> Amin Emin Dmin F G Amin Emin Dmin F Emin7 Amin Emin Dmin F G Amin Emin Dmin F Emin7 <chorus_3> Amin G Amin G F G Amin G Amin G F G C F G C C/B Amin G Dmin Emin F G Amin G Amin G F G Amin G Amin G F G Amin G Amin G F G Amin G Amin G F G Amin G Amin G F G Amin G Amin G F G Amin G Amin G F G F Amin"
+ },
+ {
+  "title": "Call Me the Breeze",
+  "artist": "Lynyrd Skynyrd",
+  "year": 1974,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 351620,
+  "chords": "<intro_1> A <chorus_1> D A E D A <verse_1> D A E D A <solo_1> D A E D A D A E D A <verse_2> D A E D A <solo_2> D A E D A D A E D A <verse_3> D A E D A <chorus_2> D A E D <outro_1> A"
+ },
+ {
+  "title": "Free Ride",
+  "artist": "The Edgar Winter Group",
+  "year": 1972,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 429056,
+  "chords": "A G/A D/A G/A D/A A D A D/Fs A D A D/Fs A D A D/Fs A D A D/Fs A Fsmin G A Fsmin G D Fsmin G D A G/A D/A G/A D/A A D A D/Fs A D A D/Fs A D A D/Fs A D A D/Fs A Fsmin G A Fsmin G D Fsmin G D A G/A D/A G/A D/A A D A D/Fs D A D/Fs Fsmin G A Fsmin G D Fsmin G D A G/A D/A G/A D/A A G/A D/A G/A D/A A G/A D/A G/A D/A A G/A D/A G/A D/A A G/A D/A G/A D/A A G/A D/A G/A D/A A G/A D/A G/A D/A A G/A D/A G/A D/A A D A D/Fs A"
+ },
+ {
+  "title": "Graduate",
+  "artist": "Third Eye Blind",
+  "year": 1997,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 159209,
+  "chords": "<intro_1> G A G A G A G A G A G A G A G A G <chorus_1> A G A G A G A G A G A G A G <chorus_2> A G A G A G A G <interlude_1> D C D G D C <verse_1> D C D G D C G As G A G D G D A <chorus_3> G D A G D A G A G D G D A <verse_2> D C D G D C D As <interlude_2> B Bmin G D G D A D <chorus_4> A G A G A G A G <chorus_5> A G A G A G A G <outro_1> A G A G A G A Bmin"
+ },
+ {
+  "title": "Holy Wars... The Punishment Due",
+  "artist": "Megadeth",
+  "year": 1990,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 598448,
+  "chords": "<verse_1> Emin D A C Emin D A C Emin D A C Emin D A C Emin <verse_2> D Emin D Emin D Emin D Emin <verse_3> D A C D Emin D A C D <solo_1> G Bb G Bb G Bb G Fsmin F Emin <verse_4> D A C D Emin D A C D <solo_2> G Bb G Bb G Bb G Fsmin F Emin <verse_5> D A C Emin D A C Emin D A C Emin D A C D Emin"
+ },
+ {
+  "title": "How You Remind Me",
+  "artist": "Nickelback",
+  "year": 2001,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 598287,
+  "chords": "<verse_1> Bmin E Asus2 Dsus2 Bmin E Asus2 Dsus2 Bmin Dsus2 Asus2 Bmin E Asus2 Dsus2 Bmin E Asus2 Dsus2 <chorus_1> Bmin Dsus2 Asus2 E Bmin Dsus2 Asus2 E Bmin Dsus2 Asus4 E Bmin Dsus2 Asus2 E <bridge_1> Bmin E Asus2 Dsus2 Bmin E Asus2 Dsus2 <verse_2> Bmin E Asus2 Dsus2 Bmin E Asus2 Dsus2 Bmin E Asus2 Dsus2 Bmin E Asus2 Dsus2 <chorus_2> Bmin Dsus2 Asus2 E Bmin Dsus2 Asus2 E Bmin Dsus2 Asus4 E Bmin Dsus2 Asus2 E <bridge_2> Bmin E Asus2 Dsus2 Bmin E Asus2 Dsus2 <interlude_1> Bmin Asus2 Dsus2 <verse_3> Bmin E Asus2 Dsus2 Bmin Dsus2 Asus2 Bmin Dsus2 Asus2 Bmin E Asus2 Dsus2 Bmin E Asus2 Dsus2 <chorus_3> Bmin Dsus2 Asus2 E Bmin Dsus2 Asus2 Bmin Dsus2 Asus4 E Bmin Dsus2 Asus2 E <outro_1> Bmin Dsus2 Asus2 E Bmin Dsus2 Asus2 E Bmin Dsus2 Asus2 E Bmin Dsus2 Asus2"
+ },
+ {
+  "title": "I Know What I Am",
+  "artist": "Band of Skulls",
+  "year": 2009,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 344913,
+  "chords": "<intro_1> D <verse_1> Emin D Emin D <chorus_1> C Amin Emin D C Amin Emin B <verse_2> Emin D Emin D C Amin Emin D C Amin E B Emin"
+ },
+ {
+  "title": "I'm Not Okay (I Promise)",
+  "artist": "My Chemical Romance",
+  "year": 2004,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 183880,
+  "chords": "<intro_1> Dmin A Dmin A Dmin A Dmin A <verse_1> Dmin E Gminadd13 A Dmin Eb Gminadd13 A Dmin Eb Dmin Bb A Dmin <verse_2> E Gminadd13 A Dmin Eb Gminadd13 A Dmin Eb Dmin Bb A Dmin <interlude_1> Gmin A Dmin Gmin A Gmin A Dmin Gmin A <verse_3> Dmin E Gminadd13 A Dmin Eb Gminadd13 A Dmin Eb Dmin Bb A Dmin <outro_1> Eb Dmin Bb A Dmin A A7 Dmin"
+ },
+ {
+  "title": "Jet City Woman",
+  "artist": "Queensrÿche",
+  "year": 1990,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 354469,
+  "chords": "<intro_1> Gsmin E Gsmin E Gsmin E Gsmin E Fs Gsmin Bb E/B Gsmin Bb E Fs Gsmin B Cs B Gsmin Bb E <verse_1> Gsmin Fs Cs7 E B Bb Gsmin Fs B Cs B Bb Gsmin Fs Cs7 E B Bb Gsmin Fs B Cs E Emaj7 E Esus2 Gsmin E Emaj7 E Esus2 Fssus4 Fs Fssus4 <chorus_1> Gsmin Fs B Cs Gsmin Fs B Cs Gsmin <interlude_1> E Gsmin Fs Cs/F E <verse_2> Gsmin Fs Cs7 E B Bb Gsmin Fs B Cs B Bb Gsmin Fs Cs7 E B Bb Gsmin Fs B Cs E Emaj7 E Esus2 Gsmin E Emaj7 E Esus2 Fssus4 Fs Fssus4 <chorus_2> Gsmin Fs B Cs Gsmin Fs B Cs Gsmin Fs B Cs Gsmin Fs B Cs Gsmin <solo_1> Fs/Bb B Cs Eb Gsmin Fs Cs Gsmin E Cs D Gsmin Cs D Gsmin E Cs D Gsmin Fs Gsmin E B Cs E Cs Fs <bridge_1> E Emaj7 E Esus2 Fs Fssus2 Fs Fssus4 E Emaj7 E Esus2 Fssus4 Fs Fssus4 <chorus_3> Gsmin Fs B Cs Gsmin Fs B Cs Gsmin Fs/Bb B Cs Gsmin Fs/Bb B Cs D Gsmin Fs Gsmin Fs Gsmin Fs Gsmin"
+ },
+ {
+  "title": "Listen to Her Heart",
+  "artist": "Tom Petty and the Heartbreakers",
+  "year": 1978,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 608336,
+  "chords": "<intro_1> A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A <chorus_1> G A Asus2 A G A Asus2 A E A Asus2 A <chorus_2> G A Asus2 A G A Asus2 A E A Asus2 A <bridge_1> G A G A E <solo_1> A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A <chorus_3> G A Asus2 A G A Asus2 A E A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A Asus2 A"
+ },
+ {
+  "title": "Love Gun",
+  "artist": "Kiss",
+  "year": 1977,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 283901,
+  "chords": "Emin G A G D C Emin D Emin G A G D C Emin D Emin D Emin D C D Emin D Emin D Emin D C D Emin Amin D Emin Amin D Emin D C D Emin D C D Emin D Emin D C D Emin D Emin D Emin D C D Emin Amin D Emin Amin D Emin D C D Emin D C D Emin D C D Emin D C D Emin D C D Emin D C D Emin D C D Emin D C D"
+ },
+ {
+  "title": "Lunatic Fringe",
+  "artist": "Red Rider",
+  "year": 1981,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 590821,
+  "chords": "D Bmin D Bmin A Bmin A Bmin D Bmin D Bmin A Bmin A Bmin G A Bmin D A Bmin G A Bmin D A Bmin A Bmin D Bmin A Bmin A Bmin A Bmin D Bmin A Bmin"
+ },
+ {
+  "title": "Modern Day Cowboy",
+  "artist": "Tesla",
+  "year": 1986,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 29948,
+  "chords": "<intro_1> A D C A F/A G/A A F/A G/A D/A A F/A G/A A F G <verse_1> A F/A D/A F/A A F/A D/A G/A A F/A D/A F/A A F/A D/A G/A A F/A G/A D/A A F/A D/A G/A A F/A G/A D/A A F/A D/A G/A B F B F G <chorus_1> A F/A G/A D/A A F/A D/A G/A A F/A G/A D/A A F/A E <interlude_1> A F/A G/A D/A A F/A E <verse_2> A F/A D/A F/A A F/A D/A G/A A F/A D/A F/A A F/A D/A G/A A F/A G/A D/A A F/A D/A G/A A F/A G/A D/A A F/A D/A G/A B F B F G <chorus_2> A F/A G/A D/A A F/A D/A G/A A F/A G/A D/A A F/A E <interlude_2> A F/A G F A F/A C G A F/A G/A D/A A F/A D/A G/A A F/A G/A D/A A F/A E A <verse_3> F/A D/A F/A A F/A D/A G/A A F/A D/A F/A A F/A D/A G/A A F/A G/A D/A A F/A D/A G/A A F/A G/A D/A A F/A D/A G/A B F B F G <chorus_3> A F/A G/A D/A A F/A D/A G/A A F/A G/A D/A A F/A G/A D/A A F/A G/A D/A A F/A D/A G/A A F/A G/A D/A A F/A E A"
+ },
+ {
+  "title": "Move It On Over",
+  "artist": "George Thorogood and the Destroyers",
+  "year": 1978,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 332930,
+  "chords": "<verse_1> G C G D C G C G D C G C G D C G C G D C G C G D C G C G D C G C G D C G"
+ },
+ {
+  "title": "The Outsider",
+  "artist": "A Perfect Circle",
+  "year": 2003,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 42694,
+  "chords": "<intro_1> B E B E <verse_1> B E B E B E <verse_2> B E B E B E <chorus_1> Csmin Gsmin Fs B Csmin Gsmin Fs Csmin Gsmin Fs B Fs E <verse_3> B E B E B E <chorus_2> Csmin Gsmin Fs B Csmin Gsmin Fs Csmin Gsmin Fs B Fs E <bridge_1> B A E B A E B A E B A E B <instrumental_1> A E B <chorus_3> Csmin Gsmin Fs B Csmin Gsmin Fs Csmin Gsmin Fs B Fs E A E B <outro_1> A E B A E B"
+ },
+ {
+  "title": "Renegade",
+  "artist": "Styx",
+  "year": 1978,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 272626,
+  "chords": "<chorus_1> Gmin D C Gmin <verse_2> C Gmin C Gmin C Gmin C Gmin <chorus_2> Dno3d C Gmin <solo_1> Bb C G Bb C Gmin Bb D Gmin Bb D <chorus_3> Gmin D C Gmin"
+ },
+ {
+  "title": "Stray Cat Blues",
+  "artist": "The Rolling Stones",
+  "year": 1968,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 349351,
+  "chords": "<intro_1> A <verse_1> D C G F D C G F D C G A D C G F D C G F D C G A <chorus_1> C G D A <verse_2> D C G F D C G F D C G A C <bridge_1> G D A <verse_3> D C G F D C G F D C G A <chorus_2> C G D A"
+ },
+ {
+  "title": "Suffocated",
+  "artist": "Orianthi",
+  "year": 2009,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 556039,
+  "chords": "G Emin C G D Amin G/B Emin C G D Amin G/B Emin D C D Emin D C D Emin D C D Emin D C D Emin D C D Emin D C G Amin Emin D C G Amin Emin D C Emin D C D Emin D C D Emin D C D Emin D C Emin D C G Amin Emin D C G Amin C G/B G Amin G C G/B G Emin D C G Amin Emin D C G Amin Emin"
+ },
+ {
+  "title": "There's No Secrets This Year",
+  "artist": "Silversun Pickups",
+  "year": 2009,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 48573,
+  "chords": "<intro_1> D <verse_1> G A Bmin D G A Bmin <chorus_1> D G Bmin D G Bmin D G Bmin D G Bmin D G Bmin D G D G Bmin D G Bmin D <verse_2> G A Bmin D G A Bmin <chorus_2> D G Bmin D G Bmin D G Bmin D G Bmin D G Bmin D G D G Bmin D G Bmin G <bridge_1> E A Bmin G D G Bmin D G Bmin D G Bmin D G Bmin D G Bmin D G D G Bmin D G Bmin D G E A Bmin G E A Bmin G E A B D E A <interlude_1> Bmin G D A B G E A Bmin G D <verse_3> G A Bmin D G A Bmin <chorus_3> D G Bmin D G Bmin D G Bmin D G Bmin D G Bmin D G D G Bmin D G Bmin D G Dmin <interlude_2> D Dmin <outro_1> Bbmaj7 C D Bb Dmin"
+ },
+ {
+  "title": "Tick Tick Boom",
+  "artist": "The Hives",
+  "year": 2007,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 383253,
+  "chords": "Db Gb Db Ab Gb Db Gb Ab Db"
+ },
+ {
+  "title": "Tones of Home",
+  "artist": "Blind Melon",
+  "year": 1992,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 377553,
+  "chords": "D C Fmaj7 G F Dmin7 Dmin E13 D C D C D C D C D Fmaj7 D G F D Fmaj7 D G F D Fmaj7 D G F D Fmaj7 D G F D C D C D C D G D C D C D Dmin7 Dmin C Dmin C Dmin C Dmin C Dmin C D E13"
+ },
+ {
+  "title": "Unskinny Bop",
+  "artist": "Poison",
+  "year": 1990,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 598003,
+  "chords": "<intro_1> A Dsus4 D A Dsus4 D <verse_1> A Dsus4 D A Dsus4 D A Dsus4 D A Dsus4 D E G E G E G E G <chorus_1> A G D A G D A G D E <verse_2> A Dsus4 D A Dsus4 D A Dsus4 D A Dsus4 D E G E G E G E G <chorus_2> A G D A G D A G D E G Gs <bridge_1> D D/Fs A D D/Fs A D D/Fs A E <solo_1> A G D A G D A G D E <interlude_1> G A G A G A D G Gs <chorus_3> A G D A G D A G D A G D A G D A G D A G D"
+ },
+ {
+  "title": "Uprising",
+  "artist": "Muse",
+  "year": 2009,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 598504,
+  "chords": "<intro_1> Dno3d Dmin Gmin F A Gmin F A/Cs Dmin Gmin F Abno3d A Gmin F A/Cs Dno3d <verse_1> Dmin Gmin F A Gmin F Dmin Gmin F A Gmin F Dmin <chorus_1> Gmin F A Gmin F Dmin Gmin F A Gmin F Dmin <verse_2> Gmin F A Gmin F Dmin Gmin F A Gmin F Dmin <chorus_2> Gmin F A Gmin F Dmin Gmin F A Gmin F Dmin <solo_1> Gmin F A Gmin F <chorus_3> Dmin Gmin F A Gmin F Dmin Gmin F A Gmin F Dmin"
+ },
+ {
+  "title": "We're Not Gonna Take It",
+  "artist": "Twisted Sister",
+  "year": 1984,
+  "games": [
+   "Guitar Hero: Warriors of Rock"
+  ],
+  "chordonomiconId": 597290,
+  "chords": "<intro_1> E B E A E B E Dsno3d Csmin7 B E Dsno3d Csmin7 B <verse_1> E B E A E B E B E B E A E B E B <chorus_1> E B E A E B E Dsno3d Csmin7 B <verse_2> E B E A E B E B E B E A E B E Dsno3d Csmin7 B <bridge_1> D Csmin Bmin D Csmin Bmin E F Fs B <chorus_2> E B E A E B E B E B E A E B E Dsno3d Csmin7 B <solo_1> E B E A E B E B E B E A E B E Ds Cs B <bridge_2> D Csmin Bmin D Csmin Bmin E F Fs B <chorus_3> E B E A E B E B"
+ },
+ {
+  "title": "Berzerk",
+  "artist": "Eminem",
+  "year": 2013,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 610536,
+  "chords": "<instrumental_1> Gmin Dmin Gmin Amin Gmin F Emin Dmin Gmin Dmin Gmin Amin Gmin F Emin Gmin Dmin Gmin Dmin Gmin Dmin Gmin Dmin Gmin Amin Gmin F Dmin Gmin F Dmin Gmin F Dmin Gmin F Dmin C F Dmin Gmin F Dmin C F Dmin"
+ },
+ {
+  "title": "Bones Exposed",
+  "artist": "Of Mice & Men",
+  "year": 2014,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 501669,
+  "chords": "C Bmin Eb D G C Bmin Eb D G C Bmin C Eb D G C Bmin D Eb C Bmin C Bmin C Bmin D Eb G C Bmin D Emin D Emin G C Bmin D Emin C Bmin C Emin"
+ },
+ {
+  "title": "Club Foot",
+  "artist": "Kasabian",
+  "year": 2004,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 339105,
+  "chords": "<verse_1> Amin Dsus2 Amin Dsus2 <chorus_1> Amin Dsus2 <verse_2> Amin Dsus2 Amin Dsus2 <chorus_2> Amin Dsus2 Amin Dsus2 Amin Dsus2 Amin Dsus2 Amin Dsus2 Amin Dsus2 Cmin Fsus2"
+ },
+ {
+  "title": "Counting Stars",
+  "artist": "OneRepublic",
+  "year": 2013,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 231859,
+  "chords": "<intro_1> Amin C G D Amin C G D Amin C G D Amin C G D <verse_1> Amin C G F Amin C G F Amin C G F Amin C G F Amin C G F <chorus_1> Amin C G D Amin C Amin C Amin C G D Amin C G D <bridge_1> Amin C G D Amin C G D <outro_1> Amin C G F Amin C G F <chorus_2> Amin C G D Amin C G D Amin C G D Amin C G D <chorus_3> Amin C G D Amin C G D Amin C G D Amin C G F Amin"
+ },
+ {
+  "title": "Demons",
+  "artist": "Imagine Dragons",
+  "year": 2012,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 404168,
+  "chords": "Cmin Gmin Cmin Gmin Cmin Bb Cmin Dmin G Cmin Gmin Cmin Bb Cmin Bb A Fmin G Eb Cmin A Fs Bb Eb Cmin Ab F Bb Gb Ebmin B Abmin Db Gb Ebmin Gb B E A Dbmin D A Dbmin D Dbmin D G C Emin F C Emin F Emin F E A Dmin D A Dbmin D Dbmin D Dbmin D G C Emin F C Emin F Emin F Emin F G"
+ },
+ {
+  "title": "Girls",
+  "artist": "The 1975",
+  "year": 2013,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 333136,
+  "chords": "<verse_1> B E B E B E B E B Fs E B Fs E B Fs E B Fs E <chorus_1> B Fs E B Fs E B Fs E B Fs E B Fs E <verse_2> B E B E B E B E B Fs E B Fs E B Fs E B Fs E <chorus_2> B Fs E B Fs E B Fs E B Fs E B Fs E <verse_3> B Fs E B Fs E B Fs E B Fs B Fs E B Fs E B Fs E B Fs E <chorus_3> B Fs E B Fs E B Fs E B Fs E B Fs E B Fs E B Fs E B Fs E B Fs E B Fs E B Fs E B Fs E"
+ },
+ {
+  "title": "Grounds for Divorce",
+  "artist": "Elbow",
+  "year": 2008,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 344147,
+  "chords": "<verse_1> Dmin C G Dmin C G Dmin C G Dmin C G Dmin C G Dmin C G Dmin C G C G C G <chorus_1> Dmin C G Dmin C G Dmin C G Dmin C G <verse_2> Dmin C G Dmin C G Dmin C G Dmin C G C G C G <chorus_2> Dmin C G Dmin C G Dmin C G Dmin C G Dmin C G"
+ },
+ {
+  "title": "Here's to Never Growing Up",
+  "artist": "Avril Lavigne",
+  "year": 2013,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 381049,
+  "chords": "F Dmin Bb Gmin F/A F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb Gmin Bb Gmin Bb Gmin F/A Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb F Dmin Bb"
+ },
+ {
+  "title": "Ho Hey",
+  "artist": "The Lumineers",
+  "year": 2012,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 519584,
+  "chords": "Gsus4 F C F C F C F C F C F C F C F C Amin G Dmin F C F C F C F C F C F C Amin G F C Amin G C Amin G F C F C F C F C F C F C F C F C Amin G F C Amin G F C Amin G C Amin G C F C Gsus4 C F C Gsus4 F C Gsus4 C Amin G C Amin G F C F C F C F C"
+ },
+ {
+  "title": "I Will Wait",
+  "artist": "Mumford & Sons",
+  "year": 2012,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 271504,
+  "chords": "<intro_1> Asmin Fmin7 Gs Cs Asmin Fmin7 Gs <verse_1> Cs Fs Cs Gsadd9 Cs Fs Cs Gsadd9 Asmin Gs Cs Fs Cs Gs Asmin Gs Cs Fs Cs Gs <chorus_1> Cs Gs Cs Gs Cs Gs Cs Gs <instrumental_1> Asmin Fmin7 Gs <interlude_1> Asmin Fmin7 Gs <verse_2> Cs Fs Cs Gsadd9 Cs Fs Cs Gsadd9 <chorus_2> Asmin Fmin7 Gs Asmin Fmin7 Gs <bridge_1> Cs Gs Asmin Fs Cs Gs Cs Gs Asmin Fs Cs Gs <chorus_3> Cs Gs <instrumental_2> Asmin Fmin7 Gs Cs Gs Cs <chorus_4> Asmin Fmin7 Gs Asmin Fmin7 Gs <outro_1> Cs Gs"
+ },
+ {
+  "title": "Keep on Swinging",
+  "artist": "Rival Sons",
+  "year": 2012,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 77073,
+  "chords": "<intro_1> Gmin F Gmin F Gmin F Gmin <verse_1> C Bb Gmin C Bb Gmin C Bb Gmin C B D F <chorus_1> Gmin F Gmin F Gmin F Gmin F <verse_2> Gmin C Bb Gmin C Bb Gmin C Bb Gmin C B D F <chorus_2> Gmin F Gmin F Gmin F Gmin F <solo_1> Gmin Bb C Gmin Bb C Gmin Bb C Gmin Bb C Gmin <chorus_3> F Gmin F Gmin F Gmin F Gmin F Gmin F Gmin F Gmin F"
+ },
+ {
+  "title": "King for a Day (ft. Kellin Quinn)",
+  "artist": "Pierce the Veil",
+  "year": 2012,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 565304,
+  "chords": "G C D G C D Emin D C D Emin D C G Emin G Emin G Emin D G C D G C D Emin D C G C D"
+ },
+ {
+  "title": "Lazaretto",
+  "artist": "Jack White",
+  "year": 2014,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 331766,
+  "chords": "<verse_1> Fs E Fs E Fs E Fs E Fs E Fs E Fs E Fs E <verse_2> Fs E Fs E Fs E Fs E A Ab <verse_3> Fs E Fs E Fs E Fs E Fs E Fs E Fs E Fs E A Ab <verse_4> Fs E Fs E Fs E Fs E <outro_1> Fs E Fs E Fs E Fs E Fs E Fs E Fs E Fs E Fs"
+ },
+ {
+  "title": "Little Monster",
+  "artist": "Royal Blood",
+  "year": 2014,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 610916,
+  "chords": "<intro_1> Ano3d Dno3d Cno3d Ano3d Dno3d Cno3d Dno3d Cno3d <verse_1> Ano3d Dno3d Cno3d Ano3d Dno3d Cno3d Dno3d Cno3d Ano3d Dno3d Cno3d Ano3d Dno3d Cno3d Dno3d Cno3d Ano3d Dno3d Cno3d Ano3d Dno3d Cno3d Dno3d Cno3d Ano3d Dno3d Cno3d Ano3d Dno3d Cno3d Dno3d Cno3d <chorus_1> Fno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Ano3d Fno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Ano3d Fno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Ano3d Fno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Ano3d <verse_2> Cno3d Ano3d Dno3d Cno3d Ano3d Dno3d Cno3d Dno3d Cno3d Ano3d Dno3d Cno3d Ano3d Dno3d Cno3d Dno3d Cno3d Ano3d Dno3d Cno3d Ano3d Dno3d Cno3d Dno3d Cno3d <chorus_2> Fno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Ano3d Fno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Ano3d Fno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Ano3d Fno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Ano3d <outro_1> Fno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Ano3d Fno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Ano3d Fno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Ano3d Fno3d Gno3d Dno3d Cno3d Dno3d Cno3d Dno3d Cno3d Dno3d Ano3d"
+ },
+ {
+  "title": "Love Bites (So Do I)",
+  "artist": "Halestorm",
+  "year": 2012,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 421830,
+  "chords": "Dmin Fmin Gmin Gbmin Gmin Dmin Fmin Dmin Fmin Bbmin Cmin Bbmin Cmin Dmin Fmin Dmin Fmin Bbmin Fmin Cmin Bbmin Amin Gmin Dmin Fmin Bbmin Dmin Fmin Cmin Bbmin Dmin Fmin Bbmin Dmin Fmin Cmin Dmin Fmin Dmin Fmin Bbmin Cmin Bbmin Cmin Dmin Fmin Dmin Fmin Bbmin Fmin Cmin Bbmin Amin Gmin Dmin Fmin Bbmin Dmin Fmin Cmin Bbmin Dmin Fmin Bbmin Dmin Fmin Cmin Bbmin Amin Gmin Dmin Fmin Ebmin Dmin Fmin Bbmin Dmin Fmin Cmin Bbmin Dmin Fmin Bbmin Dmin Fmin Cmin Bbmin Dmin Fmin Bbmin Dmin Fmin Cmin Bbmin Dmin Fmin Bbmin Dmin Fmin Cmin Dmin Fmin Bbmin Dmin Fmin Cmin Amin Bbmin Amin Gmin Amin Gmin Fmin Dmin"
+ },
+ {
+  "title": "Mountain Sound",
+  "artist": "Of Monsters and Men",
+  "year": 2012,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 338602,
+  "chords": "<intro_1> F Amin C <verse_1> Dmin Fmaj7 Amin G Dmin Fmaj7 Amin G Dmin Fmaj7 Amin G <chorus_1> F Amin C F Amin C F Amin C F Amin C G <verse_2> Dmin Fmaj7 Amin G Dmin Fmaj7 Amin G <chorus_2> F Amin C F Amin C F Amin C F Amin C G <bridge_1> F Amin C F Amin C Dmin F Amin C Dmin F Amin C <chorus_3> F Amin C F Amin C F Amin C F Amin C G F Amin C F Amin C F Amin C F Amin C G <outro_1> F Amin C F Amin C"
+ },
+ {
+  "title": "My Songs Know What You Did in the Dark (Light Em Up)",
+  "artist": "Fall Out Boy",
+  "year": 2013,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 305194,
+  "chords": "<verse_1> D A E G D A E G D E D G <chorus_1> D G D G D A Bmin G Bmin G D A <instrumental_1> D A D A D G A D A Bb Bmin <verse_2> D A Emin G D A Emin G D Emin D G <chorus_2> D G D G D A Bmin G Bmin G D A Emin A G Emin A G Emin A G Emin A G <instrumental_2> Fs D A G A D G <chorus_3> D G D G D A Bmin G Bmin G D A D G Bmin A D G <outro_1> Bmin A D"
+ },
+ {
+  "title": "Sundial",
+  "artist": "Wolfmother",
+  "year": 2009,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 75668,
+  "chords": "<intro_1> Eno3d Dno3d Gno3d Cno3d Ano3d Eno3d Dno3d Gno3d Cno3d Ano3d Eno3d Dno3d Gno3d Eno3d Dno3d Gno3d <verse_1> Eno3d Dno3d Gno3d Eno3d Dno3d Gno3d Eno3d Dno3d Gno3d Eno3d Dno3d Gno3d <chorus_1> Eno3d Dno3d Gno3d Cno3d Ano3d Eno3d Dno3d Gno3d Cno3d Ano3d <interlude_1> Eno3d Bno3d Gno3d Eno3d Dno3d Gno3d <verse_2> Eno3d Dno3d Gno3d Eno3d Dno3d Gno3d Eno3d Dno3d Gno3d Eno3d Dno3d Gno3d <chorus_2> Eno3d Dno3d Gno3d Cno3d Ano3d Eno3d Dno3d Gno3d Cno3d Ano3d Bno3d Eno3d Bno3d Eno3d Ano3d Eno3d Ano3d Dno3d Fsno3d Eno3d Dno3d Fsno3d Eno3d Dno3d Cno3d Eno3d Dno3d Gno3d Eno3d Dno3d Gno3d Eno3d Gno3d Eno3d Gno3d <outro_1> Eno3d Dno3d Cno3d Ano3d Eno3d Bno3d Eno3d Bno3d Eno3d Bno3d Eno3d"
+ },
+ {
+  "title": "Tie Your Mother Down",
+  "artist": "Queen",
+  "year": 1976,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 597958,
+  "chords": "<intro_1> A C G D C G/B <verse_1> E G A <chorus_1> D G D C G/B A C <verse_2> E G A <chorus_2> D G D C G/B A C <verse_3> E G A <chorus_3> D G D C G/B A C D C G/B A C D C G/B A"
+ },
+ {
+  "title": "Wastelands",
+  "artist": "Linkin Park",
+  "year": 2014,
+  "games": [
+   "Guitar Hero Live"
+  ],
+  "chordonomiconId": 500364,
+  "chords": "D F D F D F Dmin Bb F A Dmin Bb F A Dmin F G Dmin F G Dmin F C Gmin F Dmin F C Gmin A D F Dmin Bb F A Dmin Bb F A Dmin F G Dmin F G Dmin F C Gmin F Dmin F C Gmin A E F G D F E F G D F Emin F G Dmin Emin F G Amin Bb F Bb F Amin Bb F Bb F A D F D F D F D F D"
  }
 ]

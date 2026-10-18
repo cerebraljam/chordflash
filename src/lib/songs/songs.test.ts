@@ -1,7 +1,24 @@
 import { describe, expect, it } from 'vitest';
-import { fromRaw, groupSections, mostAdjacent, parseProgression, progressionText, songChords, songDifficulty, songSequence } from './songs';
+import { BUILTIN_SONGS, fromRaw, groupSections, mostAdjacent, parseProgression, progressionText, seriesOf, songChords, songDifficulty, songSequence } from './songs';
 
 describe('songs', () => {
+  it('gives every built-in song its own id, Japanese titles included', () => {
+    const ids = BUILTIN_SONGS.map((s) => s.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(ids.every((id) => !id.endsWith('--'))).toBe(true);
+  });
+
+  it('groups games by series', () => {
+    expect(['Rock Band 2', 'Guitar Hero: Warriors of Rock', 'Guitar Hero III', 'Rocksmith 2014', 'Rocksmith', 'Other'].map(seriesOf)).toEqual([
+      'Rock Band',
+      'Guitar Hero',
+      'Guitar Hero',
+      'Rocksmith',
+      'Rocksmith',
+      'Other',
+    ]);
+  });
+
   const raw = '<intro_1> C <verse_1> F C E7 Amin C F C G7 C <chorus_1> F C F C G C <prechorus_1> Fsmin A/Cs';
 
   it('parses Chordonomicon progressions into named sections', () => {

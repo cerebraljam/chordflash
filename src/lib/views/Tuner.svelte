@@ -44,7 +44,7 @@
   });
 </script>
 
-<section class="card tuner">
+<section class="card tuner" data-tour="tuner">
   <div class="row modes">
     <button class:selected={mode === 'guitar'} onclick={() => (mode = 'guitar')}>Guitar</button>
     <button class:selected={mode === 'bass'} onclick={() => (mode = 'bass')}>Bass</button>

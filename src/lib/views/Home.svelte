@@ -120,7 +120,7 @@
         </div>
       {/if}
       <div class="actions">
-        <button class="primary start" onclick={startSet} disabled={!canStart}>
+        <button class="primary start" data-tour="start-set" onclick={startSet} disabled={!canStart}>
           <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z" fill="currentColor"></path></svg>
           Start set
           <kbd>SPACE</kbd>
@@ -136,7 +136,7 @@
         <span class="muted small">{mastered} of {allChords.length} chords mastered</span>
         <span class="bar"><span class="fill good" style:width="{(mastered / Math.max(1, allChords.length)) * 100}%"></span></span>
       </button>
-      <button class="tile" onclick={() => onopen({ action: 'setup', mode: 'song' })}>
+      <button class="tile" data-tour="tile-setlist" onclick={() => onopen({ action: 'setup', mode: 'song' })}>
         <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 18V5l11-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg></span>
         <span class="tile-title">Setlist</span>
         <span class="muted small">{allSongs().length} songs to play along</span>

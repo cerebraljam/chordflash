@@ -32,7 +32,7 @@
 <section class="card stack">
   <h2>Input</h2>
   <div class="row">
-    <select value={settings.deviceId ?? ''} onchange={(e) => choose(e.currentTarget.value)} aria-label="Audio input">
+    <select value={settings.deviceId ?? ''} onchange={(e) => choose(e.currentTarget.value)} aria-label="Audio input" data-tour="input-select">
       <option value="" disabled>Choose an input…</option>
       {#each devices as d (d.id)}
         <option value={d.id}>{d.label}</option>

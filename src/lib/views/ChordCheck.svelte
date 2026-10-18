@@ -67,7 +67,7 @@
   });
 </script>
 
-<section class="card">
+<section class="card" data-tour="check-picker">
   <div class="row picker">
     {#each OPEN_CHORDS as c (c.id)}
       <button class:selected={c.id === currentId} onclick={() => select(c.id)}>{chordName(c, settings.lang)}</button>
