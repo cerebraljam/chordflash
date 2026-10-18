@@ -45,9 +45,23 @@ export function synthStrum(midiNotes: number[], opts: StrumOptions = {}): Float3
       const amp = (gain * (0.5 + rand())) / h ** tilt;
       const phase = rand() * 2 * Math.PI;
       const hTau = tau / (1 + 0.15 * h);
-      for (let i = Math.ceil(start * sampleRate); i < out.length; i++) {
-        const t = i / sampleRate - start;
-        out[i] += amp * Math.exp(-t / hTau) * Math.sin(2 * Math.PI * f * t + phase);
+      // amp·e^(−t/τ)·sin(2πft + φ), generated with the damped-sine recurrence
+      // y[n+1] = 2r·cos(w)·y[n] − r²·y[n−1] (no sin/exp per sample: tests stay fast).
+      const first = Math.ceil(start * sampleRate);
+      const t0 = first / sampleRate - start;
+      const w = (2 * Math.PI * f) / sampleRate;
+      const r = Math.exp(-1 / (hTau * sampleRate));
+      const c = 2 * r * Math.cos(w);
+      const r2 = r * r;
+      let y = amp * Math.exp(-t0 / hTau) * Math.sin(2 * Math.PI * f * t0 + phase);
+      let prev = amp * Math.exp(-(t0 - 1 / sampleRate) / hTau) * Math.sin(2 * Math.PI * f * (t0 - 1 / sampleRate) + phase);
+      // Stop once the partial has decayed below ~-120 dB of its start.
+      const end = Math.min(out.length, first + Math.ceil(hTau * Math.log(1e6) * sampleRate));
+      for (let i = first; i < end; i++) {
+        out[i] += y;
+        const next = c * y - r2 * prev;
+        prev = y;
+        y = next;
       }
     }
   });

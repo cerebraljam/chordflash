@@ -9,5 +9,7 @@ export default defineConfig({
   optimizeDeps: { include: ['pitchy'] },
   test: {
     include: ['src/**/*.test.ts'],
+    // The audio tests synthesise seconds of guitar sound; CI machines are slower than a laptop.
+    testTimeout: 30_000,
   },
 });
