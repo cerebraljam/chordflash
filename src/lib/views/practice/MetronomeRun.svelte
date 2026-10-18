@@ -16,6 +16,7 @@
     title,
     next,
     history,
+    backLabel,
     onexit,
   }: {
     /** Identifies the chord set or song, to remember its tempo. */
@@ -24,6 +25,8 @@
     /** Next chord to play after `from` (song order, or the practice order). */
     next: (from: string | null) => string;
     history: Attempt[];
+    /** Where "← …" goes back to: "Backstage", "Chord drills", "Setlist". */
+    backLabel: string;
     onexit: () => void;
   } = $props();
 
@@ -180,14 +183,13 @@
 </script>
 
 <div class="top row">
-  <strong>Metronome</strong>
+  {#if phase !== 'playing'}<button class="back" onclick={onexit}>← {backLabel}</button>{/if}
+  <h2>Rhythm</h2>
   <span class="title">{title}</span>
   <span class="spacer"></span>
   {#if phase === 'playing'}
     <span class="bpm">{round?.bpm ?? bpm} BPM</span>
     <button onclick={finish}>Stop</button>
-  {:else}
-    <button onclick={onexit}>Back</button>
   {/if}
 </div>
 
@@ -268,12 +270,20 @@
     {/if}
     <div class="row">
       <button class="primary" onclick={() => (phase = 'ready')}>Again</button>
-      <button onclick={onexit}>Back</button>
+      <button onclick={onexit}>{backLabel}</button>
     </div>
   </section>
 {/if}
 
 <style>
+  .back {
+    background: transparent;
+    color: var(--muted);
+  }
+  .top h2 {
+    margin: 0;
+    font-size: 1.8rem;
+  }
   .top {
     margin-bottom: 1rem;
   }
@@ -289,6 +299,7 @@
   }
   .bpm,
   .num {
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
   }
   .stack {
@@ -316,6 +327,9 @@
     align-content: start;
   }
   .count {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     font-size: 7rem;
     font-weight: 700;
     line-height: 1;
@@ -325,6 +339,9 @@
     font-size: 1.3rem;
   }
   .name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     font-size: clamp(4rem, 18vw, 7rem);
     font-weight: 700;
     line-height: 1;
@@ -371,15 +388,15 @@
   }
   .cell.onTime {
     background: var(--good);
-    color: #fff;
+    color: var(--good-ink);
   }
   .cell.late {
     background: var(--warn);
-    color: #fff;
+    color: var(--warn-ink);
   }
   .cell.missed {
     background: var(--bad);
-    color: #fff;
+    color: var(--bad-ink);
   }
   h2 {
     margin: 0;
@@ -394,6 +411,9 @@
     display: grid;
   }
   .stats strong {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     font-size: 1.8rem;
   }
   table {

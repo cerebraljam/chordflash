@@ -1,14 +1,28 @@
+<script module lang="ts">
+  import type { PracticeMode } from '../settings.svelte';
+
+  /** What opening the practice area should do. */
+  export type PracticeEntry =
+    | { action: 'setup'; mode: PracticeMode }
+    /** Tonight's set: chord practice with the current chord set, right away. */
+    | { action: 'set' }
+    /** The chord set with the metronome. */
+    | { action: 'metronome' };
+</script>
+
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { loadAttempts } from '../practice/db';
+  import { history } from '../practice/history.svelte';
   import { hintLevels, type HintLevel } from '../practice/hints';
   import { itemName, noteItems } from '../practice/items';
   import { PracticeSession, pickNext, sequencePicker, type Goal, type Picker } from '../practice/session';
   import { summarize, type SessionSummary } from '../practice/summary';
-  import { kindOf, type Attempt, type PracticeKind } from '../practice/types';
+  import { levelFor, stars, xpLedger } from '../practice/game';
+  import type { SummaryGame } from './practice/PracticeSummary.svelte';
+  import type { PracticeKind } from '../practice/types';
   import { pairDifficulties, weightedPick } from '../practice/weighting';
   import { OPEN_CHORDS } from '../music/chords';
-  import { addToChordLibrary, settings, type PracticeMode } from '../settings.svelte';
+  import { addToChordLibrary, settings } from '../settings.svelte';
   import { songChords, songSequence, type Song } from '../songs/songs';
   import NoteRun from './practice/NoteRun.svelte';
   import NoteSetup from './practice/NoteSetup.svelte';
@@ -22,7 +36,14 @@
 
   type Phase =
     | { name: 'setup' }
-    | { name: 'metronome'; key: string; title: string; next: (from: string | null) => string }
+    | {
+        name: 'metronome';
+        key: string;
+        title: string;
+        next: (from: string | null) => string;
+        /** Opened from the home tile (back = Backstage) or from a setup screen (back = that screen). */
+        fromHome: boolean;
+      }
     | {
         name: 'running';
         kind: PracticeKind;
@@ -31,45 +52,56 @@
         title?: string;
         /** Frets the note fretboard shows (tabs can go high up the neck). */
         maxFret?: number;
+        /** Set when playing a song through: its best stars are remembered. */
+        songId?: string;
         again: () => void;
       }
     | {
         name: 'summary';
         kind: PracticeKind;
         summary: SessionSummary;
+        game: SummaryGame;
         before: Map<string, HintLevel>;
         after: Map<string, HintLevel>;
         again: () => void;
       };
 
-  const MODES: { id: PracticeMode; label: string }[] = [
-    { id: 'chord', label: 'Chords' },
-    { id: 'song', label: 'Songs' },
-    { id: 'note', label: 'Single notes' },
-    { id: 'tab', label: 'Tabs' },
-  ];
+  let { entry, onhome }: { entry: PracticeEntry; onhome: () => void } = $props();
+
+  const TITLES: Record<PracticeMode, string> = {
+    chord: 'Chord drills',
+    song: 'Setlist',
+    note: 'Note hunt',
+    tab: 'Riffs',
+  };
 
   let phase = $state.raw<Phase>({ name: 'setup' });
-  /** Every attempt from previous sessions (chords and notes), oldest first. */
-  let history = $state.raw<Attempt[]>([]);
 
-  /** History of one kind only: chord and note practice never mix (songs are chord practice). */
-  const historyOf = (kind: PracticeKind) => history.filter((a) => kindOf(a) === kind);
+  const historyOf = (kind: PracticeKind) => history.of(kind);
   const kindOfMode = (mode: PracticeMode): PracticeKind => (mode === 'note' || mode === 'tab' ? 'note' : 'chord');
   let modeHistory = $derived(historyOf(kindOfMode(settings.practiceMode)));
 
   const STARTERS = OPEN_CHORDS.map((c) => c.id);
 
   onMount(async () => {
-    history = await loadAttempts();
-    // Once: chords already practised (e.g. in songs) before the list existed join it too.
-    if (!settings.chordLibraryFromHistory) {
-      addToChordLibrary([...new Set(historyOf('chord').map((a) => a.to))], STARTERS);
-      settings.chordLibraryFromHistory = true;
-    }
+    // Read once: a new entry from home mounts a new practice area.
+    const first = entry;
+    settings.practiceMode = first.action === 'setup' ? first.mode : 'chord';
+    await history.load();
+    if (first.action === 'set') start();
+    else if (first.action === 'metronome') metronomeChords(true);
   });
 
-  function begin(kind: PracticeKind, items: string[], goal: Goal, pick: Picker, again: () => void, title?: string, maxFret?: number) {
+  function begin(
+    kind: PracticeKind,
+    items: string[],
+    goal: Goal,
+    pick: Picker,
+    again: () => void,
+    title?: string,
+    maxFret?: number,
+    songId?: string,
+  ) {
     const session = new PracticeSession({
       kind,
       items,
@@ -79,7 +111,7 @@
       pick,
     });
     session.start(Date.now());
-    phase = { name: 'running', kind, session, goal, title, maxFret, again };
+    phase = { name: 'running', kind, session, goal, title, maxFret, songId, again };
   }
 
   function start() {
@@ -111,6 +143,8 @@
       sequencePicker(sequence),
       () => startSong(song, loop),
       `${song.title} — ${song.artist}`,
+      undefined,
+      loop ? undefined : song.id,
     );
   }
 
@@ -121,14 +155,14 @@
   }
 
   /** Chord set in the practice order (focus or random), changing on the beat. */
-  function metronomeChords() {
+  function metronomeChords(fromHome = false) {
     const items = [...settings.practiceChords];
     const past = historyOf('chord');
     const next = (from: string | null) =>
       settings.order === 'focus' && from !== null
         ? weightedPick(from, items, pairDifficulties(past), Math.random)
         : pickNext(items, from, Math.random);
-    phase = { name: 'metronome', key: `chords:${[...items].sort().join(',')}`, title: items.join(' · '), next };
+    phase = { name: 'metronome', key: `chords:${[...items].sort().join(',')}`, title: items.join(' · '), next, fromHome };
   }
 
   /** A song's chords in its own order, changing on the beat. */
@@ -140,34 +174,47 @@
       key: `song:${song.id}${settings.simplifyChords ? ':simple' : ''}`,
       title: `${song.title} — ${song.artist}`,
       next: (from) => pick(from, [], []),
+      fromHome: false,
     };
   }
 
   function end(showSummary: boolean) {
     if (phase.name !== 'running') return;
-    const { kind, session, again } = phase;
+    const { kind, session, again, songId } = phase;
     const before = hintLevels(historyOf(kind));
-    history = [...history, ...session.attempts];
+    const xpBefore = xpLedger(history.attempts).total;
+    history.add(session.attempts);
+    const ledger = xpLedger(history.attempts);
+    const played = ledger.sessions.get(session.id);
+    const summary = summarize(session.attempts);
+    const game: SummaryGame = {
+      xp: played?.xp ?? 0,
+      bestCombo: played?.bestCombo ?? 0,
+      mastered: played?.mastered ?? [],
+      stars: stars(summary, session.done),
+      levelBefore: levelFor(xpBefore),
+      levelAfter: levelFor(ledger.total),
+    };
+    if (songId && game.stars > (settings.songStars[songId] ?? 0)) {
+      settings.songStars = { ...settings.songStars, [songId]: game.stars };
+    }
     phase = showSummary
-      ? { name: 'summary', kind, summary: summarize(session.attempts), before, after: hintLevels(historyOf(kind)), again }
+      ? { name: 'summary', kind, summary, game, before, after: hintLevels(historyOf(kind)), again }
       : { name: 'setup' };
   }
 </script>
 
 {#if phase.name === 'setup'}
-  <div class="row modes" role="tablist">
-    {#each MODES as m (m.id)}
-      <button role="tab" aria-selected={settings.practiceMode === m.id} class:selected={settings.practiceMode === m.id} onclick={() => (settings.practiceMode = m.id)}>
-        {m.label}
-      </button>
-    {/each}
+  <div class="row bar">
+    <button class="back" onclick={onhome}>← Backstage</button>
+    <h2>{TITLES[settings.practiceMode]}</h2>
   </div>
   {#if settings.practiceMode === 'chord'}
     <PracticeSetup
       levels={hintLevels(modeHistory)}
       difficulty={pairDifficulties(modeHistory)}
       onstart={start}
-      onmetronome={metronomeChords}
+      onmetronome={() => metronomeChords()}
     />
   {:else if settings.practiceMode === 'song'}
     <SongSetup levels={hintLevels(modeHistory)} onstart={startSong} onmetronome={metronomeSong} />
@@ -177,7 +224,15 @@
     <NoteSetup levels={hintLevels(modeHistory)} difficulty={pairDifficulties(modeHistory)} onstart={start} />
   {/if}
 {:else if phase.name === 'metronome'}
-  <MetronomeRun key={phase.key} title={phase.title} next={phase.next} history={historyOf('chord')} onexit={() => (phase = { name: 'setup' })} />
+  {@const fromHome = phase.fromHome}
+  <MetronomeRun
+    key={phase.key}
+    title={phase.title}
+    next={phase.next}
+    history={historyOf('chord')}
+    backLabel={fromHome ? 'Backstage' : TITLES[settings.practiceMode]}
+    onexit={() => (fromHome ? onhome() : (phase = { name: 'setup' }))}
+  />
 {:else if phase.name === 'running'}
   {#key phase.session}
     {#if phase.kind === 'chord'}
@@ -205,16 +260,27 @@
   {@const kind = phase.kind}
   <PracticeSummary
     summary={phase.summary}
+    game={phase.game}
+    {kind}
     before={phase.before}
     after={phase.after}
     name={(id) => itemName(kind, id, settings.lang)}
     onagain={phase.again}
     onsetup={() => (phase = { name: 'setup' })}
+    {onhome}
   />
 {/if}
 
 <style>
-  .modes {
+  .bar {
     margin-bottom: 1rem;
+  }
+  .bar h2 {
+    margin: 0;
+    font-size: 1.8rem;
+  }
+  .back {
+    background: transparent;
+    color: var(--muted);
   }
 </style>

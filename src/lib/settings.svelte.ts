@@ -44,6 +44,8 @@ export interface Settings {
   monitorVolume: number;
   /** Tabs in a shifted standard tuning (E♭, D standard…): play the same frets in standard tuning. */
   tabAsStandard: boolean;
+  /** Best stars (1–3) earned playing each song through, by song id. */
+  songStars: Record<string, number>;
 }
 
 const KEY = 'chordflash.settings';
@@ -74,6 +76,7 @@ export const DEFAULTS: Settings = {
   monitor: false,
   monitorVolume: 0.8,
   tabAsStandard: true,
+  songStars: {},
 };
 
 function load<T>(key: string, fallback: T): T {

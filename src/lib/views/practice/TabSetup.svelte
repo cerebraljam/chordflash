@@ -308,7 +308,9 @@
   }
   .file .primary {
     background: var(--accent);
-    color: #fff;
+    color: var(--accent-ink);
+    font-family: var(--font-display);
+    font-weight: 800;
   }
   .file:focus-within .button {
     outline: 2px solid var(--accent);

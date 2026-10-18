@@ -7,6 +7,8 @@
   import { chordById, chordName } from '../../music/chords';
   import { pitchClassName } from '../../music/notes';
   import { saveAttempt } from '../../practice/db';
+  import GameChips from '../../components/GameChips.svelte';
+  import { xpLedger, type SessionGame } from '../../practice/game';
   import { hintLevels, RESCUE_AFTER_MS } from '../../practice/hints';
   import type { Goal, PracticeSession } from '../../practice/session';
   import type { Attempt } from '../../practice/types';
@@ -29,7 +31,9 @@
     onquit: () => void;
   } = $props();
 
-  type Feedback = { kind: 'pass'; chord: string; timeMs: number } | { kind: 'miss'; score: number; missing: number[]; extra: number[] };
+  type Feedback =
+    | { kind: 'pass'; chord: string; timeMs: number; xp: number; mastered: boolean }
+    | { kind: 'miss'; score: number; missing: number[]; extra: number[] };
 
   /** Bumped whenever the (non-reactive) session changes. */
   let version = $state(0);
@@ -57,6 +61,13 @@
   let levels = $derived.by(() => {
     version;
     return hintLevels([...history, ...session.attempts]);
+  });
+  const NO_GAME: SessionGame = { xp: 0, combo: 0, bestCombo: 0, mastered: [] };
+  /** This session's XP, combo and masteries, from the same replay as the summary. */
+  const sessionGame = () => xpLedger([...history, ...session.attempts]).sessions.get(session.id) ?? NO_GAME;
+  let game = $derived.by(() => {
+    version;
+    return sessionGame();
   });
   let known = $derived(levels.get(current.id) === 'name');
   let showDiagram = $derived(!known || revealed);
@@ -95,9 +106,17 @@
       const ref = references[chord.id];
       const result = scoreChord(a, chord, ref ? Float64Array.from(ref) : undefined);
       const t = Date.now();
+      const before = game;
       const outcome = session.strum(result.score, t);
       if (outcome === 'pass') {
-        feedback = { kind: 'pass', chord: chord.id, timeMs: session.attempts[session.attempts.length - 1].timeMs };
+        const after = sessionGame();
+        feedback = {
+          kind: 'pass',
+          chord: chord.id,
+          timeMs: session.attempts[session.attempts.length - 1].timeMs,
+          xp: after.xp - before.xp,
+          mastered: after.mastered.length > before.mastered.length,
+        };
         advanced();
       } else if (outcome === 'miss') {
         feedback = { kind: 'miss', score: result.score, missing: result.missing, extra: result.extra };
@@ -122,6 +141,7 @@
   <span class="progress">{progress}</span>
   {#if title}<span class="title">{title}</span>{/if}
   <span class="spacer"></span>
+  <GameChips combo={game.combo} xp={game.xp} />
   <button onclick={skip}>Skip</button>
   <button onclick={onquit}>Stop</button>
 </div>
@@ -149,8 +169,10 @@
   </div>
 
   <div class="feedback">
-    {#if feedback?.kind === 'pass'}
-      <span class="good">✓ {chordName(chordById(feedback.chord), settings.lang)} in {(feedback.timeMs / 1000).toFixed(1)} s</span>
+    {#if feedback?.kind === 'pass' && feedback.mastered}
+      <span class="mastered">★ {chordName(chordById(feedback.chord), settings.lang)} mastered: you know it by heart · +{feedback.xp} XP</span>
+    {:else if feedback?.kind === 'pass'}
+      <span class="good">✓ {chordName(chordById(feedback.chord), settings.lang)} in {(feedback.timeMs / 1000).toFixed(1)} s · +{feedback.xp} XP</span>
     {:else if feedback?.kind === 'miss'}
       <span class="bad">
         ✗ {feedback.score}%
@@ -173,6 +195,7 @@
     flex: 1;
   }
   .progress {
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
     font-weight: 600;
   }
@@ -193,6 +216,9 @@
     text-align: center;
   }
   .name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     font-size: clamp(4rem, 18vw, 7rem);
     font-weight: 700;
     line-height: 1;
@@ -208,6 +234,7 @@
     justify-items: center;
   }
   .status {
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
     font-size: 1.2rem;
   }
@@ -223,6 +250,10 @@
   }
   .good {
     color: var(--good);
+  }
+  .mastered {
+    color: var(--accent);
+    font-weight: 700;
   }
   .bad {
     color: var(--bad);

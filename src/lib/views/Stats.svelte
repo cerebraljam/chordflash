@@ -5,7 +5,8 @@
   import { OPEN_CHORDS } from '../music/chords';
   import { parsePositionId, positionMidi } from '../music/instruments';
   import { noteName } from '../music/notes';
-  import { clearAttempts, loadAttempts } from '../practice/db';
+  import { loadAttempts } from '../practice/db';
+  import { history as historyStore } from '../practice/history.svelte';
   import { hintLevels } from '../practice/hints';
   import { itemName, sortItems } from '../practice/items';
   import { chordStats, pairStats, periodStat, sessionStats, type PeriodStat } from '../practice/stats';
@@ -59,7 +60,7 @@
 
   async function reset() {
     if (!confirm('Delete all practice history, chords and notes? Stats, hidden diagrams and the hard-changes focus all start over.')) return;
-    await clearAttempts();
+    await historyStore.clear();
     all = [];
   }
 </script>
@@ -81,7 +82,7 @@
     <div class="card tile">
       <span class="label">Sessions</span>
       <span class="value">{sessions.length}</span>
-      <span class="muted small">{periodStat(sessions).transitions} transitions in total</span>
+      <span class="muted small">{periodStat(sessions).transitions} transition{periodStat(sessions).transitions === 1 ? '' : 's'} in total</span>
     </div>
     <div class="card tile">
       <span class="label">First try</span>
@@ -236,6 +237,9 @@
     font-size: 0.9rem;
   }
   .value {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     font-size: 2.2rem;
     font-weight: 600;
     line-height: 1.15;

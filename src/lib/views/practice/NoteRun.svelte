@@ -6,6 +6,8 @@
   import { parsePositionId, positionMidi, positionName, stringName, tuningOf } from '../../music/instruments';
   import { noteName, type Lang } from '../../music/notes';
   import { saveAttempt } from '../../practice/db';
+  import GameChips from '../../components/GameChips.svelte';
+  import { xpLedger, type SessionGame } from '../../practice/game';
   import { hintLevels, RESCUE_AFTER_MS } from '../../practice/hints';
   import { describeWrongNote } from '../../practice/items';
   import type { Goal, PracticeSession } from '../../practice/session';
@@ -32,7 +34,7 @@
     onquit: () => void;
   } = $props();
 
-  type Feedback = { kind: 'pass'; label: string; timeMs: number } | { kind: 'miss'; text: string };
+  type Feedback = { kind: 'pass'; label: string; timeMs: number; xp: number; mastered: boolean } | { kind: 'miss'; text: string };
 
   /** Bumped whenever the (non-reactive) session changes. */
   let version = $state(0);
@@ -61,6 +63,13 @@
   let levels = $derived.by(() => {
     version;
     return hintLevels([...history, ...session.attempts]);
+  });
+  const NO_GAME: SessionGame = { xp: 0, combo: 0, bestCombo: 0, mastered: [] };
+  /** This session's XP, combo and masteries, from the same replay as the summary. */
+  const sessionGame = () => xpLedger([...history, ...session.attempts]).sessions.get(session.id) ?? NO_GAME;
+  let game = $derived.by(() => {
+    version;
+    return sessionGame();
   });
   let known = $derived(levels.get(session.current) === 'name');
   let showDiagram = $derived(!known || revealed);
@@ -98,9 +107,17 @@
     const tuning = tuningOf(parsePositionId(s.current)!.instrument)!;
     const listener = new NoteListener(engine, settings.gateDb, Math.min(...tuning), (heard) => {
       const expected = target();
+      const before = game;
       const outcome = s.strum(heard.midi === expected ? 100 : 0, Date.now());
       if (outcome === 'pass') {
-        feedback = { kind: 'pass', label: noteName(expected, settings.lang), timeMs: s.attempts[s.attempts.length - 1].timeMs };
+        const after = xpLedger([...history, ...s.attempts]).sessions.get(s.id) ?? NO_GAME;
+        feedback = {
+          kind: 'pass',
+          label: noteName(expected, settings.lang),
+          timeMs: s.attempts[s.attempts.length - 1].timeMs,
+          xp: after.xp - before.xp,
+          mastered: after.mastered.length > before.mastered.length,
+        };
         listener.expected = target();
         advanced();
       } else if (outcome === 'miss') {
@@ -129,6 +146,7 @@
   <span class="progress">{progress}</span>
   {#if title}<span class="title">{title}</span>{/if}
   <span class="spacer"></span>
+  <GameChips combo={game.combo} xp={game.xp} />
   <button onclick={skip}>Skip</button>
   <button onclick={onquit}>Stop</button>
 </div>
@@ -161,8 +179,10 @@
   </div>
 
   <div class="feedback">
-    {#if feedback?.kind === 'pass'}
-      <span class="good">✓ {feedback.label} in {(feedback.timeMs / 1000).toFixed(1)} s</span>
+    {#if feedback?.kind === 'pass' && feedback.mastered}
+      <span class="mastered">★ {feedback.label} mastered: you know where it is · +{feedback.xp} XP</span>
+    {:else if feedback?.kind === 'pass'}
+      <span class="good">✓ {feedback.label} in {(feedback.timeMs / 1000).toFixed(1)} s · +{feedback.xp} XP</span>
     {:else if feedback?.kind === 'miss'}
       <span class="bad">✗ {feedback.text}</span>
     {/if}
@@ -185,6 +205,7 @@
     flex: 1;
   }
   .progress {
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
     font-weight: 600;
   }
@@ -207,6 +228,9 @@
     gap: 0.25rem;
   }
   .name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     font-size: clamp(4rem, 18vw, 7rem);
     font-weight: 700;
     line-height: 1;
@@ -227,6 +251,7 @@
     justify-items: center;
   }
   .status {
+    font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
     font-size: 1.2rem;
   }
@@ -245,6 +270,10 @@
   }
   .good {
     color: var(--good);
+  }
+  .mastered {
+    color: var(--accent);
+    font-weight: 700;
   }
   .bad {
     color: var(--bad);

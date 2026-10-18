@@ -50,7 +50,7 @@
     <button class:selected={mode === 'bass'} onclick={() => (mode = 'bass')}>Bass</button>
   </div>
 
-  <div class="note" class:good={inTune}>{reading ? noteName(reading.midi, settings.lang) : '—'}</div>
+  <div class="note" class:good={inTune} class:idle={!reading}>{reading ? noteName(reading.midi, settings.lang) : '·'}</div>
 
   <div class="gauge" aria-label="Tuning offset">
     <div class="scale">
@@ -90,6 +90,9 @@
     text-align: center;
   }
   .note {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     font-size: 4.5rem;
     font-weight: 700;
     line-height: 1;
@@ -97,6 +100,9 @@
   }
   .good {
     color: var(--good);
+  }
+  .idle {
+    color: var(--border-strong);
   }
   .gauge {
     width: 100%;

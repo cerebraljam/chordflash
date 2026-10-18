@@ -180,6 +180,9 @@
     gap: 0.25rem;
   }
   .name {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     font-size: 3.5rem;
     font-weight: 700;
     line-height: 1.1;
@@ -199,6 +202,9 @@
     border-color: var(--bad);
   }
   .score {
+    font-family: var(--font-display);
+    font-weight: 800;
+    letter-spacing: -0.03em;
     font-size: 4rem;
     font-weight: 700;
     line-height: 1;
