@@ -114,9 +114,8 @@ button.selected {
   outline-offset: 2px;
 }
 
-select,
-input:not([type='checkbox']):not([type='range']):not([type='file']),
-textarea {
+/* :where() keeps this at zero specificity, so screens can restyle their own fields. */
+:where(select, input:not([type='checkbox']):not([type='range']):not([type='file']), textarea) {
   background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: 10px;

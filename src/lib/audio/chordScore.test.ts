@@ -44,6 +44,18 @@ describe('scoreChord', () => {
     }
   });
 
+  it('accepts the written bass note of a slash chord played with a stand-in shape', () => {
+    const v = chordById('Ab7/F'); // no shape of its own: checked as Ab7
+    expect(v.playedAs).toBe('Ab7');
+    // The player frets F on the low E string instead of the shape's Ab: same shape, F in the bass.
+    const notes = voicingNotes(v);
+    const r = scoreChord(strum([41, ...notes.slice(1)], 2), v);
+    expect(r.extra).toEqual([]);
+    expect(r.score).toBeGreaterThanOrEqual(90);
+    // Plain Ab7 still passes too.
+    expect(scoreChord(strum(v, 3), v).score).toBeGreaterThanOrEqual(90);
+  });
+
   it('works at 44.1 kHz too', () => {
     expect(scoreChord(strum(byId('G'), 3, 44100), byId('G')).score).toBeGreaterThanOrEqual(90);
   });

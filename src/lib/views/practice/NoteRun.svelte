@@ -3,8 +3,13 @@
   import { engine } from '../../audio/engine';
   import { NoteListener } from '../../audio/noteListener';
   import Fretboard from '../../components/Fretboard.svelte';
+  import HearingPanel from '../../components/HearingPanel.svelte';
+  import ResultPill from '../../components/ResultPill.svelte';
+  import SessionProgress from '../../components/SessionProgress.svelte';
+  import { shortcuts } from '../../keys';
+  import { CLEAN_TIME_MS } from '../../practice/hints';
   import { parsePositionId, positionMidi, positionName, stringName, tuningOf } from '../../music/instruments';
-  import { noteName, type Lang } from '../../music/notes';
+  import { noteName, pitchClass, type Lang } from '../../music/notes';
   import { saveAttempt } from '../../practice/db';
   import GameChips from '../../components/GameChips.svelte';
   import { xpLedger, type SessionGame } from '../../practice/game';
@@ -74,11 +79,21 @@
   let known = $derived(levels.get(session.current) === 'name');
   let showDiagram = $derived(!known || revealed);
   let onNote = $derived(session.sinceShown(now));
-  let progress = $derived.by(() => {
+  let attempts = $derived.by(() => {
     version;
-    if (goal.kind === 'count') return `${session.transitions} / ${goal.transitions}`;
-    const left = Math.max(0, goal.minutes * 60_000 - session.elapsed(now));
-    return `${Math.floor(left / 60_000)}:${String(Math.floor((left % 60_000) / 1000)).padStart(2, '0')} left`;
+    return [...session.attempts];
+  });
+  let tones = $derived([pitchClass(positionMidi(current))]);
+  let pill = $derived.by(() => {
+    if (!feedback) return null;
+    if (feedback.kind === 'miss') return { tone: 'bad' as const, text: feedback.text, xp: 0 };
+    return feedback.mastered
+      ? { tone: 'gold' as const, text: `${feedback.label} mastered: you know where it is`, xp: feedback.xp }
+      : {
+          tone: 'good' as const,
+          text: `${feedback.label} — ${feedback.timeMs <= CLEAN_TIME_MS ? 'clean in' : 'in'} ${(feedback.timeMs / 1000).toFixed(1)} s`,
+          xp: feedback.xp,
+        };
   });
   let otherLang = $derived<Lang>(settings.lang === 'en' ? 'fr' : 'en');
 
@@ -135,112 +150,160 @@
       if (known && !revealed && session.sinceShown(now) > RESCUE_AFTER_MS) reveal();
     }, 100);
 
+    const keys = shortcuts({
+      KeyH: () => !showDiagram && reveal(),
+      KeyS: skip,
+      Escape: onquit,
+    });
+
     return () => {
       listener.stop();
       clearInterval(timer);
+      keys();
     };
   });
 </script>
 
-<div class="top row">
-  <span class="progress">{progress}</span>
-  {#if title}<span class="title">{title}</span>{/if}
-  <span class="spacer"></span>
+<div class="hud">
+  <button class="icon-btn" onclick={onquit} aria-label="Stop (Esc)">
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2" fill="currentColor"></rect></svg>
+  </button>
+  <div class="grow"><SessionProgress {attempts} {goal} elapsedMs={session.elapsed(now)} label={title ?? 'Note hunt'} /></div>
   <GameChips combo={game.combo} xp={game.xp} />
-  <button onclick={skip}>Skip</button>
-  <button onclick={onquit}>Stop</button>
 </div>
 
-<section class="card stage">
-  <div class="names">
-    <div class="name">{positionName(current, settings.lang)}</div>
-    <div class="where">
+<div class="stage">
+  <div class="hear">
+    <HearingPanel {tones} />
+    <p class="heard muted">Hearing <strong>{hearing === null ? '—' : noteName(hearing, settings.lang)}</strong></p>
+  </div>
+
+  <section class="card play" aria-label="Note to play">
+    <span class="eyebrow mono">PLAY</span>
+    <span class="display name">{positionName(current, settings.lang)}</span>
+    <span class="where">
       on the <strong>{stringName(current.instrument, current.string, settings.lang)}</strong> string{#if showDiagram},
         {current.fret === 0 ? 'open' : `fret ${current.fret}`}{/if}
+    </span>
+    <span class="muted">{noteName(positionMidi(current), settings.lang)} · {noteName(positionMidi(current), otherLang)}</span>
+    <div class="diagram">
+      {#if showDiagram}
+        <Fretboard position={current} maxFret={maxFret ?? settings.noteMaxFret} lang={settings.lang} />
+      {:else}
+        <div class="hidden-diagram">
+          <span class="muted">You know where this one is</span>
+          <button onclick={reveal}>Show position <kbd>H</kbd></button>
+        </div>
+      {/if}
     </div>
-    <div class="muted">{noteName(positionMidi(current), settings.lang)} · {noteName(positionMidi(current), otherLang)}</div>
-  </div>
-
-  <div class="diagram">
-    {#if showDiagram}
-      <Fretboard position={current} maxFret={maxFret ?? settings.noteMaxFret} lang={settings.lang} />
-    {:else}
-      <div class="hidden-diagram">
-        <span class="muted">You know where this one is</span>
-        <button onclick={reveal}>Show position</button>
+    <div class="target">
+      <div class="target-bar">
+        <div class="target-fill" class:slow={onNote > CLEAN_TIME_MS} style:width="{Math.min(1, onNote / CLEAN_TIME_MS) * 100}%"></div>
       </div>
-    {/if}
-  </div>
+      <div class="target-text mono">
+        <span class:slow={onNote > CLEAN_TIME_MS}>{(onNote / 1000).toFixed(1)} s{misses ? ` · ${misses} miss${misses > 1 ? 'es' : ''}` : ''}</span>
+        <span class="muted">clean under {CLEAN_TIME_MS / 1000} s</span>
+      </div>
+    </div>
+  </section>
 
-  <div class="status">
-    <span class="clock" class:slow={onNote > 3000}>{(onNote / 1000).toFixed(1)} s</span>
-    {#if misses}<span class="misses">· {misses} miss{misses > 1 ? 'es' : ''}</span>{/if}
-    <span class="muted hearing">· hearing {hearing === null ? '—' : noteName(hearing, settings.lang)}</span>
-  </div>
+  <aside class="side">
+    <div class="next">
+      <span class="eyebrow mono">{isLast ? 'LAST ONE' : 'NEXT'}</span>
+      {#if isLast}
+        <span class="display next-name">★</span>
+      {:else}
+        <span class="display next-name">{positionName(upcoming, settings.lang)}</span>
+        <span class="muted small">on the {stringName(upcoming.instrument, upcoming.string, settings.lang)} string</span>
+      {/if}
+    </div>
+    <div class="keys muted">
+      <span><kbd>H</kbd> show position</span>
+      <span><kbd>S</kbd> skip</span>
+      <span><kbd>Esc</kbd> stop</span>
+    </div>
+    <button class="skip" onclick={skip}>Skip</button>
+  </aside>
+</div>
 
-  <div class="feedback">
-    {#if feedback?.kind === 'pass' && feedback.mastered}
-      <span class="mastered">★ {feedback.label} mastered: you know where it is · +{feedback.xp} XP</span>
-    {:else if feedback?.kind === 'pass'}
-      <span class="good">✓ {feedback.label} in {(feedback.timeMs / 1000).toFixed(1)} s · +{feedback.xp} XP</span>
-    {:else if feedback?.kind === 'miss'}
-      <span class="bad">✗ {feedback.text}</span>
-    {/if}
-  </div>
-</section>
-
-<p class="next muted">
-  {#if isLast}
-    Last one!
-  {:else}
-    Next: <strong>{positionName(upcoming, settings.lang)}</strong> on the {stringName(upcoming.instrument, upcoming.string, settings.lang)} string
-  {/if}
-</p>
+<div class="feedback">
+  {#if pill}<ResultPill tone={pill.tone} text={pill.text} xp={pill.xp} />{/if}
+</div>
 
 <style>
-  .top {
-    margin-bottom: 1rem;
+  .hud {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
   }
-  .spacer {
-    flex: 1;
-  }
-  .progress {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    font-weight: 600;
-  }
-  .title {
-    color: var(--muted);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .grow {
+    flex: 1 1 280px;
     min-width: 0;
+  }
+  .icon-btn {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .stage {
     display: grid;
-    justify-items: center;
-    gap: 0.75rem;
-    padding: 2rem 1rem;
+    grid-template-columns: minmax(0, 220px) minmax(0, 560px) minmax(0, 220px);
+    grid-template-areas: 'hear play side';
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
   }
-  .names {
-    text-align: center;
-    display: grid;
-    gap: 0.25rem;
+  .hear {
+    grid-area: hear;
+  }
+  .play {
+    grid-area: play;
+  }
+  .side {
+    grid-area: side;
+  }
+  @media (max-width: 960px) {
+    .stage {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas: 'play play' 'side hear';
+    }
+  }
+  .heard {
+    margin: 8px 4px 0;
+    font-size: 0.9rem;
+  }
+  .heard strong {
+    color: var(--text);
+  }
+  .play {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid var(--accent);
+    border-radius: 28px;
+    padding: 24px 28px;
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 700;
   }
   .name {
-    font-family: var(--font-display);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    font-size: clamp(4rem, 18vw, 7rem);
-    font-weight: 700;
-    line-height: 1;
+    font-size: clamp(5rem, 16vw, 9rem);
+    line-height: 0.9;
   }
   .where {
     font-size: 1.2rem;
   }
   .diagram {
     width: 100%;
-    max-width: 640px;
     min-height: 150px;
     display: grid;
     place-items: center;
@@ -250,36 +313,81 @@
     gap: 0.5rem;
     justify-items: center;
   }
-  .status {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    font-size: 1.2rem;
+  .target {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
-  .clock.slow {
+  .target-bar {
+    height: 12px;
+    border-radius: 6px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  .target-fill {
+    height: 100%;
+    background: var(--good);
+    border-radius: 6px;
+  }
+  .target-fill.slow {
+    background: var(--warn);
+  }
+  .target-text {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 12px;
+  }
+  .target-text .slow {
     color: var(--warn);
   }
-  .misses {
-    color: var(--bad);
-  }
-  .hearing {
-    font-size: 1rem;
-  }
-  .feedback {
-    min-height: 1.6em;
-    text-align: center;
-  }
-  .good {
-    color: var(--good);
-  }
-  .mastered {
-    color: var(--accent);
-    font-weight: 700;
-  }
-  .bad {
-    color: var(--bad);
+  .side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
   .next {
-    text-align: center;
-    font-size: 1.1rem;
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  .next .eyebrow {
+    color: var(--muted);
+  }
+  .next-name {
+    font-size: 4rem;
+    line-height: 1.05;
+    color: #c9ccd6;
+  }
+  .small {
+    font-size: 0.85rem;
+  }
+  .keys {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    padding: 0 4px;
+  }
+  kbd {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    border-radius: 5px;
+    padding: 1px 6px;
+  }
+  .skip {
+    align-self: flex-start;
+  }
+  .feedback {
+    display: flex;
+    justify-content: center;
+    min-height: 48px;
+    margin-top: 24px;
   }
 </style>

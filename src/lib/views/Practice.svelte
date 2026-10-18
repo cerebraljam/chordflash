@@ -131,6 +131,15 @@
     begin(kind, kind === 'chord' ? [...settings.practiceChords] : noteItems(settings), goal, pick, start);
   }
 
+  /** One change on its own: the two chords back and forth. */
+  function drillPair(from: string, to: string) {
+    const goal: Goal =
+      settings.goalKind === 'count'
+        ? { kind: 'count', transitions: settings.goalCount }
+        : { kind: 'time', minutes: settings.goalMinutes };
+    begin('chord', [from, to], goal, sequencePicker([from, to]), () => drillPair(from, to), `Drill ${from} ↔ ${to}`);
+  }
+
   /** A song's chords in its own order: once through, or looped for the session length. */
   function startSong(song: Song, loop: boolean) {
     addToChordLibrary(songChords(song.sections, settings.simplifyChords), STARTERS);
@@ -217,7 +226,7 @@
       onmetronome={() => metronomeChords()}
     />
   {:else if settings.practiceMode === 'song'}
-    <SongSetup levels={hintLevels(modeHistory)} onstart={startSong} onmetronome={metronomeSong} />
+    <SongSetup onstart={startSong} onmetronome={metronomeSong} ondrill={drillPair} />
   {:else if settings.practiceMode === 'tab'}
     <TabSetup levels={hintLevels(modeHistory)} onstart={startTab} />
   {:else}
@@ -268,6 +277,7 @@
     onagain={phase.again}
     onsetup={() => (phase = { name: 'setup' })}
     {onhome}
+    ondrill={kind === 'chord' ? drillPair : undefined}
   />
 {/if}
 

@@ -28,7 +28,7 @@ export interface Settings {
   noteNaturalsOnly: boolean;
   /** Play song chords as plain major/minor triads (Cmaj7 → C, G/B → G). */
   simplifyChords: boolean;
-  songSort: 'easy' | 'hard' | 'title' | 'artist';
+  songSort: 'easy' | 'hard' | 'fits' | 'title' | 'artist';
   /** Metronome: beats each chord is held, automatic tempo, click volume (0..1). */
   metroBeats: number;
   metroAuto: boolean;

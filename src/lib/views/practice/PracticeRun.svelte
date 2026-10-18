@@ -4,8 +4,13 @@
   import { engine } from '../../audio/engine';
   import { StrumListener } from '../../audio/strumListener';
   import ChordDiagram from '../../components/ChordDiagram.svelte';
-  import { chordById, chordName } from '../../music/chords';
-  import { pitchClassName } from '../../music/notes';
+  import HearingPanel from '../../components/HearingPanel.svelte';
+  import ResultPill from '../../components/ResultPill.svelte';
+  import SessionProgress from '../../components/SessionProgress.svelte';
+  import { shortcuts } from '../../keys';
+  import { CLEAN_TIME_MS } from '../../practice/hints';
+  import { chordById, chordName, voicingPitchClasses } from '../../music/chords';
+  import { pitchClassName, type Lang } from '../../music/notes';
   import { saveAttempt } from '../../practice/db';
   import GameChips from '../../components/GameChips.svelte';
   import { xpLedger, type SessionGame } from '../../practice/game';
@@ -72,11 +77,29 @@
   let known = $derived(levels.get(current.id) === 'name');
   let showDiagram = $derived(!known || revealed);
   let onChord = $derived(session.sinceShown(now));
-  let progress = $derived.by(() => {
+  let attempts = $derived.by(() => {
     version;
-    if (goal.kind === 'count') return `${session.transitions} / ${goal.transitions}`;
-    const left = Math.max(0, goal.minutes * 60_000 - session.elapsed(now));
-    return `${Math.floor(left / 60_000)}:${String(Math.floor((left % 60_000) / 1000)).padStart(2, '0')} left`;
+    return [...session.attempts];
+  });
+  let tones = $derived(voicingPitchClasses(current));
+  let otherLang = $derived<Lang>(settings.lang === 'en' ? 'fr' : 'en');
+  /** Feedback pill: what just happened. */
+  let pill = $derived.by(() => {
+    if (!feedback) return null;
+    if (feedback.kind === 'miss') {
+      const parts = [`${feedback.score}%`];
+      if (feedback.missing.length) parts.push(`missing ${names(feedback.missing)}`);
+      if (feedback.extra.length) parts.push(`wrong ${names(feedback.extra)}`);
+      return { tone: 'bad' as const, text: parts.join(' · '), xp: 0 };
+    }
+    const n = chordName(chordById(feedback.chord), settings.lang);
+    return feedback.mastered
+      ? { tone: 'gold' as const, text: `${n} mastered: you know it by heart`, xp: feedback.xp }
+      : {
+          tone: 'good' as const,
+          text: `${n} — ${feedback.timeMs <= CLEAN_TIME_MS ? 'clean in' : 'in'} ${(feedback.timeMs / 1000).toFixed(1)} s`,
+          xp: feedback.xp,
+        };
   });
 
   const names = (pcs: number[]) => pcs.map((pc) => pitchClassName(pc, settings.lang)).join(', ');
@@ -130,98 +153,135 @@
       if (known && !revealed && session.sinceShown(now) > RESCUE_AFTER_MS) reveal();
     }, 100);
 
+    const keys = shortcuts({
+      KeyH: () => !showDiagram && reveal(),
+      KeyS: skip,
+      Escape: onquit,
+    });
+
     return () => {
       listener.stop();
       clearInterval(timer);
+      keys();
     };
   });
 </script>
 
-<div class="top row">
-  <span class="progress">{progress}</span>
-  {#if title}<span class="title">{title}</span>{/if}
-  <span class="spacer"></span>
+<div class="hud">
+  <button class="icon-btn" onclick={onquit} aria-label="Stop (Esc)">
+    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2" fill="currentColor"></rect></svg>
+  </button>
+  <div class="grow"><SessionProgress {attempts} {goal} elapsedMs={session.elapsed(now)} label={title ?? 'Chord drill'} /></div>
   <GameChips combo={game.combo} xp={game.xp} />
-  <button onclick={skip}>Skip</button>
-  <button onclick={onquit}>Stop</button>
 </div>
 
-<section class="card stage">
-  <div class="names">
-    <div class="name">{chordName(current, settings.lang)}</div>
-    <div class="muted">{chordName(current, settings.lang === 'en' ? 'fr' : 'en')}</div>
-  </div>
+<div class="stage">
+  <div class="hear"><HearingPanel {tones} /></div>
 
-  <div class="diagram">
-    {#if showDiagram}
-      <ChordDiagram voicing={current} lang={settings.lang} width={200} />
-    {:else}
-      <div class="hidden-diagram">
-        <span class="muted">You know this one</span>
-        <button onclick={reveal}>Show diagram</button>
+  <section class="card play" aria-label="Chord to play">
+    <span class="eyebrow mono">PLAY</span>
+    <span class="display name">{chordName(current, settings.lang)}</span>
+    <span class="muted">{chordName(current, otherLang)} · {names(tones)}</span>
+    <div class="diagram">
+      {#if showDiagram}
+        <ChordDiagram voicing={current} lang={settings.lang} width={190} />
+      {:else}
+        <div class="hidden-diagram">
+          <span class="muted">You know this one</span>
+          <button onclick={reveal}>Show diagram <kbd>H</kbd></button>
+        </div>
+      {/if}
+    </div>
+    <div class="target">
+      <div class="target-bar">
+        <div class="target-fill" class:slow={onChord > CLEAN_TIME_MS} style:width="{Math.min(1, onChord / CLEAN_TIME_MS) * 100}%"></div>
       </div>
-    {/if}
-  </div>
+      <div class="target-text mono">
+        <span class:slow={onChord > CLEAN_TIME_MS}>{(onChord / 1000).toFixed(1)} s{misses ? ` · ${misses} miss${misses > 1 ? 'es' : ''}` : ''}</span>
+        <span class="muted">clean under {CLEAN_TIME_MS / 1000} s</span>
+      </div>
+    </div>
+  </section>
 
-  <div class="status">
-    <span class="clock" class:slow={onChord > 3000}>{(onChord / 1000).toFixed(1)} s</span>
-    {#if misses}<span class="misses">· {misses} miss{misses > 1 ? 'es' : ''}</span>{/if}
-  </div>
+  <aside class="side">
+    <div class="next">
+      <span class="eyebrow mono">{isLast ? 'LAST ONE' : 'NEXT'}</span>
+      <span class="display next-name">{isLast ? '★' : chordName(upcoming, settings.lang)}</span>
+    </div>
+    <div class="keys muted">
+      <span><kbd>H</kbd> show diagram</span>
+      <span><kbd>S</kbd> skip</span>
+      <span><kbd>Esc</kbd> stop</span>
+    </div>
+    <button class="skip" onclick={skip}>Skip</button>
+  </aside>
+</div>
 
-  <div class="feedback">
-    {#if feedback?.kind === 'pass' && feedback.mastered}
-      <span class="mastered">★ {chordName(chordById(feedback.chord), settings.lang)} mastered: you know it by heart · +{feedback.xp} XP</span>
-    {:else if feedback?.kind === 'pass'}
-      <span class="good">✓ {chordName(chordById(feedback.chord), settings.lang)} in {(feedback.timeMs / 1000).toFixed(1)} s · +{feedback.xp} XP</span>
-    {:else if feedback?.kind === 'miss'}
-      <span class="bad">
-        ✗ {feedback.score}%
-        {#if feedback.missing.length}· missing {names(feedback.missing)}{/if}
-        {#if feedback.extra.length}· wrong {names(feedback.extra)}{/if}
-      </span>
-    {/if}
-  </div>
-</section>
-
-<p class="next muted">
-  {#if isLast}Last one!{:else}Next: <strong>{chordName(upcoming, settings.lang)}</strong>{/if}
-</p>
+<div class="feedback">
+  {#if pill}<ResultPill tone={pill.tone} text={pill.text} xp={pill.xp} />{/if}
+</div>
 
 <style>
-  .top {
-    margin-bottom: 1rem;
+  .hud {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
   }
-  .spacer {
-    flex: 1;
-  }
-  .progress {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    font-weight: 600;
-  }
-  .title {
-    color: var(--muted);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .grow {
+    flex: 1 1 280px;
     min-width: 0;
+  }
+  .icon-btn {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .stage {
     display: grid;
-    justify-items: center;
-    gap: 0.75rem;
-    padding: 2rem 1rem;
+    grid-template-columns: minmax(0, 220px) minmax(0, 460px) minmax(0, 220px);
+    grid-template-areas: 'hear play side';
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
   }
-  .names {
-    text-align: center;
+  .hear {
+    grid-area: hear;
+  }
+  .play {
+    grid-area: play;
+  }
+  .side {
+    grid-area: side;
+  }
+  @media (max-width: 900px) {
+    .stage {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas: 'play play' 'side hear';
+    }
+  }
+  .play {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid var(--accent);
+    border-radius: 28px;
+    padding: 24px 28px;
+  }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 700;
   }
   .name {
-    font-family: var(--font-display);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    font-size: clamp(4rem, 18vw, 7rem);
-    font-weight: 700;
-    line-height: 1;
+    font-size: clamp(5rem, 16vw, 9.5rem);
+    line-height: 0.9;
   }
   .diagram {
     min-height: 210px;
@@ -233,33 +293,78 @@
     gap: 0.5rem;
     justify-items: center;
   }
-  .status {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    font-size: 1.2rem;
+  .target {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
-  .clock.slow {
+  .target-bar {
+    height: 12px;
+    border-radius: 6px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  .target-fill {
+    height: 100%;
+    background: var(--good);
+    border-radius: 6px;
+  }
+  .target-fill.slow {
+    background: var(--warn);
+  }
+  .target-text {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 12px;
+  }
+  .target-text .slow {
     color: var(--warn);
   }
-  .misses {
-    color: var(--bad);
-  }
-  .feedback {
-    min-height: 1.6em;
-    text-align: center;
-  }
-  .good {
-    color: var(--good);
-  }
-  .mastered {
-    color: var(--accent);
-    font-weight: 700;
-  }
-  .bad {
-    color: var(--bad);
+  .side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
   .next {
-    text-align: center;
-    font-size: 1.1rem;
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+  }
+  .next .eyebrow {
+    color: var(--muted);
+  }
+  .next-name {
+    font-size: 4rem;
+    line-height: 1.05;
+    color: #c9ccd6;
+  }
+  .keys {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    padding: 0 4px;
+  }
+  kbd {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text);
+    border: 1px solid var(--border-strong);
+    border-radius: 5px;
+    padding: 1px 6px;
+  }
+  .skip {
+    align-self: flex-start;
+  }
+  .feedback {
+    display: flex;
+    justify-content: center;
+    min-height: 48px;
+    margin-top: 24px;
   }
 </style>

@@ -115,3 +115,8 @@ export function stars(summary: SessionSummary, completed: boolean): number {
   if (!completed || !summary.transitions) return 0;
   return summary.firstTryRate >= 0.8 ? 3 : summary.firstTryRate >= 0.5 ? 2 : 1;
 }
+
+/** How an attempt looks on a progress strip: first try, needed help or misses, or skipped. */
+export function attemptGrade(a: Attempt): 'good' | 'warn' | 'bad' {
+  return a.skipped ? 'bad' : isFirstTry(a) ? 'good' : 'warn';
+}

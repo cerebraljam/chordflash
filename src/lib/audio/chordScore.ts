@@ -1,5 +1,5 @@
 import { analyze, cosine, lowestStrongPeak, normalize, tuningWeight, CHROMA_MAX_HZ, type Analysis } from './chroma';
-import { bassPitchClass, voicingNotes, voicingPitchClasses, type Voicing } from '../music/chords';
+import { bassPitchClass, parseChord, voicingNotes, voicingPitchClasses, type Voicing } from '../music/chords';
 import { freqToMidi, midiToFreq, pitchClass } from '../music/notes';
 
 /**
@@ -35,9 +35,9 @@ export interface ChordScore {
  * harmonics (amplitude 1/h), so e.g. the D in a G chord's B-string 3rd
  * harmonic (F#) is expected rather than counted as a wrong note.
  */
-export function chordTemplate(v: Voicing): Float64Array {
+export function chordTemplate(v: Voicing, extraNotes: number[] = []): Float64Array {
   const t = new Float64Array(12);
-  for (const note of voicingNotes(v)) {
+  for (const note of [...extraNotes, ...voicingNotes(v)]) {
     const f0 = midiToFreq(note);
     for (let h = 1; h * f0 <= CHROMA_MAX_HZ && h <= 12; h++) {
       const midi = freqToMidi(h * f0);
@@ -52,15 +52,20 @@ export function scoreChord(input: Analysis, v: Voicing, reference?: Float64Array
   const template = reference ?? chordTemplate(v);
   // The notes this shape really plays: C7's usual open shape has no G, so G can't be "missing".
   const tones = voicingPitchClasses(v);
-  const similarity = cosine(chroma, template);
+  // A slash chord played with a stand-in shape (Ab7/F as Ab7): its written bass note is welcome too,
+  // so it may sound with or without that note (placed in the low E string's octave).
+  const slashBass = v.playedAs ? parseChord(v.id)?.bass ?? null : null;
+  const bassNote = slashBass !== null ? [40 + ((slashBass - 4 + 12) % 12)] : [];
+  const withBass = bassNote.length && !reference ? chordTemplate(v, bassNote) : null;
+  const similarity = Math.max(cosine(chroma, template), withBass ? cosine(chroma, withBass) : 0);
 
   // A tone whose every occurrence sits on an overtone of a lower note in the shape (B7's high F#
   // = 3rd harmonic of the low B) never shows up as a played note; judge it on the full sound.
-  const masked = maskedPitchClasses(v);
+  const masked = maskedPitchClasses(v, bassNote);
   const missing = tones.filter((pc) => (masked.has(pc) ? chroma[pc] : noteChroma[pc]) < MISSING_SHARE);
   const extra: number[] = [];
   for (let pc = 0; pc < 12; pc++) {
-    if (!tones.includes(pc) && noteChroma[pc] > EXTRA_SHARE) extra.push(pc);
+    if (!tones.includes(pc) && pc !== slashBass && noteChroma[pc] > EXTRA_SHARE) extra.push(pc);
   }
 
   const expectedBass = bassPitchClass(v);
@@ -69,16 +74,16 @@ export function scoreChord(input: Analysis, v: Voicing, reference?: Float64Array
 
   const base = Math.min(1, Math.max(0, (similarity - SIM_ZERO) / (SIM_FULL - SIM_ZERO)));
   let score = base * MISSING_PENALTY ** missing.length * EXTRA_PENALTY ** extra.length;
-  if (heardBass !== null && heardBass !== expectedBass) score *= WRONG_BASS_PENALTY;
+  if (heardBass !== null && heardBass !== expectedBass && heardBass !== slashBass) score *= WRONG_BASS_PENALTY;
 
   return { score: Math.round(score * 100), similarity, missing, extra, expectedBass, heardBass, chroma };
 }
 
-/** Pitch classes of the voicing that only occur exactly on a harmonic (2–12) of a lower note of it. */
-function maskedPitchClasses(v: Voicing): Set<number> {
-  const notes = voicingNotes(v);
+/** Pitch classes of the voicing that only occur exactly on a harmonic (2–12) of a lower note of it (or of `extraNotes`). */
+function maskedPitchClasses(v: Voicing, extraNotes: number[] = []): Set<number> {
+  const notes = [...extraNotes, ...voicingNotes(v)].sort((a, b) => a - b);
   const hidden = (m: number) => notes.some((low) => low < m && [12, 19, 24, 28, 31, 36, 38, 40, 43].includes(m - low));
-  const all = new Set(notes.map(pitchClass));
+  const all = new Set(voicingNotes(v).map(pitchClass));
   const visible = new Set(notes.filter((m) => !hidden(m)).map(pitchClass));
   return new Set([...all].filter((pc) => !visible.has(pc)));
 }

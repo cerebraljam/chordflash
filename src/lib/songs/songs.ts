@@ -130,3 +130,38 @@ export function fromRaw(r: RawSong): Song {
 
 /** Songs shipped with the app (from the game setlists matched to Chordonomicon). */
 export const BUILTIN_SONGS: Song[] = (data as RawSong[]).map(fromRaw).filter((s) => s.sections.length);
+
+export interface SectionGroup {
+  /** "Verse" for a run of identical sections, the full name ("Chorus 2") for a single one. */
+  name: string;
+  /** How many identical sections in a row. */
+  count: number;
+  chords: string[];
+}
+
+/**
+ * Merges runs of identical sections ("Verse 1" … "Verse 9" with the same chords)
+ * into one line ("Verse ×9"), to keep the song panel short.
+ */
+export function groupSections(sections: SongSection[], simplify: boolean): SectionGroup[] {
+  const runs: { first: string; base: string; count: number; chords: string[] }[] = [];
+  for (const s of sections) {
+    const chords = s.chords.map((c) => simple(c, simplify));
+    const base = s.name.replace(/\s+\d+$/, '');
+    const prev = runs[runs.length - 1];
+    if (prev && prev.base === base && prev.chords.join(' ') === chords.join(' ')) prev.count++;
+    else runs.push({ first: s.name, base, count: 1, chords });
+  }
+  return runs.map((r) => ({ name: r.count > 1 ? r.base : r.first, count: r.count, chords: r.chords }));
+}
+
+/** The chord a given one sits next to most often in the song (for a two-chord drill), or null. */
+export function mostAdjacent(sections: SongSection[], chord: string, simplify: boolean): string | null {
+  const seq = songSequence(sections, simplify);
+  const counts = new Map<string, number>();
+  seq.forEach((c, i) => {
+    if (c !== chord) return;
+    for (const n of [seq[i - 1], seq[i + 1]]) if (n && n !== chord) counts.set(n, (counts.get(n) ?? 0) + 1);
+  });
+  return [...counts].sort((a, b) => b[1] - a[1])[0]?.[0] ?? null;
+}

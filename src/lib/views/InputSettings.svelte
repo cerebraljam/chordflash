@@ -80,7 +80,7 @@
 <section class="card stack">
   <h2>Level & sensitivity</h2>
   <p class="muted small">
-    Strum a chord: the bar should reach well past the black line. Let the strings go quiet: it should fall below it.
+    Strum a chord: the bar should reach well past the gate line. Let the strings go quiet: it should fall below it.
     Turn up the guitar volume if it barely moves; if the bar turns red, it's too loud.
   </p>
   <LevelMeter db={audio.levelDb} gateDb={settings.gateDb} />
