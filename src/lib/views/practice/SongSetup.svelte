@@ -243,6 +243,43 @@
         {#if song.tuning}<span class="muted small">Tuned {song.tuning} in Rocksmith; chords shown for standard tuning.</span>{/if}
       </div>
 
+      <div class="actions">
+        <button class="primary play" onclick={() => onstart(song, false)} disabled={selected.chords.length < 2}>
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z" fill="currentColor"></path></svg>
+          Play through
+        </button>
+        <button class="rhythm play" onclick={() => onmetronome(song)} disabled={!selected.chords.length}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21l3-18h2l3 18z"></path><path d="M12 13l5-7"></path></svg>
+          With rhythm
+        </button>
+        {#if learn}
+          <button onclick={() => ondrill(learn.fresh, learn.partner)}>Drill {name(learn.fresh)} ↔ {name(learn.partner)}</button>
+        {/if}
+        <button onclick={() => onstart(song, true)} disabled={selected.chords.length < 2}>Loop {settings.goalMinutes} min</button>
+        <button onclick={() => practiseChords(selected.chords)} disabled={selected.chords.length < 2}>Practise these chords</button>
+      </div>
+
+      {#if learn}
+        <p class="learn">
+          <strong>{name(learn.fresh)}</strong> is new: learn it with a two-chord drill first ({name(learn.fresh)} ↔ {name(learn.partner)}).
+        </p>
+      {/if}
+
+      {#if selected.chords.length < 2}
+        {@const full = songChords(song.sections, false)}
+        <p class="learn">
+          {#if settings.simplifyChords && full.length > 1}
+            Simplified, this song is just <strong>{name(selected.chords[0])}</strong>, so there's no chord change to practise.
+            Keep its bass moves ({full.map(name).join(', ')}) or play it with rhythm.
+          {:else}
+            This song is just one chord: no change to practise. Play it with rhythm to keep it going on the beat.
+          {/if}
+        </p>
+        {#if settings.simplifyChords && full.length > 1}
+          <div><button onclick={() => setSimplify(false)}>Keep the bass moves</button></div>
+        {/if}
+      {/if}
+
       <div class="cards">
         {#each selected.chords as c (c)}
           {@const st = chordState(c)}
@@ -277,39 +314,6 @@
         </ol>
       {/if}
 
-      {#if learn}
-        <p class="learn">
-          <strong>{name(learn.fresh)}</strong> is new: learn it with a two-chord drill first ({name(learn.fresh)} ↔ {name(learn.partner)}).
-        </p>
-      {/if}
-
-      {#if selected.chords.length < 2}
-        {@const full = songChords(song.sections, false)}
-        <p class="learn">
-          {#if settings.simplifyChords && full.length > 1}
-            Simplified, this song is just <strong>{name(selected.chords[0])}</strong>, so there's no chord change to practise.
-            Keep its bass moves ({full.map(name).join(', ')}) or play it with rhythm.
-          {:else}
-            This song is just one chord: no change to practise. Play it with rhythm to keep it going on the beat.
-          {/if}
-        </p>
-        {#if settings.simplifyChords && full.length > 1}
-          <div><button onclick={() => setSimplify(false)}>Keep the bass moves</button></div>
-        {/if}
-      {/if}
-
-      <div class="actions">
-        <button class="primary play" onclick={() => onstart(song, false)} disabled={selected.chords.length < 2}>
-          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z" fill="currentColor"></path></svg>
-          Play through
-        </button>
-        <button class:primary={selected.chords.length === 1} onclick={() => onmetronome(song)} disabled={!selected.chords.length}>With rhythm</button>
-        {#if learn}
-          <button onclick={() => ondrill(learn.fresh, learn.partner)}>Drill {name(learn.fresh)} ↔ {name(learn.partner)}</button>
-        {/if}
-        <button onclick={() => onstart(song, true)} disabled={selected.chords.length < 2}>Loop {settings.goalMinutes} min</button>
-        <button onclick={() => practiseChords(selected.chords)} disabled={selected.chords.length < 2}>Practise these chords</button>
-      </div>
 
       <div class="row">
         {#if !editing}<button class="small-btn" onclick={() => startEdit(song)}>Edit chords</button>{/if}

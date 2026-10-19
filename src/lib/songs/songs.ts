@@ -107,6 +107,20 @@ export function songSequence(sections: SongSection[], simplify: boolean): string
 /** Distinct chords, in order of first appearance. */
 export const songChords = (sections: SongSection[], simplify: boolean) => [...new Set(songSequence(sections, simplify))];
 
+export interface ChartChord {
+  chord: string;
+  /** Section it belongs to ("Verse 1"). */
+  section: string;
+}
+
+/**
+ * The song as written, for playing along: every chord in order with its
+ * section, repeats kept (the same chord twice = strum it again on the next bar).
+ */
+export function songChart(sections: SongSection[], simplify: boolean): ChartChord[] {
+  return sections.flatMap((s) => s.chords.map((c) => ({ chord: simple(c, simplify), section: s.name })));
+}
+
 /**
  * 0–10 difficulty for a beginner: dominated by the hardest chord (barres!),
  * then the average chord, then how many different chords there are.

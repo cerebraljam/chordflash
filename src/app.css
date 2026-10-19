@@ -103,6 +103,20 @@ button.primary {
 button.primary:hover:not(:disabled) {
   border-color: var(--text);
 }
+/* "With rhythm": playing on the beat. Amber outline, so it stands out next to the filled primary button. */
+button.rhythm {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-soft);
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+button.rhythm:hover:not(:disabled) {
+  border-color: var(--text);
+}
 button.selected {
   background: var(--accent-soft);
   border-color: var(--accent);

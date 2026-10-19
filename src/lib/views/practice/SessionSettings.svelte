@@ -69,7 +69,10 @@
 <div class="start">
   <button class="primary big" disabled={items.length < 2} onclick={onstart}>Start practice</button>
   {#if onmetronome}
-    <button class="big" disabled={items.length < 2} onclick={onmetronome}>With metronome</button>
+    <button class="big rhythm" disabled={items.length < 2} onclick={onmetronome}>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21l3-18h2l3 18z"></path><path d="M12 13l5-7"></path></svg>
+      With rhythm
+    </button>
   {/if}
 </div>
 

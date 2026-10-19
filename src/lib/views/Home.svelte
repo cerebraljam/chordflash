@@ -32,7 +32,6 @@
   let mastered = $derived(collection.filter((c) => c.state === 'mastered').length);
   let notes = $derived(noteItems(settings));
   let notesFound = $derived(masteredCount(history.of('note'), notes));
-  let bestBpm = $derived(Math.max(0, ...Object.values(settings.metroTempos).map((t) => t.best || 0)));
   let week = $derived(weekStats(chordAttempts, Date.now()));
   let minutes = $derived.by(() => {
     if (settings.goalKind === 'time') return settings.goalMinutes;
@@ -140,11 +139,6 @@
         <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 18V5l11-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="17" cy="16" r="3"></circle></svg></span>
         <span class="tile-title">Setlist</span>
         <span class="muted small">{allSongs().length} songs to play along</span>
-      </button>
-      <button class="tile" onclick={() => onopen({ action: 'metronome' })} disabled={!canStart}>
-        <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 21l3-18h2l3 18z"></path><path d="M12 13l5-7"></path></svg></span>
-        <span class="tile-title">Rhythm</span>
-        <span class="muted small">{bestBpm ? `Best ${bestBpm} BPM` : 'Change chords on the beat'}</span>
       </button>
       <button class="tile" onclick={() => onopen({ action: 'setup', mode: 'note' })}>
         <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"></path><circle cx="14" cy="12" r="2.5" fill="currentColor"></circle></svg></span>
@@ -386,7 +380,8 @@
   }
   .modes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    /* Four modes: a 2×2 grid, no tile left alone on a row. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
   }
   .tile {

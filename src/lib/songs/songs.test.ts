@@ -1,11 +1,18 @@
 import { describe, expect, it } from 'vitest';
-import { BUILTIN_SONGS, fromRaw, groupSections, mostAdjacent, parseProgression, progressionText, seriesOf, songChords, songDifficulty, songSequence } from './songs';
+import { BUILTIN_SONGS, fromRaw, groupSections, mostAdjacent, parseProgression, progressionText, seriesOf, songChart, songChords, songDifficulty, songSequence } from './songs';
 
 describe('songs', () => {
   it('gives every built-in song its own id, Japanese titles included', () => {
     const ids = BUILTIN_SONGS.map((s) => s.id);
     expect(new Set(ids).size).toBe(ids.length);
     expect(ids.every((id) => !id.endsWith('--'))).toBe(true);
+  });
+
+  it('keeps repeats and sections in the play-along chart', () => {
+    const sections = parseProgression('Verse: G G Cmaj7 C\nChorus: D');
+    expect(songChart(sections, false).map((c) => `${c.section}:${c.chord}`)).toEqual(['Verse:G', 'Verse:G', 'Verse:Cmaj7', 'Verse:C', 'Chorus:D']);
+    // Simplified, Cmaj7 C becomes C C: two bars of C.
+    expect(songChart(sections, true).map((c) => c.chord)).toEqual(['G', 'G', 'C', 'C', 'D']);
   });
 
   it('groups games by series', () => {

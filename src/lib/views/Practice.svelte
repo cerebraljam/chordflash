@@ -5,9 +5,7 @@
   export type PracticeEntry =
     | { action: 'setup'; mode: PracticeMode }
     /** Tonight's set: chord practice with the current chord set, right away. */
-    | { action: 'set' }
-    /** The chord set with the metronome. */
-    | { action: 'metronome' };
+    | { action: 'set' };
 </script>
 
 <script lang="ts">
@@ -23,7 +21,7 @@
   import { pairDifficulties, weightedPick } from '../practice/weighting';
   import { OPEN_CHORDS } from '../music/chords';
   import { addToChordLibrary, settings } from '../settings.svelte';
-  import { songChords, songSequence, type Song } from '../songs/songs';
+  import { songChart, songChords, songSequence, type ChartChord, type Song } from '../songs/songs';
   import NoteRun from './practice/NoteRun.svelte';
   import NoteSetup from './practice/NoteSetup.svelte';
   import PracticeRun from './practice/PracticeRun.svelte';
@@ -40,9 +38,10 @@
         name: 'metronome';
         key: string;
         title: string;
-        next: (from: string | null) => string;
-        /** Opened from the home tile (back = Backstage) or from a setup screen (back = that screen). */
-        fromHome: boolean;
+        /** Chord set: the practice order. */
+        next?: (from: string | null) => string;
+        /** Song: the whole song as written. */
+        chart?: ChartChord[];
       }
     | {
         name: 'running';
@@ -89,7 +88,6 @@
     settings.practiceMode = first.action === 'setup' ? first.mode : 'chord';
     await history.load();
     if (first.action === 'set') start();
-    else if (first.action === 'metronome') metronomeChords(true);
   });
 
   function begin(
@@ -164,26 +162,24 @@
   }
 
   /** Chord set in the practice order (focus or random), changing on the beat. */
-  function metronomeChords(fromHome = false) {
+  function metronomeChords() {
     const items = [...settings.practiceChords];
     const past = historyOf('chord');
     const next = (from: string | null) =>
       settings.order === 'focus' && from !== null
         ? weightedPick(from, items, pairDifficulties(past), Math.random)
         : pickNext(items, from, Math.random);
-    phase = { name: 'metronome', key: `chords:${[...items].sort().join(',')}`, title: items.join(' · '), next, fromHome };
+    phase = { name: 'metronome', key: `chords:${[...items].sort().join(',')}`, title: items.join(' · '), next };
   }
 
   /** A song's chords in its own order, changing on the beat. */
   function metronomeSong(song: Song) {
     addToChordLibrary(songChords(song.sections, settings.simplifyChords), STARTERS);
-    const pick = sequencePicker(songSequence(song.sections, settings.simplifyChords));
     phase = {
       name: 'metronome',
       key: `song:${song.id}${settings.simplifyChords ? ':simple' : ''}`,
       title: `${song.title} — ${song.artist}`,
-      next: (from) => pick(from, [], []),
-      fromHome: false,
+      chart: songChart(song.sections, settings.simplifyChords),
     };
   }
 
@@ -233,14 +229,14 @@
     <NoteSetup levels={hintLevels(modeHistory)} difficulty={pairDifficulties(modeHistory)} onstart={start} />
   {/if}
 {:else if phase.name === 'metronome'}
-  {@const fromHome = phase.fromHome}
   <MetronomeRun
     key={phase.key}
     title={phase.title}
     next={phase.next}
+    chart={phase.chart}
     history={historyOf('chord')}
-    backLabel={fromHome ? 'Backstage' : TITLES[settings.practiceMode]}
-    onexit={() => (fromHome ? onhome() : (phase = { name: 'setup' }))}
+    backLabel={TITLES[settings.practiceMode]}
+    onexit={() => (phase = { name: 'setup' })}
   />
 {:else if phase.name === 'running'}
   {#key phase.session}

@@ -73,3 +73,16 @@ export function nextBpm(bpm: number, score: number, step: number): number {
   const next = score >= TEMPO_UP_AT ? bpm + step : score < TEMPO_DOWN_BELOW ? bpm - step : bpm;
   return Math.max(MIN_BPM, Math.min(MAX_BPM, next));
 }
+
+/**
+ * Tempo from tapped beats (seconds, oldest first): the median gap of the last
+ * 8 taps, so one stray tap doesn't throw it off. Null before 2 taps.
+ */
+export function tapTempo(times: number[]): number | null {
+  const recent = times.slice(-8);
+  if (recent.length < 2) return null;
+  const gaps = recent.slice(1).map((t, i) => t - recent[i]).sort((a, b) => a - b);
+  const mid = gaps.length / 2;
+  const gap = gaps.length % 2 ? gaps[Math.floor(mid)] : (gaps[mid - 1] + gaps[mid]) / 2;
+  return Math.max(MIN_BPM, Math.min(MAX_BPM, Math.round(60 / gap)));
+}

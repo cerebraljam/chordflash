@@ -54,13 +54,13 @@
       view: 'home',
       targets: ['[data-tour="tile-setlist"]'],
       title: '5 · Pick songs',
-      body: 'The setlist has songs from Rock Band, Guitar Hero and Rocksmith, plus a J-Rock collection, with their chords, easiest first: a ready-made set of chords to start with.',
+      body: 'Songs from Rock Band, Guitar Hero, Rocksmith and J-Rock with their chords, easiest first: ready-made chord sets to start with. "Play through" a song\'s changes at your pace, or play it "With rhythm" on a metronome.',
     },
     {
       view: 'home',
       targets: [],
       title: "You're set",
-      body: 'The rest is yours to discover: rhythm, note hunt, riffs from Guitar Pro tabs, stats. Replay this tour any time with the ? button at the top.',
+      body: 'The rest is yours to discover: drills on the beat ("With rhythm" in Chord drills), note hunt, riffs from Guitar Pro tabs, stats. Replay this tour any time with the ? button at the top.',
     },
   ];
 
@@ -89,6 +89,8 @@
     viewport = { w: window.innerWidth, h: window.innerHeight };
     const el = step.targets.map((t) => document.querySelector<HTMLElement>(t)).find(Boolean);
     rect = el ? el.getBoundingClientRect() : null;
+    // Read now, not through a binding: the new step's text may have just changed the card's height.
+    cardHeight = card?.offsetHeight || cardHeight;
   }
 
   async function show(i: number) {
@@ -99,6 +101,12 @@
     el?.scrollIntoView({ block: 'center' });
     await tick();
     measure();
+    // No room for the card above or below a centred target (a phone): bring the target to the top instead.
+    if (el && rect && rect.bottom + 14 + cardHeight > viewport.h - 16 && rect.top - 14 - cardHeight < 16) {
+      window.scrollBy(0, rect.top - 16);
+      await tick();
+      measure();
+    }
     card?.focus();
   }
 
@@ -148,7 +156,6 @@
   aria-labelledby="tour-title"
   tabindex="-1"
   bind:this={card}
-  bind:offsetHeight={cardHeight}
   style:left="{place.left}px"
   style:top="{place.top}px"
   style:width="{place.width}px"

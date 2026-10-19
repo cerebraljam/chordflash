@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { EARLY_TOLERANCE, grade, nextBpm, planRound, roundScore, slotAt } from './metronome';
+import { EARLY_TOLERANCE, grade, nextBpm, planRound, roundScore, slotAt, tapTempo } from './metronome';
 
 describe('metronome', () => {
   const round = planRound(['G', 'C', 'D', 'Em'], 60, 4, 10);
@@ -32,5 +32,13 @@ describe('metronome', () => {
     expect(nextBpm(60, 0.6, 5)).toBe(60);
     expect(nextBpm(60, 0.4, 5)).toBe(55);
     expect(nextBpm(40, 0, 5)).toBe(40);
+  });
+
+  it('reads the tempo from taps, ignoring one stray tap', () => {
+    expect(tapTempo([1])).toBeNull();
+    expect(tapTempo([0, 0.5])).toBe(120);
+    // Steady 100 BPM (0.6 s) with one tap a bit late.
+    expect(tapTempo([0, 0.6, 1.2, 1.95, 2.4, 3.0])).toBe(100);
+    expect(tapTempo([0, 5])).toBe(40);
   });
 });
