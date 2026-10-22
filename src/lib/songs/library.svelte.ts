@@ -1,4 +1,4 @@
-import { BUILTIN_SONGS, parseProgression, songId, type Song } from './songs';
+import { BUILTIN_SONGS, loadCollections, mergeCollections, parseProgression, songDifficulty, songId, type Song } from './songs';
 
 interface UserSong {
   title: string;
@@ -36,9 +36,25 @@ $effect.root(() => {
   });
 });
 
+/** Game songs, then the collections once loaded (raw: thousands of songs, never changed in place). */
+let builtins = $state.raw<Song[]>(BUILTIN_SONGS);
+let loading: Promise<void> | null = null;
+
+/** Loads the collections in the background; the setlist shows them when they arrive. */
+export function loadSongCollections(): Promise<void> {
+  loading ??= loadCollections().then((songs) => {
+    builtins = mergeCollections(BUILTIN_SONGS, songs);
+    // Work out every song's chords and difficulty while the app is idle, so the setlist opens fast.
+    const warm = () => builtins.forEach((s) => songDifficulty(s.sections, true) + songDifficulty(s.sections, false));
+    if ('requestIdleCallback' in window) requestIdleCallback(warm);
+    else setTimeout(warm, 500);
+  });
+  return loading;
+}
+
 /** Built-in songs with the player's corrections applied, followed by their own songs. */
 export function allSongs(): Song[] {
-  const builtins = BUILTIN_SONGS.map((s) =>
+  const edited = builtins.map((s) =>
     songStore.edits[s.id] ? { ...s, sections: parseProgression(songStore.edits[s.id]), edited: true } : s,
   );
   const own: Song[] = songStore.added.map((u) => ({
@@ -50,7 +66,7 @@ export function allSongs(): Song[] {
     sections: parseProgression(u.text),
     source: 'user',
   }));
-  return [...builtins, ...own];
+  return [...edited, ...own];
 }
 
 export function saveSongText(song: Song, text: string): void {

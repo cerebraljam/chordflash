@@ -4,6 +4,7 @@
   import LevelMeter from './lib/components/LevelMeter.svelte';
   import Tour, { type TourView } from './lib/components/Tour.svelte';
   import { history } from './lib/practice/history.svelte';
+  import { loadSongCollections } from './lib/songs/library.svelte';
   import { settings } from './lib/settings.svelte';
   import ChordCheck from './lib/views/ChordCheck.svelte';
   import Home from './lib/views/Home.svelte';
@@ -32,6 +33,7 @@
 
   onMount(() => {
     void history.load();
+    void loadSongCollections();
   });
 
   function endTour() {

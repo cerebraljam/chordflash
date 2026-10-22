@@ -1,5 +1,4 @@
 import { chordById, chordDifficulty, chordId } from '../music/chords';
-import jrock from './jrock.json';
 import data from './songs.json';
 
 export interface SongSection {
@@ -104,8 +103,23 @@ export function songSequence(sections: SongSection[], simplify: boolean): string
   return out;
 }
 
-/** Distinct chords, in order of first appearance. */
-export const songChords = (sections: SongSection[], simplify: boolean) => [...new Set(songSequence(sections, simplify))];
+/**
+ * Caches a per-song result. Keyed by the sections array: built-in songs never
+ * change it, and editing a song gives it new sections.
+ */
+function perSong<T>(f: (sections: SongSection[], simplify: boolean) => T) {
+  const cache = [new WeakMap<SongSection[], T>(), new WeakMap<SongSection[], T>()];
+  return (sections: SongSection[], simplify: boolean): T => {
+    const m = cache[Number(simplify)];
+    if (!m.has(sections)) m.set(sections, f(sections, simplify));
+    return m.get(sections)!;
+  };
+}
+
+const distinctChords = perSong((sections, simplify) => [...new Set(songSequence(sections, simplify))]);
+
+/** Distinct chords, in order of first appearance (a fresh array: callers may keep or change it). */
+export const songChords = (sections: SongSection[], simplify: boolean) => [...distinctChords(sections, simplify)];
 
 export interface ChartChord {
   chord: string;
@@ -126,15 +140,15 @@ export function songChart(sections: SongSection[], simplify: boolean): ChartChor
  * then the average chord, then how many different chords there are.
  * G C D Em ≈ 2.5; a song full of barre chords ≈ 7.
  */
-export function songDifficulty(sections: SongSection[], simplify: boolean): number {
-  const chords = songChords(sections, simplify);
+export const songDifficulty = perSong((sections, simplify): number => {
+  const chords = distinctChords(sections, simplify);
   if (!chords.length) return 0;
   const d = chords.map((id) => chordDifficulty(chordById(id)));
   const hardest = Math.max(...d);
   const avg = d.reduce((s, x) => s + x, 0) / d.length;
   const score = hardest + 0.8 * avg + 0.5 * Math.max(0, chords.length - 3);
   return Math.round(Math.min(10, score) * 10) / 10;
-}
+});
 
 export function fromRaw(r: RawSong): Song {
   return {
@@ -150,8 +164,32 @@ export function fromRaw(r: RawSong): Song {
   };
 }
 
-/** Songs shipped with the app: the game setlists matched to Chordonomicon, and the J-Rock collection. */
-export const BUILTIN_SONGS: Song[] = [...(data as RawSong[]), ...(jrock as RawSong[])].map(fromRaw).filter((s) => s.sections.length);
+/** Songs shipped with the app: the game setlists matched to Chordonomicon. */
+export const BUILTIN_SONGS: Song[] = (data as RawSong[]).map(fromRaw).filter((s) => s.sections.length);
+
+/**
+ * The collections (J-Rock, Québec, French): most of the song data, so they're
+ * separate files, loaded after the app has started.
+ */
+/**
+ * Game songs followed by the collections. A song in both (Superbus's "Radio Song" is in
+ * Guitar Hero III and the French collection) stays one song, tagged with both.
+ */
+export function mergeCollections(games: Song[], collections: Song[]): Song[] {
+  const extra = new Map<string, string[]>();
+  const byId = new Map(games.map((s) => [s.id, s]));
+  const rest = collections.filter((s) => {
+    if (!byId.has(s.id)) return true;
+    extra.set(s.id, [...(extra.get(s.id) ?? []), ...s.games]);
+    return false;
+  });
+  return [...games.map((s) => (extra.has(s.id) ? { ...s, games: [...s.games, ...extra.get(s.id)!] } : s)), ...rest];
+}
+
+export async function loadCollections(): Promise<Song[]> {
+  const files = await Promise.all([import('./jrock.json'), import('./quebec.json'), import('./french.json')]);
+  return files.flatMap((f) => f.default as RawSong[]).map(fromRaw).filter((s) => s.sections.length);
+}
 
 export interface SectionGroup {
   /** "Verse" for a run of identical sections, the full name ("Chorus 2") for a single one. */

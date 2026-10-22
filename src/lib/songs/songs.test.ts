@@ -1,11 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { BUILTIN_SONGS, fromRaw, groupSections, mostAdjacent, parseProgression, progressionText, seriesOf, songChart, songChords, songDifficulty, songSequence } from './songs';
+import { BUILTIN_SONGS, fromRaw, loadCollections, mergeCollections, groupSections, mostAdjacent, parseProgression, progressionText, seriesOf, songChart, songChords, songDifficulty, songSequence } from './songs';
 
 describe('songs', () => {
-  it('gives every built-in song its own id, Japanese titles included', () => {
-    const ids = BUILTIN_SONGS.map((s) => s.id);
+  it('gives every built-in song its own id, Japanese titles included', async () => {
+    const all = mergeCollections(BUILTIN_SONGS, await loadCollections());
+    const ids = all.map((s) => s.id);
     expect(new Set(ids).size).toBe(ids.length);
     expect(ids.every((id) => !id.endsWith('--'))).toBe(true);
+    // In a game setlist and a collection: one song, both tags.
+    expect(all.find((s) => s.id === 'superbus--radio-song')?.games).toEqual(['Guitar Hero III', 'French']);
   });
 
   it('keeps repeats and sections in the play-along chart', () => {

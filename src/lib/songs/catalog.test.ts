@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { chordById } from '../music/chords';
-import { BUILTIN_SONGS, songChords, songDifficulty } from './songs';
+import { BUILTIN_SONGS, loadCollections, songChords, songDifficulty } from './songs';
 
 describe('built-in song list', () => {
   it('has songs, each with sections and playable chords', () => {
@@ -8,6 +8,15 @@ describe('built-in song list', () => {
     for (const s of BUILTIN_SONGS) {
       expect(s.sections.length, s.title).toBeGreaterThan(0);
       for (const c of songChords(s.sections, false)) expect(() => chordById(c), `${s.title}: ${c}`).not.toThrow();
+    }
+  });
+
+  it('gives every collection song sections and playable chords', async () => {
+    const songs = await loadCollections();
+    expect(songs.length).toBeGreaterThan(1000);
+    for (const s of songs) {
+      expect(s.sections.length, s.title).toBeGreaterThan(0);
+      for (const c of songChords(s.sections, false)) expect(() => chordById(c), `${s.artist} — ${s.title}: ${c}`).not.toThrow();
     }
   });
 

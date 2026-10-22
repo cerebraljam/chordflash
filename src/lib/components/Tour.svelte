@@ -54,7 +54,7 @@
       view: 'home',
       targets: ['[data-tour="tile-setlist"]'],
       title: '5 · Pick songs',
-      body: 'Songs from Rock Band, Guitar Hero, Rocksmith and J-Rock with their chords, easiest first: ready-made chord sets to start with. "Play through" a song\'s changes at your pace, or play it "With rhythm" on a metronome.',
+      body: 'Songs from Rock Band, Guitar Hero and Rocksmith, plus J-Rock, Québec and French collections, easiest first: ready-made chord sets to start with. "Play through" a song\'s changes at your pace, or play it "With rhythm" on a metronome.',
     },
     {
       view: 'home',

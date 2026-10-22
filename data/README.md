@@ -3,22 +3,27 @@
 The app ships `src/lib/songs/songs.json`: the chord progressions of the on-disc
 songs of Rock Band 1–3, Guitar Hero (I, II, III, World Tour, 5, Warriors of Rock,
 and the on-disc songs of Live), Rocksmith and Rocksmith 2014. No lyrics, no audio.
-`src/lib/songs/jrock.json` adds a J-Rock collection: every song in the dataset by a
-hand-picked list of Japanese artists (the list is in `scripts/jrock.mjs`).
+Three collections add every song in the dataset by hand-picked lists of artists
+(the lists are in `scripts/collections.mjs`): J-Rock (`jrock.json`), Québec
+(`quebec.json`, French-speaking Quebec and Acadian artists) and French (`french.json`,
+French-language artists from France, Belgium and Switzerland). The app loads them
+after it starts, as separate files.
 
 ## How it's built
 
 ```
 node scripts/setlists.mjs   # Wikipedia setlist tables → data/setlists.json
 node scripts/match.mjs      # setlists × Chordonomicon → src/lib/songs/songs.json
-node scripts/jrock.mjs      # artist list × Chordonomicon → src/lib/songs/jrock.json
+node scripts/collections.mjs  # artist lists × Chordonomicon → jrock / quebec / french .json
 ```
 
-`jrock.mjs` finds the artists by name among the Spotify artists of the dataset's
-Japanese-tagged rows (their names read from each artist's Spotify page, cached in
+`collections.mjs` finds the artists by name among the Spotify artists of the rows
+carrying the collection's genre tags (Japanese, Quebec, French/Belgian/Swiss) (their names read from each artist's Spotify page, cached in
 `data/cache/spotify_artists.json`) and among the MusicBrainz lookups. Songs without a
 Spotify track id have no title and are left out (both MONGOL800 songs, for example);
-version tags ("- movie ver.", "(feat. …)") are trimmed from titles.
+version tags ("- movie ver.", "(feat. …)", "- Edition Remixée") are trimmed from titles.
+Spotify rate-limits title lookups: lookups that give up aren't cached, so running the
+script again later fills them in.
 
 `match.mjs` needs `data/raw/chordonomicon_v2.csv` (264 MB, not committed):
 

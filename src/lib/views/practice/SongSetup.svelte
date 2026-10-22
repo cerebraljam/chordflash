@@ -97,6 +97,28 @@
     return [...list].sort(by[settings.songSort]);
   });
   let selected = $derived(songs.find((s) => s.song.id === selectedId) ?? shown[0] ?? null);
+
+  /**
+   * Rows drawn: thousands of songs would make every filter or sort slow, so the
+   * list grows by a page as you scroll to its end.
+   */
+  const PAGE = 100;
+  let limit = $state(PAGE);
+  let visible = $derived(shown.slice(0, limit));
+  let more = $state<HTMLElement | null>(null);
+  // A new search, filter or sort starts again from the first page.
+  $effect(() => {
+    query;
+    game;
+    settings.songSort;
+    limit = PAGE;
+  });
+  $effect(() => {
+    if (!more) return;
+    const io = new IntersectionObserver((e) => e[0].isIntersecting && (limit += PAGE), { rootMargin: '600px' });
+    io.observe(more);
+    return () => io.disconnect();
+  });
   /** A never-played chord in the song, and the one it sits next to most: a good first drill. */
   let learn = $derived.by(() => {
     if (!selected) return null;
@@ -123,6 +145,9 @@
   async function setSimplify(on: boolean) {
     if (selected) selectedId = selected.song.id;
     settings.simplifyChords = on;
+    // Make sure its new row is drawn, to scroll to it.
+    const at = shown.findIndex((s) => s.song.id === selectedId);
+    if (at >= limit) limit = at + PAGE;
     await tick();
     document.querySelector('.song.current')?.scrollIntoView({ block: 'nearest' });
   }
@@ -199,7 +224,7 @@
 
 <div class="body">
   <ul class="list">
-    {#each shown as { song, chords, difficulty, stars } (song.id)}
+    {#each visible as { song, chords, difficulty, stars } (song.id)}
       <li>
         <button class="song" class:current={selected?.song.id === song.id} aria-current={selected?.song.id === song.id} onclick={() => select(song.id)}>
           <span class="diff">
@@ -230,6 +255,7 @@
         </button>
       </li>
     {/each}
+    {#if visible.length < shown.length}<li class="more muted" bind:this={more}>Loading more songs…</li>{/if}
     {#if !shown.length}<li class="muted empty">No song matches.</li>{/if}
   </ul>
 
@@ -431,6 +457,11 @@
     flex-wrap: wrap;
     gap: 20px;
     align-items: flex-start;
+  }
+  .more {
+    padding: 12px;
+    text-align: center;
+    font-size: 0.9rem;
   }
   .list {
     flex: 999 1 560px;
