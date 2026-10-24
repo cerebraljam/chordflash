@@ -48,7 +48,8 @@ export function xpLedger(attempts: Attempt[]): { total: number; sessions: Map<st
     s.bestCombo = Math.max(s.bestCombo, s.combo);
     let xp = attemptXp(a, s.combo);
     const { before, after } = hints.push(a);
-    if (before === 'diagram' && after === 'name') {
+    // Once per item and session: a long song can lose a chord's mastery and win it back.
+    if (before === 'diagram' && after === 'name' && !s.mastered.includes(a.to)) {
       xp += XP.mastered;
       s.mastered.push(a.to);
     }

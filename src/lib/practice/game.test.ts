@@ -48,6 +48,13 @@ describe('XP', () => {
     expect(b.xp).toBe(15 + (15 + 2) + XP.mastered);
     expect(total).toBe(a.xp + b.xp);
   });
+
+  it('lists a chord mastered twice in one session only once (a long song can lose and regain it)', () => {
+    const clean = () => play('Em7', { sessionId: 's' });
+    const missed = () => play('Em7', { sessionId: 's', misses: 1 });
+    const history = [clean(), clean(), clean(), clean(), clean(), missed(), missed(), clean(), clean(), clean(), clean(), clean()];
+    expect(xpLedger(history).sessions.get('s')!.mastered).toEqual(['Em7']);
+  });
 });
 
 describe('levels', () => {

@@ -105,7 +105,18 @@
     </section>
   {:else if tab === 'practice'}
     {#key entryKey}
-      <Practice {entry} onhome={() => (tab = 'home')} />
+      <!-- A bug while playing shows a way out instead of a frozen screen. Practice already saved is kept. -->
+      <svelte:boundary onerror={(e) => console.error(e)}>
+        <Practice {entry} onhome={() => (tab = 'home')} />
+        {#snippet failed(error)}
+          <section class="card oops">
+            <h2>Something went wrong</h2>
+            <p class="muted">The changes you played are saved. Sorry about that: going back to Backstage should sort it out.</p>
+            <p class="muted small mono">{error instanceof Error ? error.message : String(error)}</p>
+            <div><button class="primary" onclick={() => (tab = 'home')}>← Backstage</button></div>
+          </section>
+        {/snippet}
+      </svelte:boundary>
     {/key}
   {:else if tab === 'input'}
     <InputSettings />
@@ -151,6 +162,17 @@
   }
   .right {
     margin-left: auto;
+  }
+  .oops {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .oops h2,
+  .oops p {
+    margin: 0;
+  }
+  .small {
+    font-size: 0.85rem;
   }
   .help {
     width: 40px;
