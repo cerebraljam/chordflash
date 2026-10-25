@@ -5,10 +5,14 @@
   import { GUITAR_TUNING } from '../music/chords';
   import { midiToFreq, noteName } from '../music/notes';
   import { settings } from '../settings.svelte';
+  import { viewMemory } from '../viewMemory.svelte';
 
   const BASS_TUNING = [28, 33, 38, 43]; // E1 A1 D2 G2
 
-  let mode = $state<'guitar' | 'bass'>('guitar');
+  let mode = $state<'guitar' | 'bass'>(viewMemory.tuner);
+  $effect(() => {
+    viewMemory.tuner = mode;
+  });
   let reading = $state<TunerReading | null>(null);
   let lastHeard = 0;
 

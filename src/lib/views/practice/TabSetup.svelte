@@ -4,6 +4,7 @@
   import { deleteTab, loadTabs, saveTab } from '../../practice/db';
   import type { HintLevel } from '../../practice/hints';
   import { settings } from '../../settings.svelte';
+  import { viewMemory } from '../../viewMemory.svelte';
   import { addSong } from '../../songs/library.svelte';
   import { progressionText } from '../../songs/songs';
   import { TAB_FILE_TYPES, importTab } from '../../tabs/importTab';
@@ -50,10 +51,23 @@
   onMount(async () => {
     try {
       tabs = await loadTabs();
-      if (tabs.length) choose(tabs[0].id);
+      // Back from playing a riff: the same tab, track and bars as before.
+      const m = viewMemory.tabs;
+      const saved = tabs.find((t) => t.id === m.tabId);
+      const bars = saved?.tracks[m.track]?.bars.length ?? 0;
+      if (saved && m.to < bars) {
+        tabId = saved.id;
+        trackIndex = m.track;
+        from = Math.min(m.from, m.to);
+        to = m.to;
+      } else if (tabs.length) choose(tabs[0].id);
     } catch {
       error = 'Imported tabs could not be loaded in this browser.';
     }
+  });
+
+  $effect(() => {
+    if (tabId) Object.assign(viewMemory.tabs, { tabId, track: trackIndex, from, to });
   });
 
   function choose(id: string) {

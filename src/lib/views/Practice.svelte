@@ -75,6 +75,10 @@
   };
 
   let phase = $state.raw<Phase>({ name: 'setup' });
+  // Playing, results and rhythm start at the top; a setup screen puts itself back where you were.
+  $effect(() => {
+    if (phase.name !== 'setup') window.scrollTo(0, 0);
+  });
 
   const historyOf = (kind: PracticeKind) => history.of(kind);
   const kindOfMode = (mode: PracticeMode): PracticeKind => (mode === 'note' || mode === 'tab' ? 'note' : 'chord');
@@ -272,6 +276,7 @@
     name={(id) => itemName(kind, id, settings.lang)}
     onagain={phase.again}
     onsetup={() => (phase = { name: 'setup' })}
+    setupLabel={TITLES[settings.practiceMode]}
     {onhome}
     ondrill={kind === 'chord' ? drillPair : undefined}
   />

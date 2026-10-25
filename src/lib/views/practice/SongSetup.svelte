@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { tick } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import ChordDiagram from '../../components/ChordDiagram.svelte';
   import { OPEN_CHORDS, chordById, chordName } from '../../music/chords';
   import { history } from '../../practice/history.svelte';
   import { hintLevels } from '../../practice/hints';
-  import { addSong, allSongs, deleteSong, resetSong, saveSongText, songStore } from '../../songs/library.svelte';
+  import { addSong, allSongs, deleteSong, loadSongCollections, resetSong, saveSongText, songStore } from '../../songs/library.svelte';
   import {
     groupSections,
     mostAdjacent,
@@ -16,6 +16,7 @@
     type Song,
   } from '../../songs/songs';
   import { settings } from '../../settings.svelte';
+  import { viewMemory } from '../../viewMemory.svelte';
 
   let {
     onstart,
@@ -42,9 +43,8 @@
   /** Chords shown per section line before "+N more". */
   const SECTION_MAX = 16;
 
-  let query = $state('');
-  let game = $state('All');
-  let selectedId = $state<string | null>(null);
+  /** Search, chip and song: remembered, so coming back after playing a song lands on the same spot. */
+  const memo = viewMemory.setlist;
   let editing = $state(false);
   let draft = $state('');
   let adding = $state(false);
@@ -80,10 +80,10 @@
     ...(songStore.added.length ? ['My songs'] : []),
   ]);
   let shown = $derived.by(() => {
-    const q = query.trim().toLowerCase();
+    const q = memo.query.trim().toLowerCase();
     const list = songs.filter(
       ({ song }) =>
-        (game === 'All' || song.games.some((g) => seriesOf(g) === game) || (game === 'My songs' && song.source === 'user')) &&
+        (memo.game === 'All' || song.games.some((g) => seriesOf(g) === memo.game) || (memo.game === 'My songs' && song.source === 'user')) &&
         (!q || song.title.toLowerCase().includes(q) || song.artist.toLowerCase().includes(q)),
     );
     type Row = (typeof list)[0];
@@ -96,7 +96,7 @@
     };
     return [...list].sort(by[settings.songSort]);
   });
-  let selected = $derived(songs.find((s) => s.song.id === selectedId) ?? shown[0] ?? null);
+  let selected = $derived(songs.find((s) => s.song.id === memo.selectedId) ?? shown[0] ?? null);
 
   /**
    * Rows drawn: thousands of songs would make every filter or sort slow, so the
@@ -108,10 +108,35 @@
   let more = $state<HTMLElement | null>(null);
   // A new search, filter or sort starts again from the first page.
   $effect(() => {
-    query;
-    game;
+    memo.query;
+    memo.game;
     settings.songSort;
     limit = PAGE;
+  });
+  // Back on the setlist: scroll to where you were, once the collections (and enough rows) are there.
+  onMount(() => {
+    let restored = false;
+    let frame = 0;
+    void loadSongCollections().then(async () => {
+      limit = Math.max(PAGE, memo.rows);
+      await tick();
+      window.scrollTo(0, memo.scrollY);
+      restored = true;
+    });
+    const onScroll = () => {
+      if (!restored || frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        memo.scrollY = window.scrollY;
+        memo.rows = limit;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      // A pending save would read the next screen's scroll.
+      cancelAnimationFrame(frame);
+    };
   });
   $effect(() => {
     if (!more) return;
@@ -128,7 +153,7 @@
   });
 
   async function select(id: string) {
-    selectedId = id;
+    memo.selectedId = id;
     editing = false;
     // On a phone the panel sits above the list: bring it into view.
     if (window.innerWidth < 960) {
@@ -143,10 +168,10 @@
    * list) and scroll the list to where it went.
    */
   async function setSimplify(on: boolean) {
-    if (selected) selectedId = selected.song.id;
+    if (selected) memo.selectedId = selected.song.id;
     settings.simplifyChords = on;
     // Make sure its new row is drawn, to scroll to it.
-    const at = shown.findIndex((s) => s.song.id === selectedId);
+    const at = shown.findIndex((s) => s.song.id === memo.selectedId);
     if (at >= limit) limit = at + PAGE;
     await tick();
     document.querySelector('.song.current')?.scrollIntoView({ block: 'nearest' });
@@ -169,8 +194,8 @@
 
   function saveNew() {
     if (!newSong.title.trim() || !parseProgression(newSong.text).length) return;
-    selectedId = addSong(newSong.title.trim(), newSong.artist.trim() || 'Unknown', newSong.text);
-    game = 'My songs';
+    memo.selectedId = addSong(newSong.title.trim(), newSong.artist.trim() || 'Unknown', newSong.text);
+    memo.game = 'My songs';
     adding = false;
     newSong = { title: '', artist: '', text: '' };
   }
@@ -185,7 +210,7 @@
     <label class="search">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
       <span class="sr">Search songs</span>
-      <input type="search" placeholder="Title or artist" bind:value={query} />
+      <input type="search" placeholder="Title or artist" bind:value={memo.query} />
     </label>
     <span class="muted count">{shown.length} song{shown.length === 1 ? '' : 's'}</span>
     <span class="spacer"></span>
@@ -193,7 +218,7 @@
   </div>
   <div class="row">
     {#each games as g (g)}
-      <button class="chip" aria-pressed={game === g} class:selected={game === g} onclick={() => (game = g)}>{g}</button>
+      <button class="chip" aria-pressed={memo.game === g} class:selected={memo.game === g} onclick={() => (memo.game = g)}>{g}</button>
     {/each}
   </div>
   <div class="row">

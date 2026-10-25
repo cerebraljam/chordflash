@@ -25,6 +25,7 @@
     name,
     onagain,
     onsetup,
+    setupLabel,
     onhome,
     ondrill,
   }: {
@@ -36,7 +37,9 @@
     after: Map<string, HintLevel>;
     name: (id: string) => string;
     onagain: () => void;
+    /** Back to the screen the session started from ("Setlist", "Chord drills"…). */
     onsetup: () => void;
+    setupLabel: string;
     onhome: () => void;
     /** Practise one change on its own (offered for the slowest one). */
     ondrill?: (from: string, to: string) => void;
@@ -50,7 +53,7 @@
   /** Red over 6 s, amber over 3 s (the clean limit), mint below. */
   const tone = (ms: number) => (ms > 6000 ? 'bad' : ms > 3000 ? 'warn' : 'good');
 
-  onMount(() => shortcuts({ Space: onagain }));
+  onMount(() => shortcuts({ Space: onagain, Escape: onsetup }));
 
   const secs = (ms: number) => (Number.isFinite(ms) ? `${(ms / 1000).toFixed(1)} s` : '—');
   const STAR = 'M12 2l3 7 7 .6-5.4 4.7L18.2 22 12 18.3 5.8 22l1.6-7.7L2 9.6 9 9z';
@@ -127,7 +130,7 @@
       {#if ondrill && worst && worst.avgMs > 3000}
         <button onclick={() => ondrill(worst.from, worst.to)}>Drill {name(worst.from)} ↔ {name(worst.to)}</button>
       {/if}
-      <button onclick={onsetup}>Change settings</button>
+      <button onclick={onsetup}>← {setupLabel} <kbd class="quiet">Esc</kbd></button>
       <button class="ghost" onclick={onhome}>Backstage</button>
     </div>
   </section>
@@ -216,6 +219,10 @@
     border: 1.5px solid currentColor;
     border-radius: 6px;
     padding: 2px 6px;
+  }
+  kbd.quiet {
+    margin-left: 6px;
+    opacity: 0.7;
   }
   .ghost {
     background: transparent;

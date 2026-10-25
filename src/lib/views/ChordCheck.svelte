@@ -8,6 +8,7 @@
   import { OPEN_CHORDS, chordById, chordId, chordName, voicingPitchClasses } from '../music/chords';
   import { pitchClass, pitchClassName, type Lang } from '../music/notes';
   import { references, settings } from '../settings.svelte';
+  import { viewMemory } from '../viewMemory.svelte';
 
   interface Attempt {
     chord: string;
@@ -16,7 +17,8 @@
     heard: number[];
   }
 
-  let currentId = $state(OPEN_CHORDS[0].id);
+  /** The last chord checked, so a detour to the tuner doesn't lose it. */
+  let currentId = $state(viewMemory.chordCheck ?? OPEN_CHORDS[0].id);
   let chord = $derived(chordById(currentId));
   let tones = $derived(voicingPitchClasses(chord));
   let typed = $state('');
@@ -32,6 +34,7 @@
 
   function select(id: string) {
     currentId = id;
+    viewMemory.chordCheck = id;
     last = null;
   }
 

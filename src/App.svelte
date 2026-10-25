@@ -43,6 +43,12 @@
 
   const tourView = (v: TourView) => (tab = v);
 
+  // Each screen opens at its top (the setlist then scrolls back to where you were).
+  $effect(() => {
+    void tab;
+    window.scrollTo(0, 0);
+  });
+
   // Starting a set mid-tour is what the tour is for: let the player get on with it.
   $effect(() => {
     if (tab === 'practice' && touring) endTour();

@@ -12,6 +12,7 @@
   import { chordStats, pairStats, periodStat, sessionStats, type PeriodStat } from '../practice/stats';
   import { kindOf, type Attempt, type PracticeKind } from '../practice/types';
   import { settings } from '../settings.svelte';
+  import { viewMemory } from '../viewMemory.svelte';
 
   /** Sessions in the "recent" period compared against the ones just before. */
   const PERIOD = 5;
@@ -19,7 +20,8 @@
   const MAX_GRID = 12;
 
   let all = $state.raw<Attempt[] | null>(null);
-  let kind = $state<PracticeKind>(settings.practiceMode === 'note' ? 'note' : 'chord');
+  /** The tab you picked last; until then, the one matching the practice mode. */
+  let kind = $state<PracticeKind>(viewMemory.stats ?? (settings.practiceMode === 'note' ? 'note' : 'chord'));
   let history = $derived(all?.filter((a) => kindOf(a) === kind) ?? null);
   let showSessionTable = $state(false);
   let showPairTable = $state(false);
@@ -66,8 +68,8 @@
 </script>
 
 <div class="row kinds" role="tablist">
-  <button role="tab" aria-selected={kind === 'chord'} class:selected={kind === 'chord'} onclick={() => (kind = 'chord')}>Chords</button>
-  <button role="tab" aria-selected={kind === 'note'} class:selected={kind === 'note'} onclick={() => (kind = 'note')}>Single notes</button>
+  <button role="tab" aria-selected={kind === 'chord'} class:selected={kind === 'chord'} onclick={() => (kind = viewMemory.stats = 'chord')}>Chords</button>
+  <button role="tab" aria-selected={kind === 'note'} class:selected={kind === 'note'} onclick={() => (kind = viewMemory.stats = 'note')}>Single notes</button>
 </div>
 
 {#if history === null}
