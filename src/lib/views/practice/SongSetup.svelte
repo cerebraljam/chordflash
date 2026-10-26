@@ -79,13 +79,23 @@
     ...[...new Set(songs.flatMap((s) => s.song.games.map(seriesOf)))].sort(),
     ...(songStore.added.length ? ['My songs'] : []),
   ]);
-  let shown = $derived.by(() => {
+  /** Ready: every chord mastered. Stretch: all but one, a good next challenge. */
+  const fitOf = (toLearn: number) => (toLearn === 0 ? 'ready' : toLearn === 1 ? 'stretch' : 'any');
+  /** Songs matching the search and chip (before the ready / one-to-learn filter, which counts from these). */
+  let matching = $derived.by(() => {
     const q = memo.query.trim().toLowerCase();
-    const list = songs.filter(
+    return songs.filter(
       ({ song }) =>
         (memo.game === 'All' || song.games.some((g) => seriesOf(g) === memo.game) || (memo.game === 'My songs' && song.source === 'user')) &&
         (!q || song.title.toLowerCase().includes(q) || song.artist.toLowerCase().includes(q)),
     );
+  });
+  let fitCounts = $derived({
+    ready: matching.filter((s) => s.toLearn === 0).length,
+    stretch: matching.filter((s) => s.toLearn === 1).length,
+  });
+  let shown = $derived.by(() => {
+    const list = memo.fit === 'any' ? matching : matching.filter((s) => fitOf(s.toLearn) === memo.fit);
     type Row = (typeof list)[0];
     const by: Record<(typeof SORTS)[number]['id'], (a: Row, b: Row) => number> = {
       easy: (a, b) => a.difficulty - b.difficulty,
@@ -110,6 +120,7 @@
   $effect(() => {
     memo.query;
     memo.game;
+    memo.fit;
     settings.songSort;
     limit = PAGE;
   });
@@ -232,6 +243,14 @@
       Simplify chords (Cmaj7 → C, G/B → G)
     </label>
   </div>
+  <div class="row fits" role="group" aria-label="Show songs by the chords you know">
+    {#each [{ id: 'ready', label: 'All chords mastered' }, { id: 'stretch', label: 'One chord to learn' }] as const as f (f.id)}
+      <button class="fit-chip {f.id}" aria-pressed={memo.fit === f.id} class:selected={memo.fit === f.id} onclick={() => (memo.fit = memo.fit === f.id ? 'any' : f.id)}>
+        <span class="swatch" aria-hidden="true"></span>{f.label} <span class="mono muted">{fitCounts[f.id]}</span>
+      </button>
+    {/each}
+    <span class="muted small">{memo.fit === 'any' ? 'Tap one to see only those songs.' : 'Tap again to see every song.'}</span>
+  </div>
   {#if adding}
     <div class="card add">
       <div class="row">
@@ -249,9 +268,10 @@
 
 <div class="body">
   <ul class="list">
-    {#each visible as { song, chords, difficulty, stars } (song.id)}
+    {#each visible as { song, chords, difficulty, stars, toLearn } (song.id)}
+      {@const fit = fitOf(toLearn)}
       <li>
-        <button class="song" class:current={selected?.song.id === song.id} aria-current={selected?.song.id === song.id} onclick={() => select(song.id)}>
+        <button class="song {fit}" class:current={selected?.song.id === song.id} aria-current={selected?.song.id === song.id} onclick={() => select(song.id)}>
           <span class="diff">
             <span class="mono">{difficulty.toFixed(1)}</span>
             <span class="pips" aria-label="difficulty {difficulty.toFixed(1)} of 10">
@@ -260,6 +280,7 @@
           </span>
           <span class="who">
             <strong>{song.title}</strong>
+            {#if fit !== 'any'}<span class="sr">{fit === 'ready' ? 'All chords mastered' : 'One chord to learn'}</span>{/if}
             <span class="muted">{song.artist}{song.year ? ` · ${song.year}` : ''}</span>
           </span>
           <span class="chords">
@@ -528,6 +549,36 @@
     border-radius: 16px;
     padding: 12px 16px;
     font-weight: 400;
+  }
+  /* Status as a border colour, with words for screen readers (the chord tags also show gold = mastered). */
+  .song.ready {
+    border: 2px solid var(--good);
+    padding: 11px 15px;
+  }
+  .song.stretch {
+    border: 2px solid var(--stretch);
+    padding: 11px 15px;
+  }
+  .fits {
+    gap: 8px;
+  }
+  .fit-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+  }
+  .swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+  }
+  .fit-chip.ready .swatch {
+    border: 2px solid var(--good);
+  }
+  .fit-chip.stretch .swatch {
+    border: 2px solid var(--stretch);
   }
   .song.current {
     background: var(--accent-soft);

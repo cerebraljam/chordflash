@@ -21,6 +21,8 @@
   --warn: #ffb020;
   --warn-ink: #1a1300;
   --bad: #ff5a6e;
+  /* "One chord away": a song to stretch for. */
+  --stretch: #4d9cf0;
   --bad-ink: #2a0610;
   --dot: var(--accent);
   --dot-text: var(--accent-ink);

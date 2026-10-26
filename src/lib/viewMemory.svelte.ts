@@ -11,6 +11,8 @@ export interface ViewMemory {
     /** Game series or collection chip ("All", "Québec", "My songs"…). */
     game: string;
     selectedId: string | null;
+    /** Only songs whose chords are all mastered, or that are one chord away. */
+    fit: 'any' | 'ready' | 'stretch';
     scrollY: number;
     /** Rows drawn (the list grows as you scroll): enough to get back to `scrollY`. */
     rows: number;
@@ -25,7 +27,7 @@ export interface ViewMemory {
 const KEY = 'chordflash.view';
 
 const DEFAULTS: ViewMemory = {
-  setlist: { query: '', game: 'All', selectedId: null, scrollY: 0, rows: 0 },
+  setlist: { query: '', game: 'All', selectedId: null, fit: 'any', scrollY: 0, rows: 0 },
   tabs: { tabId: null, track: 0, from: 0, to: 0 },
   chordCheck: null,
   tuner: 'guitar',
