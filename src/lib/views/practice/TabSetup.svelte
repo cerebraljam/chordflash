@@ -238,8 +238,15 @@
     <p class="muted small">
       {selection.sequence.length} notes, {selection.items.length} different positions{selection.skippedChords
         ? `; ${selection.skippedChords} chords / double stops left out`
-        : ''}. Notes repeated right away are played once.
+        : ''}. Every note is asked, the same one twice in a row too.
     </p>
+
+    <div class="row" role="group" aria-label="How to show the riff while playing">
+      <span>Show</span>
+      <button class:selected={settings.riffView === 'cards'} aria-pressed={settings.riffView === 'cards'} onclick={() => (settings.riffView = 'cards')}>Cards</button>
+      <button class:selected={settings.riffView === 'tab'} aria-pressed={settings.riffView === 'tab'} onclick={() => (settings.riffView = 'tab')}>Tab</button>
+      <span class="muted small">{settings.riffView === 'cards' ? 'One note at a time, flash-card style' : 'The riff as a tab staff, following your playing'}</span>
+    </div>
 
     <div class="row">
       <button class="primary" disabled={selection.sequence.length < 2 || selection.items.length < 2} onclick={() => onstart(selection, `${tab.title} — ${track.name}`, false)}>

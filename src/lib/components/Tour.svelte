@@ -54,13 +54,13 @@
       view: 'home',
       targets: ['[data-tour="tile-setlist"]'],
       title: '5 · Pick songs',
-      body: 'Songs from Rock Band, Guitar Hero and Rocksmith, plus J-Rock, Québec and French collections, easiest first: ready-made chord sets to start with. "Play through" a song\'s changes at your pace, or play it "With rhythm" on a metronome.',
+      body: 'Songs from Rock Band, Guitar Hero, Rocksmith, J-Rock, Québec and French, easiest first. A green border: you know all its chords; blue: one new chord, a good next challenge. Play a song as flash cards, or as a chord sheet of the whole song.',
     },
     {
       view: 'home',
       targets: [],
       title: "You're set",
-      body: 'The rest is yours to discover: drills on the beat ("With rhythm" in Chord drills), note hunt, riffs from Guitar Pro tabs, stats. Replay this tour any time with the ? button at the top.',
+      body: 'The rest is yours to discover: drills on the beat ("With rhythm"), note hunt, riffs from Guitar Pro files shown as tab, stats. Replay this tour any time with the ? button at the top.',
     },
   ];
 

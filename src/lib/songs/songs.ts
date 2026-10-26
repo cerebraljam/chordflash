@@ -136,6 +136,15 @@ export function songChart(sections: SongSection[], simplify: boolean): ChartChor
 }
 
 /**
+ * For each bar of the chart, its step in songSequence (where a repeated chord
+ * is one step): "G G C" → [0, 0, 1]. The sheet lights up both G bars at once.
+ */
+export function chartSteps(chart: ChartChord[]): number[] {
+  let step = -1;
+  return chart.map((bar, i) => (i === 0 || bar.chord !== chart[i - 1].chord ? ++step : step));
+}
+
+/**
  * 0–10 difficulty for a beginner: dominated by the hardest chord (barres!),
  * then the average chord, then how many different chords there are.
  * G C D Em ≈ 2.5; a song full of barre chords ≈ 7.

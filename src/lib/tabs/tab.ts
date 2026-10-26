@@ -68,10 +68,18 @@ export function tuningName(tuning: number[]): string {
 /** Bass if it has 4–5 strings and goes below E2. */
 export const isBassTrack = (t: TabTrack) => t.tuning.length <= 5 && Math.min(...t.tuning) < 40;
 
+/** A bar as drawn on the tab staff: each beat's notes, and its place in the sequence (null: a chord, not asked). */
+export interface StaffBar {
+  section?: string;
+  events: { notes: TabNote[]; step: number | null }[];
+}
+
 export interface NoteSelection {
   instrument: InstrumentKey;
-  /** Position ids in playing order (a note repeated right away is played once). */
+  /** Position ids in playing order, every note (the same one twice in a row too). */
   sequence: string[];
+  /** The bars as a tab staff, for the Tab view. */
+  staff: StaffBar[];
   /** Distinct positions. */
   items: string[];
   /** Beats with several notes (chords, double stops), left out. */
@@ -88,18 +96,23 @@ export function selectNotes(track: TabTrack, from: number, to: number, asStandar
   const shifted = standardShift(track.tuning);
   const instrument = asStandard && shifted ? shifted.base : instrumentFor(track.tuning);
   const sequence: string[] = [];
+  const staff: StaffBar[] = [];
   let skippedChords = 0;
   let maxFret = 0;
   for (const bar of track.bars.slice(from, to + 1)) {
+    const drawn: StaffBar = { ...(bar.section ? { section: bar.section } : {}), events: [] };
     for (const e of bar.events) {
       if (e.notes.length > 1) skippedChords++;
+      if (e.notes.length) drawn.events.push({ notes: e.notes, step: e.notes.length === 1 ? sequence.length : null });
       if (e.notes.length !== 1) continue;
       const id = positionId({ instrument, ...e.notes[0] });
       maxFret = Math.max(maxFret, e.notes[0].fret);
-      if (sequence[sequence.length - 1] !== id) sequence.push(id);
+      // Every note, repeats included: in a riff, playing the same note again is part of it.
+      sequence.push(id);
     }
+    staff.push(drawn);
   }
-  return { instrument, sequence, items: [...new Set(sequence)], skippedChords, maxFret };
+  return { instrument, sequence, staff, items: [...new Set(sequence)], skippedChords, maxFret };
 }
 
 /** Bars where sections start, for choosing a range: [{ bar, name }]. */

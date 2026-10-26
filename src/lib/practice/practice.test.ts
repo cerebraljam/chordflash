@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { rng } from '../audio/synth';
 import { hintLevels, CLEAN_TIME_MS } from './hints';
-import { PracticeSession, pickNext, sequencePicker } from './session';
+import { PracticeSession, pickNext, sequenceCursor, sequencePicker } from './session';
 import { summarize } from './summary';
 import type { Attempt } from './types';
 
@@ -30,7 +30,29 @@ describe('pickNext', () => {
   });
 });
 
+describe('sequenceCursor', () => {
+  it('knows which step of the song is on screen, across the wrap-around', () => {
+    const cursor = sequenceCursor(['G', 'D', 'Em', 'G']);
+    const s = new PracticeSession({ kind: 'chord', items: ['G', 'D', 'Em'], goal: { kind: 'count', transitions: 6 }, threshold: 70, pick: cursor.pick });
+    s.start(0);
+    const onScreen = [cursor.positions[s.attempts.length]];
+    for (let t = 1; t <= 6; t++) {
+      s.strum(100, t * 1000);
+      onScreen.push(cursor.positions[s.attempts.length]);
+    }
+    // The last G and the first G of the next pass are one chord: step 0 is skipped on the way round.
+    expect(onScreen).toEqual([0, 1, 2, 3, 1, 2, 3]);
+  });
+});
+
 describe('sequencePicker', () => {
+  it('asks for every note of a riff, repeats and the loop back to the start included', () => {
+    const s = new PracticeSession({ kind: 'note', items: ['E', 'G'], goal: { kind: 'count', transitions: 6 }, threshold: 50, pick: sequencePicker(['E', 'E', 'G', 'E'], true) });
+    s.start(0);
+    for (let t = 1; t <= 7; t++) s.strum(100, t * 1000);
+    expect(s.attempts.map((a) => a.to)).toEqual(['E', 'E', 'G', 'E', 'E', 'E', 'G']);
+  });
+
   it('follows the song order and loops without repeating the wrap-around chord', () => {
     const s = new PracticeSession({
       kind: 'chord',

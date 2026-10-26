@@ -6,6 +6,7 @@
   import { engine } from '../../audio/engine';
   import { StrumListener } from '../../audio/strumListener';
   import ChordDiagram from '../../components/ChordDiagram.svelte';
+  import SongSheet from '../../components/SongSheet.svelte';
   import { chordById, chordName } from '../../music/chords';
   import { hintLevels } from '../../practice/hints';
   import { MAX_BPM, MIN_BPM, grade, nextBpm, planRound, roundScore, slotAt, tapTempo, type Grade, type Round } from '../../practice/metronome';
@@ -101,6 +102,22 @@
     return round.slots.slice(from, from + 8).filter((s) => sectionOf(s.index) === sectionOf(current.index));
   });
   let showDiagram = $derived(current !== null && levels.get(current.chord) !== 'name');
+
+  /**
+   * Song as a sheet (the "Sheet" view): one bar per slot, so each bar is its own step.
+   * These change once per bar, hit or beat, not every frame.
+   */
+  let asSheet = $derived(!!chart && settings.songView === 'sheet');
+  let sheetSteps = $derived(part.map((_, i) => i));
+  let sheetAt = $derived(position?.kind === 'chord' ? position.slot.index : 0);
+  let sheetBeat = $derived(position?.kind === 'chord' ? position.beat : -1);
+  let sheetGrades = $derived.by(() => {
+    version;
+    const tone = { onTime: 'good', late: 'warn', missed: 'bad' } as const;
+    const grades = new Map<number, 'good' | 'warn' | 'bad'>();
+    for (const s of round?.slots ?? []) if (s.index < sheetAt) grades.set(s.index, tone[grade(s)]);
+    return grades;
+  });
 
   const name = (id: string) => chordName(chordById(id), settings.lang);
 
@@ -324,6 +341,14 @@
       <button onclick={tap} title="Tap along with the record (or press T)">Tap the beat <kbd>T</kbd></button>
     </label>
     <div class="row">
+      <span>Show</span>
+      <div class="row" role="group" aria-label="How to show the song">
+        <button class:selected={!asSheet} aria-pressed={!asSheet} onclick={() => (settings.songView = 'cards')}>Lane</button>
+        <button class:selected={asSheet} aria-pressed={asSheet} onclick={() => (settings.songView = 'sheet')}>Sheet</button>
+      </div>
+      <span class="muted small">{asSheet ? 'The whole song as a chart, the bar lit up on the beat' : 'Chords sliding to a now line'}</span>
+    </div>
+    <div class="row">
       <span>Each chord lasts</span>
       {#each [2, 4, 8] as b (b)}
         <button class:selected={settings.metroBeats === b} onclick={() => (settings.metroBeats = b)}>{b} beats</button>
@@ -381,6 +406,34 @@
     </p>
     <div><button class="primary big" onclick={start} disabled={!engine.context}>Start <kbd>SPACE</kbd></button></div>
   </section>
+{:else if phase === 'playing' && round && position && asSheet}
+  <div class="sheet-stage">
+    <SongSheet chart={part} steps={sheetSteps} at={sheetAt} grades={sheetGrades} beat={sheetBeat >= 0 && current ? { at: sheetBeat, of: current.beats } : null} {name} />
+    <aside class="sheet-side">
+      <section class="card sheet-now" aria-label="Chord to play">
+        {#if position.kind === 'lead'}
+          <span class="eyebrow mono">GET READY</span>
+          <span class="display sheet-name">{position.beats - position.beat}</span>
+          <span class="muted small">{name(part[0].chord)} first · {sectionOf(0)}</span>
+        {:else if current}
+          <span class="eyebrow mono">PLAY · {sectionOf(current.index).toUpperCase()}</span>
+          <span class="display sheet-name">{name(current.chord)}</span>
+          <div class="beats" aria-label="Beat {position.beat + 1} of {current.beats}">
+            {#each Array(current.beats) as _, b (b)}
+              <span class="dot" class:on={b === position.beat} class:first={b === 0}></span>
+            {/each}
+          </div>
+          {#if showDiagram}<ChordDiagram voicing={chordById(current.chord)} lang={settings.lang} width={130} />{/if}
+        {/if}
+      </section>
+      <div class="sheet-next">
+        <span class="mono tiny muted">NEXT</span>
+        <span class="display">{ahead[0] ? name(ahead[0]) : 'end'}</span>
+        {#if ahead[0] && ahead[0] === current?.chord}<span class="muted small">again</span>{/if}
+      </div>
+      <span class="muted small key-hints"><kbd>Esc</kbd> stop</span>
+    </aside>
+  </div>
 {:else if phase === 'playing' && round && position}
   <section class="lane" bind:clientWidth={laneWidth} aria-label="Chord lane: chords move left to the now line">
     <div class="track" style:transform="translateX({shift}px)">
@@ -621,6 +674,80 @@
     width: 4px;
     margin-left: -2px;
     background: var(--accent);
+  }
+  /* Sheet view: the chart, with the chord to play beside it (above it on a phone). */
+  .sheet-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 20px;
+    align-items: start;
+  }
+  .sheet-side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: sticky;
+    top: 16px;
+  }
+  .sheet-now {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    border: 2px solid var(--accent);
+    padding: 16px;
+  }
+  .sheet-now .eyebrow {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .sheet-name {
+    font-size: 4.5rem;
+    line-height: 0.95;
+  }
+  .sheet-next {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 10px 16px;
+    font-size: 1.6rem;
+  }
+  @media (max-width: 860px) {
+    .sheet-stage {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+    .sheet-side {
+      order: -1;
+      position: static;
+      gap: 8px;
+    }
+    .sheet-now {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px 12px;
+      gap: 4px 14px;
+    }
+    .sheet-now .eyebrow {
+      flex-basis: 100%;
+      text-align: center;
+    }
+    .sheet-name {
+      font-size: 3rem;
+    }
+    .sheet-now :global(svg) {
+      width: 96px;
+      height: auto;
+    }
+    .key-hints {
+      display: none;
+    }
   }
   .section-tag {
     position: absolute;

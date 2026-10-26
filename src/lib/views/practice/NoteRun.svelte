@@ -6,18 +6,20 @@
   import HearingPanel from '../../components/HearingPanel.svelte';
   import ResultPill from '../../components/ResultPill.svelte';
   import SessionProgress from '../../components/SessionProgress.svelte';
+  import TabStaff from '../../components/TabStaff.svelte';
   import { shortcuts } from '../../keys';
   import { CLEAN_TIME_MS } from '../../practice/hints';
   import { parsePositionId, positionMidi, positionName, stringName, tuningOf } from '../../music/instruments';
   import { noteName, pitchClass, type Lang } from '../../music/notes';
   import { saveAttempt } from '../../practice/db';
   import GameChips from '../../components/GameChips.svelte';
-  import { xpLedger, type SessionGame } from '../../practice/game';
+  import { attemptGrade, xpLedger, type SessionGame } from '../../practice/game';
   import { hintLevels, RESCUE_AFTER_MS } from '../../practice/hints';
   import { describeWrongNote } from '../../practice/items';
   import type { Goal, PracticeSession } from '../../practice/session';
   import type { Attempt } from '../../practice/types';
   import { settings } from '../../settings.svelte';
+  import type { StaffBar } from '../../tabs/tab';
 
   let {
     session,
@@ -25,6 +27,7 @@
     title,
     maxFret,
     history,
+    staff,
     onfinish,
     onquit,
   }: {
@@ -35,6 +38,8 @@
     /** Frets the fretboard shows (default: the note practice setting). */
     maxFret?: number;
     history: Attempt[];
+    /** A riff shown on a tab staff: its bars, and the step of each note picked (sequenceCursor). */
+    staff?: { bars: StaffBar[]; positions: number[] };
     onfinish: () => void;
     onquit: () => void;
   } = $props();
@@ -57,6 +62,28 @@
     return parsePositionId(session.upcoming)!;
   });
   /** The item on screen is the session's last (count goal: warm-up + N transitions). */
+  /** Tab view: the step on screen, and how this pass's steps went (a looped riff starts a new pass). */
+  let staffAt = $derived.by(() => {
+    version;
+    return staff ? staff.positions[session.attempts.length] : 0;
+  });
+  let staffGrades = $derived.by(() => {
+    version;
+    const grades = new Map<number, 'good' | 'warn' | 'bad'>();
+    if (!staff) return grades;
+    const n = session.attempts.length;
+    let start = n;
+    while (start > 0 && staff.positions[start - 1] < staff.positions[start]) start--;
+    for (let k = start; k < n; k++) grades.set(staff.positions[k], attemptGrade(session.attempts[k]));
+    return grades;
+  });
+  let stringNames = $derived((tuningOf(current.instrument) ?? []).map((_, i) => stringName(current.instrument, i, settings.lang)));
+
+  /** A riff can ask for the same note twice in a row. */
+  let again = $derived.by(() => {
+    version;
+    return session.upcoming === session.current;
+  });
   let isLast = $derived.by(() => {
     version;
     return goal.kind === 'count' && session.attempts.length >= goal.transitions;
@@ -172,6 +199,35 @@
   <GameChips combo={game.combo} xp={game.xp} />
 </div>
 
+{#if staff}
+  <div class="tab-stage">
+    <TabStaff staff={staff.bars} strings={stringNames} at={staffAt} grades={staffGrades} />
+    <aside class="tab-side">
+      <section class="card now" aria-label="Note to play">
+        <span class="eyebrow mono">PLAY</span>
+        <span class="display now-name">{positionName(current, settings.lang)}</span>
+        <span class="muted small">{stringName(current.instrument, current.string, settings.lang)} string · {current.fret === 0 ? 'open' : `fret ${current.fret}`}</span>
+        <div class="target">
+          <div class="target-bar">
+            <div class="target-fill" class:slow={onNote > CLEAN_TIME_MS} style:width="{Math.min(1, onNote / CLEAN_TIME_MS) * 100}%"></div>
+          </div>
+          <div class="target-text mono">
+            <span class:slow={onNote > CLEAN_TIME_MS}>{(onNote / 1000).toFixed(1)} s{misses ? ` · ${misses} miss${misses > 1 ? 'es' : ''}` : ''}</span>
+          </div>
+        </div>
+      </section>
+      <div class="next-row">
+        <div class="next row-next">
+          <span class="eyebrow mono">{isLast ? 'LAST ONE' : again ? 'NEXT · AGAIN' : 'NEXT'}</span>
+          <span class="display small-next">{isLast ? '★' : positionName(upcoming, settings.lang)}</span>
+        </div>
+        <button class="skip" onclick={skip}>Skip <kbd>S</kbd></button>
+      </div>
+      <div class="tab-pill">{#if pill}<ResultPill tone={pill.tone} text={pill.text} xp={pill.xp} />{/if}</div>
+      <p class="heard muted small">Hearing <strong>{hearing === null ? '—' : noteName(hearing, settings.lang)}</strong> · <kbd>Esc</kbd> stop</p>
+    </aside>
+  </div>
+{:else}
 <div class="stage">
   <div class="hear">
     <HearingPanel {tones} />
@@ -209,7 +265,7 @@
 
   <aside class="side">
     <div class="next">
-      <span class="eyebrow mono">{isLast ? 'LAST ONE' : 'NEXT'}</span>
+      <span class="eyebrow mono">{isLast ? 'LAST ONE' : again ? 'NEXT · AGAIN' : 'NEXT'}</span>
       {#if isLast}
         <span class="display next-name">★</span>
       {:else}
@@ -229,8 +285,91 @@
 <div class="feedback">
   {#if pill}<ResultPill tone={pill.tone} text={pill.text} xp={pill.xp} />{/if}
 </div>
+{/if}
 
 <style>
+  /* Tab view: the staff, with the note to play beside it (above it on a phone). */
+  .tab-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 250px;
+    gap: 20px;
+    align-items: start;
+  }
+  .tab-side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: sticky;
+    top: 16px;
+  }
+  .now {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border: 2px solid var(--accent);
+    padding: 16px;
+  }
+  .now-name {
+    font-size: 4rem;
+    line-height: 0.95;
+  }
+  .small {
+    font-size: 0.85rem;
+  }
+  .next-row {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .next-row .next {
+    flex: 1;
+  }
+  .row-next {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 10px 16px;
+  }
+  .small-next {
+    font-size: 1.8rem;
+    color: #c9ccd6;
+  }
+  .tab-pill {
+    min-height: 44px;
+    display: flex;
+    justify-content: center;
+  }
+  @media (max-width: 860px) {
+    .tab-stage {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+    .tab-side {
+      order: -1;
+      position: static;
+      gap: 8px;
+    }
+    .now {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px 12px;
+      gap: 4px 14px;
+    }
+    .now .eyebrow {
+      display: none;
+    }
+    .now-name {
+      font-size: 2.8rem;
+    }
+    .now .target {
+      flex-basis: 100%;
+    }
+    .tab-pill {
+      min-height: 0;
+    }
+  }
   .hud {
     display: flex;
     align-items: center;

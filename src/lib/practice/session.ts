@@ -124,14 +124,27 @@ export class PracticeSession {
 }
 
 /**
- * Plays `sequence` in order, looping; when the loop wraps onto the chord just
- * played (song ends and starts on G), that repeat is skipped.
+ * Plays `sequence` in order, looping. Chord songs (merged repeats): when the
+ * loop wraps onto the chord just played (song ends and starts on G), that
+ * repeat is skipped. Riffs keep every note, repeats included (`keepRepeats`).
  */
-export function sequencePicker(sequence: string[]): Picker {
+export function sequencePicker(sequence: string[], keepRepeats = false): Picker {
+  return sequenceCursor(sequence, keepRepeats).pick;
+}
+
+/**
+ * sequencePicker that also records where each pick came from: `positions[k]`
+ * is the index in `sequence` of the k-th item picked (the session picks the
+ * warm-up item first, so the item on screen is `positions[attempts.length]`).
+ */
+export function sequenceCursor(sequence: string[], keepRepeats = false): { pick: Picker; positions: number[] } {
   let i = 0;
-  return (from) => {
-    let next = sequence[i++ % sequence.length];
-    if (next === from) next = sequence[i++ % sequence.length];
-    return next;
+  const positions: number[] = [];
+  const pick: Picker = (from) => {
+    let at = i++ % sequence.length;
+    if (!keepRepeats && sequence[at] === from) at = i++ % sequence.length;
+    positions.push(at);
+    return sequence[at];
   };
+  return { pick, positions };
 }

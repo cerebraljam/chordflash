@@ -7,23 +7,26 @@
   import HearingPanel from '../../components/HearingPanel.svelte';
   import ResultPill from '../../components/ResultPill.svelte';
   import SessionProgress from '../../components/SessionProgress.svelte';
+  import SongSheet from '../../components/SongSheet.svelte';
   import { shortcuts } from '../../keys';
   import { CLEAN_TIME_MS } from '../../practice/hints';
   import { chordById, chordName, voicingPitchClasses } from '../../music/chords';
   import { pitchClassName, type Lang } from '../../music/notes';
   import { saveAttempt } from '../../practice/db';
   import GameChips from '../../components/GameChips.svelte';
-  import { xpLedger, type SessionGame } from '../../practice/game';
+  import { attemptGrade, xpLedger, type SessionGame } from '../../practice/game';
   import { hintLevels, RESCUE_AFTER_MS } from '../../practice/hints';
   import type { Goal, PracticeSession } from '../../practice/session';
   import type { Attempt } from '../../practice/types';
   import { references, settings } from '../../settings.svelte';
+  import type { ChartChord } from '../../songs/songs';
 
   let {
     session,
     goal,
     title,
     history,
+    sheet,
     onfinish,
     onquit,
   }: {
@@ -32,6 +35,11 @@
     /** Shown above the session, e.g. the song being played. */
     title?: string;
     history: Attempt[];
+    /**
+     * A song shown as a whole chart instead of one card at a time: its bars, each
+     * bar's step (chartSteps) and the step of each item picked (sequenceCursor).
+     */
+    sheet?: { chart: ChartChord[]; steps: number[]; positions: number[] };
     onfinish: () => void;
     onquit: () => void;
   } = $props();
@@ -58,6 +66,21 @@
   let isLast = $derived.by(() => {
     version;
     return goal.kind === 'count' && session.attempts.length >= goal.transitions;
+  });
+  /** Sheet: the step on screen, and how this pass's steps went (a looped song starts a new pass). */
+  let sheetAt = $derived.by(() => {
+    version;
+    return sheet ? sheet.positions[session.attempts.length] : 0;
+  });
+  let sheetGrades = $derived.by(() => {
+    version;
+    const grades = new Map<number, 'good' | 'warn' | 'bad'>();
+    if (!sheet) return grades;
+    const n = session.attempts.length;
+    let start = n;
+    while (start > 0 && sheet.positions[start - 1] < sheet.positions[start]) start--;
+    for (let k = start; k < n; k++) grades.set(sheet.positions[k], attemptGrade(session.attempts[k]));
+    return grades;
   });
   let misses = $derived.by(() => {
     version;
@@ -175,6 +198,40 @@
   <GameChips combo={game.combo} xp={game.xp} />
 </div>
 
+{#if sheet}
+  <div class="sheet-stage">
+    <SongSheet chart={sheet.chart} steps={sheet.steps} at={sheetAt} grades={sheetGrades} name={(id) => chordName(chordById(id), settings.lang)} />
+    <aside class="sheet-side">
+      <section class="card now" aria-label="Chord to play">
+        <span class="eyebrow mono">PLAY</span>
+        <span class="display now-name">{chordName(current, settings.lang)}</span>
+        <span class="muted small">{chordName(current, otherLang)} · {names(tones)}</span>
+        {#if showDiagram}
+          <ChordDiagram voicing={current} lang={settings.lang} width={150} />
+        {:else}
+          <button onclick={reveal}>Show diagram <kbd>H</kbd></button>
+        {/if}
+        <div class="target">
+          <div class="target-bar">
+            <div class="target-fill" class:slow={onChord > CLEAN_TIME_MS} style:width="{Math.min(1, onChord / CLEAN_TIME_MS) * 100}%"></div>
+          </div>
+          <div class="target-text mono">
+            <span class:slow={onChord > CLEAN_TIME_MS}>{(onChord / 1000).toFixed(1)} s{misses ? ` · ${misses} miss${misses > 1 ? 'es' : ''}` : ''}</span>
+          </div>
+        </div>
+      </section>
+      <div class="next-row">
+        <div class="next row-next">
+          <span class="eyebrow mono">{isLast ? 'LAST ONE' : 'NEXT'}</span>
+          <span class="display small-next">{isLast ? '★' : chordName(upcoming, settings.lang)}</span>
+        </div>
+        <button class="skip" onclick={skip}>Skip <kbd>S</kbd></button>
+      </div>
+      <div class="sheet-pill">{#if pill}<ResultPill tone={pill.tone} text={pill.text} xp={pill.xp} />{/if}</div>
+      <span class="muted small key-hints"><kbd>H</kbd> diagram · <kbd>Esc</kbd> stop</span>
+    </aside>
+  </div>
+{:else}
 <div class="stage">
   <div class="hear"><HearingPanel {tones} /></div>
 
@@ -220,6 +277,7 @@
 <div class="feedback">
   {#if pill}<ResultPill tone={pill.tone} text={pill.text} xp={pill.xp} />{/if}
 </div>
+{/if}
 
 <style>
   .hud {
@@ -360,6 +418,103 @@
   }
   .skip {
     align-self: flex-start;
+  }
+  /* Sheet: the chart, with the chord to play beside it (above it on a phone). */
+  .sheet-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+    gap: 20px;
+    align-items: start;
+  }
+  .sheet-side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: sticky;
+    top: 16px;
+  }
+  .now {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    border: 2px solid var(--accent);
+    padding: 16px;
+  }
+  .now-name {
+    font-size: 4.5rem;
+    line-height: 0.95;
+  }
+  .small {
+    font-size: 0.85rem;
+  }
+  .row-next {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 10px 16px;
+  }
+  .small-next {
+    font-size: 2rem;
+    color: #c9ccd6;
+  }
+  .sheet-pill {
+    min-height: 44px;
+    display: flex;
+    justify-content: center;
+  }
+  .next-row {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .next-row .next {
+    flex: 1;
+  }
+  /* Narrow screens: the chord to play in one compact card above the chart, so the chart stays in view. */
+  @media (max-width: 860px) {
+    .sheet-stage {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
+    }
+    .sheet-side {
+      order: -1;
+      position: static;
+      gap: 8px;
+    }
+    .now {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 10px 12px;
+      gap: 4px 14px;
+    }
+    .now .eyebrow {
+      display: none;
+    }
+    .now-name {
+      font-size: 3rem;
+    }
+    .now :global(svg) {
+      width: 96px;
+      height: auto;
+    }
+    .now .target {
+      flex-basis: 100%;
+    }
+    .row-next {
+      padding: 6px 14px;
+    }
+    .small-next {
+      font-size: 1.5rem;
+    }
+    .sheet-pill {
+      min-height: 0;
+    }
+    /* No keyboard on a phone. */
+    .key-hints {
+      display: none;
+    }
   }
   .feedback {
     display: flex;

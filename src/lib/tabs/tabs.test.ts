@@ -64,8 +64,13 @@ describe('tab selection', () => {
     const lead = tab.tracks[0];
     const intro = selectNotes(lead, 0, 1, false);
     expect(intro.instrument).toBe('t-38-45-50-55-59-64'); // Drop D can't be played on a standard guitar
-    expect(intro.sequence.map((id) => id.split(':').slice(1).join(':'))).toEqual(['0:0', '0:3', '0:5', '1:3']);
+    // Every note, the repeated 5th fret included.
+    expect(intro.sequence.map((id) => id.split(':').slice(1).join(':'))).toEqual(['0:0', '0:3', '0:5', '0:5', '1:3']);
     expect(intro.skippedChords).toBe(1);
+    // The staff: every beat with notes, single notes numbered in playing order, the chord shown but not asked.
+    expect(intro.staff[0].section).toBe('Intro');
+    expect(intro.staff[0].events.map((e) => e.step)).toEqual([0, 1, 2, 3, 4, null]);
+    expect(intro.staff[1].events).toEqual([]);
     expect(intro.items).toHaveLength(4);
     expect(sectionStarts(lead)).toEqual([{ bar: 0, name: 'Intro' }, { bar: 2, name: 'Verse' }]);
     expect(isBassTrack(lead)).toBe(false);

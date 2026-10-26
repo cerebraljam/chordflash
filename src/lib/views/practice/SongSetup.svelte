@@ -315,6 +315,15 @@
         {#if song.tuning}<span class="muted small">Tuned {song.tuning} in Rocksmith; chords shown for standard tuning.</span>{/if}
       </div>
 
+      <div class="view-switch">
+        <div class="segmented" role="group" aria-label="How to show the song while playing">
+          {#each [{ id: 'cards', label: 'Cards' }, { id: 'sheet', label: 'Sheet' }] as const as v (v.id)}
+            <button aria-pressed={settings.songView === v.id} class:on={settings.songView === v.id} onclick={() => (settings.songView = v.id)}>{v.label}</button>
+          {/each}
+        </div>
+        <span class="muted small">{settings.songView === 'cards' ? 'One chord at a time, flash-card style' : 'The whole song as a chart: it follows your playing, or the beat with rhythm'}</span>
+      </div>
+
       <div class="actions">
         <button class="primary play" onclick={() => onstart(song, false)} disabled={selected.chords.length < 2}>
           <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z" fill="currentColor"></path></svg>
@@ -734,6 +743,12 @@
     border-radius: 12px;
     padding: 10px 14px;
     font-size: 0.95rem;
+  }
+  .view-switch {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
   }
   .actions {
     display: flex;

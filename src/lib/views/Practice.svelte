@@ -13,7 +13,7 @@
   import { history } from '../practice/history.svelte';
   import { hintLevels, type HintLevel } from '../practice/hints';
   import { itemName, noteItems } from '../practice/items';
-  import { PracticeSession, pickNext, sequencePicker, type Goal, type Picker } from '../practice/session';
+  import { PracticeSession, pickNext, sequenceCursor, sequencePicker, type Goal, type Picker } from '../practice/session';
   import { summarize, type SessionSummary } from '../practice/summary';
   import { levelFor, stars, xpLedger } from '../practice/game';
   import type { SummaryGame } from './practice/PracticeSummary.svelte';
@@ -21,7 +21,7 @@
   import { pairDifficulties, weightedPick } from '../practice/weighting';
   import { OPEN_CHORDS } from '../music/chords';
   import { addToChordLibrary, settings } from '../settings.svelte';
-  import { songChart, songChords, songSequence, type ChartChord, type Song } from '../songs/songs';
+  import { chartSteps, songChart, songChords, songSequence, type ChartChord, type Song } from '../songs/songs';
   import NoteRun from './practice/NoteRun.svelte';
   import NoteSetup from './practice/NoteSetup.svelte';
   import PracticeRun from './practice/PracticeRun.svelte';
@@ -30,7 +30,7 @@
   import MetronomeRun from './practice/MetronomeRun.svelte';
   import SongSetup from './practice/SongSetup.svelte';
   import TabSetup from './practice/TabSetup.svelte';
-  import type { NoteSelection } from '../tabs/tab';
+  import type { NoteSelection, StaffBar } from '../tabs/tab';
 
   type Phase =
     | { name: 'setup' }
@@ -53,6 +53,10 @@
         maxFret?: number;
         /** Set when playing a song through: its best stars are remembered. */
         songId?: string;
+        /** A song shown as a whole chart (the Sheet view). */
+        sheet?: { chart: ChartChord[]; steps: number[]; positions: number[] };
+        /** A riff shown on a tab staff (the Tab view). */
+        staff?: { bars: StaffBar[]; positions: number[] };
         again: () => void;
       }
     | {
@@ -147,22 +151,31 @@
     addToChordLibrary(songChords(song.sections, settings.simplifyChords), STARTERS);
     const sequence = songSequence(song.sections, settings.simplifyChords);
     const goal: Goal = loop ? { kind: 'time', minutes: settings.goalMinutes } : { kind: 'count', transitions: sequence.length - 1 };
+    // Sheet view: the cursor tells the chart which step is on screen.
+    const cursor = sequenceCursor(sequence);
     begin(
       'chord',
       songChords(song.sections, settings.simplifyChords),
       goal,
-      sequencePicker(sequence),
+      cursor.pick,
       () => startSong(song, loop),
       `${song.title} — ${song.artist}`,
       undefined,
       loop ? undefined : song.id,
     );
+    if (settings.songView === 'sheet' && phase.name === 'running') {
+      const chart = songChart(song.sections, settings.simplifyChords);
+      phase = { ...phase, sheet: { chart, steps: chartSteps(chart), positions: cursor.positions } };
+    }
   }
 
   /** A tab's notes in order: once through, or looped for the session length. */
   function startTab(sel: NoteSelection, title: string, loop: boolean) {
     const goal: Goal = loop ? { kind: 'time', minutes: settings.goalMinutes } : { kind: 'count', transitions: sel.sequence.length - 1 };
-    begin('note', sel.items, goal, sequencePicker(sel.sequence), () => startTab(sel, title, loop), title, Math.max(4, sel.maxFret));
+    // Every note of the riff, the same one twice included; the cursor tells the tab staff which note is on screen.
+    const cursor = sequenceCursor(sel.sequence, true);
+    begin('note', sel.items, goal, cursor.pick, () => startTab(sel, title, loop), title, Math.max(4, sel.maxFret));
+    if (settings.riffView === 'tab' && phase.name === 'running') phase = { ...phase, staff: { bars: sel.staff, positions: cursor.positions } };
   }
 
   /** Chord set in the practice order (focus or random), changing on the beat. */
@@ -250,6 +263,7 @@
         goal={phase.goal}
         title={phase.title}
         history={historyOf('chord')}
+        sheet={phase.sheet}
         onfinish={() => end(true)}
         onquit={() => end(phase.name === 'running' && phase.session.transitions > 0)}
       />
@@ -260,6 +274,7 @@
         title={phase.title}
         maxFret={phase.maxFret}
         history={historyOf('note')}
+        staff={phase.staff}
         onfinish={() => end(true)}
         onquit={() => end(phase.name === 'running' && phase.session.transitions > 0)}
       />

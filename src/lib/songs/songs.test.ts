@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { BUILTIN_SONGS, fromRaw, loadCollections, mergeCollections, groupSections, mostAdjacent, parseProgression, progressionText, seriesOf, songChart, songChords, songDifficulty, songSequence } from './songs';
+import { BUILTIN_SONGS, fromRaw, loadCollections, mergeCollections, groupSections, mostAdjacent, parseProgression, progressionText, chartSteps, seriesOf, songChart, songChords, songDifficulty, songSequence } from './songs';
 
 describe('songs', () => {
   it('gives every built-in song its own id, Japanese titles included', async () => {
@@ -16,6 +16,17 @@ describe('songs', () => {
     expect(songChart(sections, false).map((c) => `${c.section}:${c.chord}`)).toEqual(['Verse:G', 'Verse:G', 'Verse:Cmaj7', 'Verse:C', 'Chorus:D']);
     // Simplified, Cmaj7 C becomes C C: two bars of C.
     expect(songChart(sections, true).map((c) => c.chord)).toEqual(['G', 'G', 'C', 'C', 'D']);
+  });
+
+  it('maps sheet bars to song steps, repeats sharing one step', () => {
+    const sections = parseProgression('Verse: G G Cmaj7 C\nChorus: C D');
+    expect(chartSteps(songChart(sections, false))).toEqual([0, 0, 1, 2, 2, 3]);
+    // Simplified, Cmaj7 C C is three bars of C: one step.
+    const simple = songChart(sections, true);
+    const steps = chartSteps(simple);
+    expect(steps).toEqual([0, 0, 1, 1, 1, 2]);
+    const sequence = songSequence(sections, true);
+    expect(simple.every((bar, i) => sequence[steps[i]] === bar.chord)).toBe(true);
   });
 
   it('groups games by series', () => {

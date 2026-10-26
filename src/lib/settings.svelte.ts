@@ -29,6 +29,10 @@ export interface Settings {
   /** Play song chords as plain major/minor triads (Cmaj7 → C, G/B → G). */
   simplifyChords: boolean;
   songSort: 'easy' | 'hard' | 'fits' | 'title' | 'artist';
+  /** Playing a song: one chord at a time (cards) or the whole chart (sheet). */
+  songView: 'cards' | 'sheet';
+  /** Playing a riff: one note at a time (cards) or on a tab staff. */
+  riffView: 'cards' | 'tab';
   /** Metronome: beats each chord is held, automatic tempo, click volume (0..1). */
   metroBeats: number;
   metroAuto: boolean;
@@ -69,6 +73,8 @@ export const DEFAULTS: Settings = {
   noteNaturalsOnly: true,
   simplifyChords: true,
   songSort: 'easy',
+  songView: 'cards',
+  riffView: 'cards',
   metroBeats: 4,
   metroAuto: true,
   metroVolume: 0.5,
