@@ -23,14 +23,33 @@
 
   let hovered = $state<{ stat: PairStat; left: number; top: number } | null>(null);
 
+  /**
+   * Cells shrink to fit the card as chords are added: times are printed while
+   * cells are wide enough, then the grid shows colours only (hover or tap a
+   * cell for its time). Headers turn vertical when columns get narrow.
+   */
+  let width = $state(700);
+  const LABELS = 64;
+  let cell = $derived(Math.max(12, Math.min(67, Math.floor((width - LABELS) / items.length) - 2)));
+  let numbers = $derived(cell >= 30);
+  let vertical = $derived(cell < 40);
+
   function show(e: Event, stat: PairStat) {
     const cell = e.currentTarget as HTMLElement;
     hovered = { stat, left: cell.offsetLeft + cell.offsetWidth / 2, top: cell.offsetTop };
   }
 </script>
 
-<div class="heatmap" style:--cols={items.length}>
-  <div class="grid">
+<div
+  class="heatmap"
+  bind:clientWidth={width}
+  style:--cols={items.length}
+  style:--cell="{cell}px"
+  style:--cell-h="{Math.max(14, Math.min(42, cell))}px"
+  style:--font={cell >= 42 ? '0.85rem' : '0.7rem'}
+>
+  {#if !numbers}<p class="muted note">Hover or tap a cell for its time.</p>{/if}
+  <div class="grid" class:vertical>
     <div class="corner"><span>from ↓ to →</span></div>
     {#each items as to (to)}
       <div class="head">{short(to)}</div>
@@ -42,7 +61,7 @@
         {#if from === to}
           <div class="cell self"></div>
         {:else if !stat || Number.isNaN(stat.recentAvgMs)}
-          <div class="cell empty" title="{name(from)} → {name(to)}: not played yet">–</div>
+          <div class="cell empty" title="{name(from)} → {name(to)}: not played yet">{numbers ? '–' : ''}</div>
         {:else}
           {@const b = bin(stat.recentAvgMs)}
           <button
@@ -55,7 +74,7 @@
             onfocus={(e) => show(e, stat)}
             onblur={() => (hovered = null)}
           >
-            {(stat.recentAvgMs / 1000).toFixed(1)}
+            {#if numbers}{(stat.recentAvgMs / 1000).toFixed(1)}{/if}
           </button>
         {/if}
       {/each}
@@ -85,7 +104,7 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: max-content repeat(var(--cols), minmax(2.6rem, 4.2rem));
+    grid-template-columns: max-content repeat(var(--cols), var(--cell));
     justify-content: start;
     gap: 2px;
     overflow-x: auto;
@@ -97,11 +116,24 @@
     align-items: flex-end;
   }
   .head {
-    font-size: 0.85rem;
+    font-size: var(--font);
+    min-width: 0;
     font-weight: 600;
     text-align: center;
     align-self: end;
     padding-bottom: 0.2rem;
+  }
+  /* Narrow columns: names written upwards, as on a printed chart. */
+  .vertical .head:not(.row) {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    justify-self: center;
+    text-align: left;
+    padding: 0 0 0.3rem;
+  }
+  .note {
+    margin: 0 0 0.5rem;
+    font-size: 0.85rem;
   }
   .head.row {
     text-align: right;
@@ -109,13 +141,15 @@
     padding: 0 0.5rem 0 0;
   }
   .cell {
-    height: 2.6rem;
+    height: var(--cell-h);
+    /* Cells are buttons: undo the app's 40 px minimum so small cells stay square. */
+    min-height: 0;
     border: none;
     border-radius: 4px;
     display: grid;
     place-items: center;
     font: inherit;
-    font-size: 0.85rem;
+    font-size: var(--font);
     font-weight: 600;
     font-variant-numeric: tabular-nums;
     padding: 0;

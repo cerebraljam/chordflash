@@ -16,8 +16,8 @@
 
   /** Sessions in the "recent" period compared against the ones just before. */
   const PERIOD = 5;
-  /** Above this many items the from × to grid gets too big; the table is shown instead. */
-  const MAX_GRID = 12;
+  /** Above this many items even a colours-only from × to grid gets too small; the table is shown instead. */
+  const MAX_GRID = 40;
 
   let all = $state.raw<Attempt[] | null>(null);
   /** The tab you picked last; until then, the one matching the practice mode. */

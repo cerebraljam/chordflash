@@ -4,3 +4,4 @@ dist/
 data/raw/
 data/cache/
 PROJECT.md
+.DS_Store
